@@ -1,0 +1,57 @@
+{
+  "_buildCommand2" : {
+    "command" : "build",
+    "skipDependencies" : false,
+    "style" : "buildAndRun"
+  },
+  "buildCommand" : "build",
+  "configuredTargets" : [
+    {
+      "guid" : "ac97c919a5577e2529eb8d160176518541eff22d4d0dd83cb06734e96b7b2230"
+    }
+  ],
+  "containerPath" : "/Users/kangyixiao/EchoFile/coding/SJTU-SE-Junior/SE344_ComputerGraphics/Lathe-Simulation2/Lathe-Simulation2.xcodeproj",
+  "continueBuildingAfterErrors" : false,
+  "enableIndexBuildArena" : false,
+  "hideShellScriptEnvironment" : false,
+  "parameters" : {
+    "action" : "build",
+    "activeArchitecture" : "x86_64",
+    "activeRunDestination" : {
+      "disableOnlyActiveArch" : false,
+      "platform" : "macosx",
+      "sdk" : "macosx12.0",
+      "sdkVariant" : "macos",
+      "supportedArchitectures" : [
+        "x86_64h",
+        "x86_64"
+      ],
+      "targetArchitecture" : "x86_64"
+    },
+    "arenaInfo" : {
+      "buildIntermediatesPath" : "/Users/kangyixiao/EchoFile/coding/SJTU-SE-Junior/SE344_ComputerGraphics/Lathe-Simulation2/Build/Intermediates.noindex",
+      "buildProductsPath" : "/Users/kangyixiao/EchoFile/coding/SJTU-SE-Junior/SE344_ComputerGraphics/Lathe-Simulation2/Build/Products",
+      "derivedDataPath" : "/Users/kangyixiao/Library/Developer/Xcode/DerivedData",
+      "indexDataStoreFolderPath" : "/Users/kangyixiao/Library/Developer/Xcode/DerivedData/Lathe-Simulation2-ebpwavcjgnegcjfafbbyuuntdhyz/Index/DataStore",
+      "indexEnableDataStore" : true,
+      "indexPCHPath" : "/Users/kangyixiao/Library/Developer/Xcode/DerivedData/Lathe-Simulation2-ebpwavcjgnegcjfafbbyuuntdhyz/Index/PrecompiledHeaders",
+      "pchPath" : "/Users/kangyixiao/EchoFile/coding/SJTU-SE-Junior/SE344_ComputerGraphics/Lathe-Simulation2/Build/Intermediates.noindex/PrecompiledHeaders"
+    },
+    "configurationName" : "Debug",
+    "overrides" : {
+      "synthesized" : {
+        "table" : {
+          "ENABLE_PREVIEWS" : "NO"
+        }
+      }
+    }
+  },
+  "schemeCommand" : "launch",
+  "schemeCommand2" : "launch",
+  "shouldCollectMetrics" : false,
+  "showNonLoggedProgress" : true,
+  "useDryRun" : false,
+  "useImplicitDependencies" : true,
+  "useLegacyBuildLocations" : false,
+  "useParallelTargets" : true
+}

@@ -1,0 +1,10 @@
+# Exported from 3D Builder
+
+newmtl BaseColor_0
+Kd 0.737255 0.737255 0.737255
+
+newmtl Orange_0
+Kd 1.000000 0.498039 0.145098
+
+newmtl Turquoise_0
+Kd 0.000000 0.627451 0.909804

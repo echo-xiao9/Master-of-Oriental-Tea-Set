@@ -1,0 +1,57 @@
+{
+  "_buildCommand2" : {
+    "command" : "build",
+    "skipDependencies" : false,
+    "style" : "buildAndRun"
+  },
+  "buildCommand" : "build",
+  "configuredTargets" : [
+    {
+      "guid" : "9386aa557eaf9a6e5547c79223b515d841eff22d4d0dd83cb06734e96b7b2230"
+    }
+  ],
+  "containerPath" : "/Users/kangyixiao/EchoFile/coding/SJTU-SE/SE344_ComputerGraphics/OpenGLTest2/OpenGLTest2.xcodeproj",
+  "continueBuildingAfterErrors" : false,
+  "enableIndexBuildArena" : false,
+  "hideShellScriptEnvironment" : false,
+  "parameters" : {
+    "action" : "build",
+    "activeArchitecture" : "x86_64",
+    "activeRunDestination" : {
+      "disableOnlyActiveArch" : false,
+      "platform" : "macosx",
+      "sdk" : "macosx11.3",
+      "sdkVariant" : "macos",
+      "supportedArchitectures" : [
+        "x86_64h",
+        "x86_64"
+      ],
+      "targetArchitecture" : "x86_64"
+    },
+    "arenaInfo" : {
+      "buildIntermediatesPath" : "/Users/kangyixiao/EchoFile/coding/SJTU-SE/SE344_ComputerGraphics/OpenGLTest2/Build/Intermediates.noindex",
+      "buildProductsPath" : "/Users/kangyixiao/EchoFile/coding/SJTU-SE/SE344_ComputerGraphics/OpenGLTest2/Build/Products",
+      "derivedDataPath" : "/Users/kangyixiao/Library/Developer/Xcode/DerivedData",
+      "indexDataStoreFolderPath" : "/Users/kangyixiao/Library/Developer/Xcode/DerivedData/OpenGLTest2-fygtcxksshegntccxmsnzymzjddl/Index/DataStore",
+      "indexEnableDataStore" : true,
+      "indexPCHPath" : "/Users/kangyixiao/Library/Developer/Xcode/DerivedData/OpenGLTest2-fygtcxksshegntccxmsnzymzjddl/Index/PrecompiledHeaders",
+      "pchPath" : "/Users/kangyixiao/EchoFile/coding/SJTU-SE/SE344_ComputerGraphics/OpenGLTest2/Build/Intermediates.noindex/PrecompiledHeaders"
+    },
+    "configurationName" : "Debug",
+    "overrides" : {
+      "synthesized" : {
+        "table" : {
+          "ENABLE_PREVIEWS" : "NO"
+        }
+      }
+    }
+  },
+  "schemeCommand" : "launch",
+  "schemeCommand2" : "launch",
+  "shouldCollectMetrics" : false,
+  "showNonLoggedProgress" : true,
+  "useDryRun" : false,
+  "useImplicitDependencies" : true,
+  "useLegacyBuildLocations" : false,
+  "useParallelTargets" : true
+}
