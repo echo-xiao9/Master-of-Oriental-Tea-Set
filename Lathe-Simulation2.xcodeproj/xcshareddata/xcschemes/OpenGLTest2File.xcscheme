@@ -36,7 +36,7 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       launchStyle = "0"
       useCustomWorkingDirectory = "YES"
-      customWorkingDirectory = "/Users/kangyixiao/EchoFile/coding/SJTU-SE-Junior/SE344_ComputerGraphics/Lathe-Simulation2"
+      customWorkingDirectory = "/Users/kangyixiao/EchoFile/coding/MasterOfOrientalTeaSet"
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"

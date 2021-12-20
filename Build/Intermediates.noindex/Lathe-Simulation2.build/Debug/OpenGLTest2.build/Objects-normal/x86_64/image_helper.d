@@ -1,6 +1,6 @@
 dependencies: \
-  /Users/kangyixiao/EchoFile/coding/SJTU-SE-Junior/SE344_ComputerGraphics/Lathe-Simulation2/Externals/Include/SOIL/image_helper.c \
-  /Users/kangyixiao/EchoFile/coding/SJTU-SE-Junior/SE344_ComputerGraphics/Lathe-Simulation2/Externals/Include/SOIL/image_helper.h \
+  /Users/kangyixiao/EchoFile/coding/MasterOfOrientalTeaSet/Externals/Include/SOIL/image_helper.c \
+  /Users/kangyixiao/EchoFile/coding/MasterOfOrientalTeaSet/Externals/Include/SOIL/image_helper.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.0.sdk/usr/include/xcselect.modulemap \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.0.sdk/usr/include/kcdata.modulemap \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.0.sdk/usr/include/uuid.modulemap \

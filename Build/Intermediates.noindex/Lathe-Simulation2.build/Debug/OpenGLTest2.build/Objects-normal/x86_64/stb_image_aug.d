@@ -1,6 +1,6 @@
 dependencies: \
-  /Users/kangyixiao/EchoFile/coding/SJTU-SE-Junior/SE344_ComputerGraphics/Lathe-Simulation2/Externals/Include/SOIL/stb_image_aug.c \
-  /Users/kangyixiao/EchoFile/coding/SJTU-SE-Junior/SE344_ComputerGraphics/Lathe-Simulation2/Externals/Include/SOIL/stb_image_aug.h \
+  /Users/kangyixiao/EchoFile/coding/MasterOfOrientalTeaSet/Externals/Include/SOIL/stb_image_aug.c \
+  /Users/kangyixiao/EchoFile/coding/MasterOfOrientalTeaSet/Externals/Include/SOIL/stb_image_aug.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.0.sdk/usr/include/xcselect.modulemap \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.0.sdk/usr/include/kcdata.modulemap \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.0.sdk/usr/include/uuid.modulemap \
@@ -15,5 +15,5 @@ dependencies: \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.0.sdk/usr/include/netinet.modulemap \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.0.sdk/usr/include/net.modulemap \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.0.sdk/usr/include/darwin_cdefs.modulemap \
-  /Users/kangyixiao/EchoFile/coding/SJTU-SE-Junior/SE344_ComputerGraphics/Lathe-Simulation2/Externals/Include/SOIL/stbi_DDS_aug.h \
-  /Users/kangyixiao/EchoFile/coding/SJTU-SE-Junior/SE344_ComputerGraphics/Lathe-Simulation2/Externals/Include/SOIL/stbi_DDS_aug_c.h
+  /Users/kangyixiao/EchoFile/coding/MasterOfOrientalTeaSet/Externals/Include/SOIL/stbi_DDS_aug.h \
+  /Users/kangyixiao/EchoFile/coding/MasterOfOrientalTeaSet/Externals/Include/SOIL/stbi_DDS_aug_c.h

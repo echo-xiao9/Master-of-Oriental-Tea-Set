@@ -1,5 +1,5 @@
 dependencies: \
-  /Users/kangyixiao/EchoFile/coding/SJTU-SE-Junior/SE344_ComputerGraphics/Lathe-Simulation2/Externals/glad.c \
+  /Users/kangyixiao/EchoFile/coding/MasterOfOrientalTeaSet/Externals/glad.c \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.0.sdk/usr/include/xcselect.modulemap \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.0.sdk/usr/include/kcdata.modulemap \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.0.sdk/usr/include/uuid.modulemap \
@@ -14,5 +14,5 @@ dependencies: \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.0.sdk/usr/include/netinet.modulemap \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.0.sdk/usr/include/net.modulemap \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.0.sdk/usr/include/darwin_cdefs.modulemap \
-  /Users/kangyixiao/EchoFile/coding/SJTU-SE-Junior/SE344_ComputerGraphics/Lathe-Simulation2/Externals/Include/glad/glad.h \
-  /Users/kangyixiao/EchoFile/coding/SJTU-SE-Junior/SE344_ComputerGraphics/Lathe-Simulation2/Externals/Include/KHR/khrplatform.h
+  /Users/kangyixiao/EchoFile/coding/MasterOfOrientalTeaSet/Externals/Include/glad/glad.h \
+  /Users/kangyixiao/EchoFile/coding/MasterOfOrientalTeaSet/Externals/Include/KHR/khrplatform.h

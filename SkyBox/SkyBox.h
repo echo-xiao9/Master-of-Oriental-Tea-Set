@@ -63,34 +63,34 @@ private:
 		glGenTextures(1, &textureID);
 		glBindTexture(GL_TEXTURE_CUBE_MAP, textureID);
 
-//		int width, height, nrComponents;
+		int width, height, nrComponents;
 		for (unsigned int i = 0; i < faces.size(); i++)
 		{
-//			unsigned char *data = stbi_load(faces[i].c_str(), &width, &height, &nrComponents, 0);
-//			if (data)
-//			{
-//				glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X + i, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
-//                std::cout<<"load picture:"<<faces[i]<<endl;
-//                 glGenerateMipmap(GL_TEXTURE_CUBE_MAP);
-//            }
-//			else
-//			{
-//				std::cout << "Cubemap texture failed to load at path: " << faces[i] << std::endl;
-//			}
+			unsigned char *data = SOIL_load_image(faces[i].c_str(), &width, &height, &nrComponents, 0);
+			if (data)
+			{
+				glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X + i, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
+                std::cout<<"load picture:"<<faces[i]<<endl;
+                 glGenerateMipmap(GL_TEXTURE_CUBE_MAP);
+            }
+			else
+			{
+				std::cout << "Cubemap texture failed to load at path: " << faces[i] << std::endl;
+			}
             
-//			stbi_image_free(data);
-            const char* path =faces[i].data();
-            int texwidth,texheight,nrComponents=0;//nrChannels表示通道数，R/G/B/A，一共4个通道，有些图片只有3个，A即为alpha
-            unsigned char *data = SOIL_load_image(path, &texwidth, &texheight, &nrComponents, SOIL_LOAD_RGB);
-                glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, texwidth, texheight, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
-                if(data){
-                    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, texwidth, texheight, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
-                    glGenerateMipmap(GL_TEXTURE_2D);
-                    std::cout<<"load picture:"<<faces[i]<<endl;
-                }
-                else
-                    std::cout<<SOIL_last_result()<<std::endl;
-                SOIL_free_image_data(data);
+			SOIL_free_image_data(data);
+//            const char* path =faces[i].data();
+//            int texwidth,texheight,nrComponents=0;//nrChannels表示通道数，R/G/B/A，一共4个通道，有些图片只有3个，A即为alpha
+//            unsigned char *data = SOIL_load_image(path, &texwidth, &texheight, &nrComponents, SOIL_LOAD_RGB);
+//                glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, texwidth, texheight, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
+//                if(data){
+//                    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, texwidth, texheight, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
+//                    glGenerateMipmap(GL_TEXTURE_2D);
+//                    std::cout<<"load picture:"<<faces[i]<<endl;
+//                }
+//                else
+//                    std::cout<<SOIL_last_result()<<std::endl;
+//                SOIL_free_image_data(data);
             
 		}
 		glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
