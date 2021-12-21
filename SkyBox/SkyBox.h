@@ -79,18 +79,7 @@ private:
 			}
             
 			SOIL_free_image_data(data);
-//            const char* path =faces[i].data();
-//            int texwidth,texheight,nrComponents=0;//nrChannels表示通道数，R/G/B/A，一共4个通道，有些图片只有3个，A即为alpha
-//            unsigned char *data = SOIL_load_image(path, &texwidth, &texheight, &nrComponents, SOIL_LOAD_RGB);
-//                glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, texwidth, texheight, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
-//                if(data){
-//                    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, texwidth, texheight, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
-//                    glGenerateMipmap(GL_TEXTURE_2D);
-//                    std::cout<<"load picture:"<<faces[i]<<endl;
-//                }
-//                else
-//                    std::cout<<SOIL_last_result()<<std::endl;
-//                SOIL_free_image_data(data);
+
             
 		}
 		glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
@@ -128,12 +117,19 @@ public:
 //			"SkyBox/Forest/PZ.jpg",//+z
 //			"SkyBox/Forest/NZ.png",//-z
             
-           "skybox/Lake/right.jpg",
-            "skybox/Lake/left.jpg",
-            "skybox/Lake/top.jpg",
-            "skybox/Lake/bottom.jpg",
-            "skybox/Lake/front.jpg",
-            "skybox/Lake/back.jpg"
+//           "skybox/Lake/right.jpg",
+//            "skybox/Lake/left.jpg",
+//            "skybox/Lake/top.jpg",
+//            "skybox/Lake/bottom.jpg",
+//            "skybox/Lake/front.jpg",
+
+                       "SkyBox/thousand/right_thousands_07.jpg",
+                        "SkyBox/thousand/left_thousands_05.jpg",
+                        "SkyBox/thousand/top_thousands_02.jpg",
+                        "SkyBox/thousand/buttom_thousands_10.jpg",
+                        "SkyBox/thousand/front_thousands_08.jpg",
+                        "SkyBox/thousand/back_thousands_06.jpg"
+            
 		};
 		forestTexture = loadCubemap(faces1);
 		forestShader.use();
@@ -154,6 +150,7 @@ public:
              "skybox/Lake/front.jpg",
              "skybox/Lake/back.jpg"
 		};
+                
 		factoryTexture = loadCubemap(faces2);
 		factoryShader.use();
 		factoryShader.setInt("factory", 0);

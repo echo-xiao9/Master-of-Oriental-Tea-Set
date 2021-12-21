@@ -20,6 +20,7 @@
 		E8840E572706A3210023EA73 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8840E562706A3210023EA73 /* IOKit.framework */; };
 		E8840E592706A32F0023EA73 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8840E582706A32F0023EA73 /* Foundation.framework */; };
 		E8840E5B2706A35F0023EA73 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8840E5A2706A35F0023EA73 /* CoreGraphics.framework */; };
+		E894A64C2771FB00002B7CB1 /* test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E894A64B2771FA99002B7CB1 /* test.cpp */; };
 		E8CFE8B02725187000E0F327 /* GLUT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8CFE8AF2725187000E0F327 /* GLUT.framework */; };
 		E8E7F070276C287B004CBD2A /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E8E7F05D276C287B004CBD2A /* main.cpp */; };
 /* End PBXBuildFile section */
@@ -111,6 +112,10 @@
 
 /* Begin PBXFileReference section */
 		E80E926B27567DFF00995E27 /* stb_image.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = stb_image.h; sourceTree = "<group>"; };
+		E8152ED22770688400E0E847 /* 6.2.skybox.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = 6.2.skybox.fs; sourceTree = "<group>"; };
+		E8152ED32770688500E0E847 /* 6.2.cubemaps.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = 6.2.cubemaps.fs; sourceTree = "<group>"; };
+		E8152ED42770688500E0E847 /* 6.2.skybox.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = 6.2.skybox.vs; sourceTree = "<group>"; };
+		E8152ED52770688500E0E847 /* 6.2.cubemaps.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = 6.2.cubemaps.vs; sourceTree = "<group>"; };
 		E822F9B427054A43003EA3EC /* OpenGLTest2 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = OpenGLTest2; sourceTree = BUILT_PRODUCTS_DIR; };
 		E822F9C127054C00003EA3EC /* libglfw3.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libglfw3.a; sourceTree = "<group>"; };
 		E822F9C527054D5D003EA3EC /* GLFW */ = {isa = PBXFileReference; lastKnownFileType = folder; path = GLFW; sourceTree = "<group>"; };
@@ -199,6 +204,11 @@
 		E8840E562706A3210023EA73 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
 		E8840E582706A32F0023EA73 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		E8840E5A2706A35F0023EA73 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		E894A64B2771FA99002B7CB1 /* test.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = test.cpp; path = Test/test.cpp; sourceTree = SOURCE_ROOT; };
+		E894A64E2771FBC5002B7CB1 /* 6.1.skybox.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = 6.1.skybox.vs; sourceTree = "<group>"; };
+		E894A64F2771FBC5002B7CB1 /* 6.1.cubemaps.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = 6.1.cubemaps.fs; sourceTree = "<group>"; };
+		E894A6502771FBC5002B7CB1 /* 6.1.skybox.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = 6.1.skybox.fs; sourceTree = "<group>"; };
+		E894A6512771FBC5002B7CB1 /* 6.1.cubemaps.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = 6.1.cubemaps.vs; sourceTree = "<group>"; };
 		E8A22F9F276DAE510066C506 /* NZ.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NZ.png; sourceTree = "<group>"; };
 		E8CFE8AF2725187000E0F327 /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = System/Library/Frameworks/GLUT.framework; sourceTree = SDKROOT; };
 		E8E7F021276C287B004CBD2A /* CurveArea.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurveArea.h; sourceTree = "<group>"; };
@@ -2739,6 +2749,7 @@
 		E822F9AB27054A43003EA3EC = {
 			isa = PBXGroup;
 			children = (
+				E894A64D2771FB23002B7CB1 /* Test */,
 				E8E7F05E276C287B004CBD2A /* Base */,
 				E8E7F04C276C287B004CBD2A /* Button */,
 				E8E7F020276C287B004CBD2A /* CurveArea */,
@@ -2941,6 +2952,18 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		E894A64D2771FB23002B7CB1 /* Test */ = {
+			isa = PBXGroup;
+			children = (
+				E894A64F2771FBC5002B7CB1 /* 6.1.cubemaps.fs */,
+				E894A6512771FBC5002B7CB1 /* 6.1.cubemaps.vs */,
+				E894A6502771FBC5002B7CB1 /* 6.1.skybox.fs */,
+				E894A64E2771FBC5002B7CB1 /* 6.1.skybox.vs */,
+				E894A64B2771FA99002B7CB1 /* test.cpp */,
+			);
+			path = Test;
+			sourceTree = "<group>";
+		};
 		E8E7F020276C287B004CBD2A /* CurveArea */ = {
 			isa = PBXGroup;
 			children = (
@@ -3030,6 +3053,10 @@
 		E8E7F049276C287B004CBD2A /* shaders */ = {
 			isa = PBXGroup;
 			children = (
+				E8152ED32770688500E0E847 /* 6.2.cubemaps.fs */,
+				E8152ED52770688500E0E847 /* 6.2.cubemaps.vs */,
+				E8152ED22770688400E0E847 /* 6.2.skybox.fs */,
+				E8152ED42770688500E0E847 /* 6.2.skybox.vs */,
 				E8E7F04A276C287B004CBD2A /* fs.shader */,
 				E8E7F04B276C287B004CBD2A /* vs.shader */,
 			);
@@ -8502,6 +8529,7 @@
 				E8E7F070276C287B004CBD2A /* main.cpp in Sources */,
 				E8283ED0275729EB00109194 /* image_helper.c in Sources */,
 				E8283ECF275729DC00109194 /* image_DXT.c in Sources */,
+				E894A64C2771FB00002B7CB1 /* test.cpp in Sources */,
 				E822F9CA27054E78003EA3EC /* glad.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

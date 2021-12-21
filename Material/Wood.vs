@@ -5,7 +5,9 @@ layout (location = 2) in float aRadius;
 layout (location = 3) in vec2 aTexCoord;
 
 out vec3 FragPos;
+// 法向量
 out vec3 Normal;
+// 立方体顶点处的纹理坐标
 out vec2 TexCoord;
 flat out float isSurface;
 
