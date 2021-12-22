@@ -116,19 +116,19 @@ public:
 //			"SkyBox/Forest/NY.jpg",//-y
 //			"SkyBox/Forest/PZ.jpg",//+z
 //			"SkyBox/Forest/NZ.png",//-z
-            
-//           "skybox/Lake/right.jpg",
-//            "skybox/Lake/left.jpg",
-//            "skybox/Lake/top.jpg",
-//            "skybox/Lake/bottom.jpg",
-//            "skybox/Lake/front.jpg",
+            "skybox/Lake/right.jpg",
+             "skybox/Lake/left.jpg",
+             "skybox/Lake/top.jpg",
+             "skybox/Lake/bottom.jpg",
+             "skybox/Lake/front.jpg",
+             "skybox/Lake/back.jpg"
 
-                       "SkyBox/thousand/right_thousands_07.jpg",
-                        "SkyBox/thousand/left_thousands_05.jpg",
-                        "SkyBox/thousand/top_thousands_02.jpg",
-                        "SkyBox/thousand/buttom_thousands_10.jpg",
-                        "SkyBox/thousand/front_thousands_08.jpg",
-                        "SkyBox/thousand/back_thousands_06.jpg"
+//                       "SkyBox/thousand/right_thousands_07.jpg",
+//                        "SkyBox/thousand/left_thousands_05.jpg",
+//                        "SkyBox/thousand/top_thousands_02.jpg",
+//                        "SkyBox/thousand/buttom_thousands_10.jpg",
+//                        "SkyBox/thousand/front_thousands_08.jpg",
+//                        "SkyBox/thousand/back_thousands_06.jpg"
             
 		};
 		forestTexture = loadCubemap(faces1);

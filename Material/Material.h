@@ -482,11 +482,14 @@ public:
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 //        string path="Material/Wood.jpg";
+//        string path="Material/Marble021_1K_Color.jpg";
+        string path="Material/porcelain.jpeg";
 //        loadTextureSimple(path.data());
         
         
         int texwidth,texheight;//nrChannels表示通道数，R/G/B/A，一共4个通道，有些图片只有3个，A即为alpha
-        unsigned char *image = SOIL_load_image("Material/Wood.jpg", &texwidth, &texheight, 0, SOIL_LOAD_RGB);
+//        unsigned char *image = SOIL_load_image("Material/Wood.jpg", &texwidth, &texheight, 0, SOIL_LOAD_RGB);
+        unsigned char *image = SOIL_load_image(path.data(), &texwidth, &texheight, 0, SOIL_LOAD_RGB);
             // 现在纹理已经绑定了，我们可以使用前面载入的图片数据生成一个纹理了。纹理可以通过glTexImage2D来生成：
             glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, texwidth, texheight, 0, GL_RGB, GL_UNSIGNED_BYTE, image);
             if(image){
@@ -505,7 +508,7 @@ public:
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
-        loadTextureSimple("/Material/Surface.jpg");
+
         
     
 

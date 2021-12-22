@@ -254,6 +254,7 @@ dependencies: \
   /Users/kangyixiao/EchoFile/coding/MasterOfOrientalTeaSet/include/shader.h \
   /Users/kangyixiao/EchoFile/coding/MasterOfOrientalTeaSet/include/camera.h \
   /Users/kangyixiao/EchoFile/coding/MasterOfOrientalTeaSet/include/model.h \
+  /Users/kangyixiao/EchoFile/coding/MasterOfOrientalTeaSet/Externals/Include/stb_image.h \
   /Users/kangyixiao/EchoFile/coding/MasterOfOrientalTeaSet/Externals/Include/assimp/Importer.hpp \
   /Users/kangyixiao/EchoFile/coding/MasterOfOrientalTeaSet/Externals/Include/assimp/types.h \
   /Users/kangyixiao/EchoFile/coding/MasterOfOrientalTeaSet/Externals/Include/assimp/defs.h \
@@ -285,6 +286,7 @@ dependencies: \
   /Users/kangyixiao/EchoFile/coding/MasterOfOrientalTeaSet/include/mesh.h \
   /Users/kangyixiao/EchoFile/coding/MasterOfOrientalTeaSet/include/texture.h \
   /Users/kangyixiao/EchoFile/coding/MasterOfOrientalTeaSet/Externals/Include/SOIL/SOIL.h \
+  /Users/kangyixiao/EchoFile/coding/MasterOfOrientalTeaSet/const.h \
   /Users/kangyixiao/EchoFile/coding/MasterOfOrientalTeaSet/Material/Material.h \
   /Users/kangyixiao/EchoFile/coding/MasterOfOrientalTeaSet/Particle/Particle.h \
   /Users/kangyixiao/EchoFile/coding/MasterOfOrientalTeaSet/Knife/Knife.h \

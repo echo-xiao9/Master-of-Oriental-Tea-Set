@@ -209,6 +209,10 @@
 		E894A64F2771FBC5002B7CB1 /* 6.1.cubemaps.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = 6.1.cubemaps.fs; sourceTree = "<group>"; };
 		E894A6502771FBC5002B7CB1 /* 6.1.skybox.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = 6.1.skybox.fs; sourceTree = "<group>"; };
 		E894A6512771FBC5002B7CB1 /* 6.1.cubemaps.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = 6.1.cubemaps.vs; sourceTree = "<group>"; };
+		E894A6552772C579002B7CB1 /* const.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = const.h; sourceTree = "<group>"; };
+		E894A65B2772F71A002B7CB1 /* 10014_dolphin_v2_max2011_it2.mtl */ = {isa = PBXFileReference; lastKnownFileType = text; path = 10014_dolphin_v2_max2011_it2.mtl; sourceTree = "<group>"; };
+		E894A65C2772F71A002B7CB1 /* 10014_dolphin_v1_Diffuse.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 10014_dolphin_v1_Diffuse.jpg; sourceTree = "<group>"; };
+		E894A65E2772F775002B7CB1 /* 10014_dolphin_v2_max2011_it2.obj */ = {isa = PBXFileReference; lastKnownFileType = text; path = 10014_dolphin_v2_max2011_it2.obj; sourceTree = "<group>"; };
 		E8A22F9F276DAE510066C506 /* NZ.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NZ.png; sourceTree = "<group>"; };
 		E8CFE8AF2725187000E0F327 /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = System/Library/Frameworks/GLUT.framework; sourceTree = SDKROOT; };
 		E8E7F021276C287B004CBD2A /* CurveArea.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurveArea.h; sourceTree = "<group>"; };
@@ -2749,6 +2753,7 @@
 		E822F9AB27054A43003EA3EC = {
 			isa = PBXGroup;
 			children = (
+				E894A6552772C579002B7CB1 /* const.h */,
 				E894A64D2771FB23002B7CB1 /* Test */,
 				E8E7F05E276C287B004CBD2A /* Base */,
 				E8E7F04C276C287B004CBD2A /* Button */,
@@ -2964,6 +2969,23 @@
 			path = Test;
 			sourceTree = "<group>";
 		};
+		E894A6572772EC84002B7CB1 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		E894A65A2772F71A002B7CB1 /* Dolphin */ = {
+			isa = PBXGroup;
+			children = (
+				E894A65E2772F775002B7CB1 /* 10014_dolphin_v2_max2011_it2.obj */,
+				E894A65B2772F71A002B7CB1 /* 10014_dolphin_v2_max2011_it2.mtl */,
+				E894A65C2772F71A002B7CB1 /* 10014_dolphin_v1_Diffuse.jpg */,
+			);
+			path = Dolphin;
+			sourceTree = "<group>";
+		};
 		E8E7F020276C287B004CBD2A /* CurveArea */ = {
 			isa = PBXGroup;
 			children = (
@@ -3106,6 +3128,8 @@
 		E8E7F063276C287B004CBD2A /* resources */ = {
 			isa = PBXGroup;
 			children = (
+				E894A65A2772F71A002B7CB1 /* Dolphin */,
+				E894A6572772EC84002B7CB1 /* Models */,
 				E8E7F064276C287B004CBD2A /* Base */,
 				E8E7F067276C287B004CBD2A /* Knife */,
 			);

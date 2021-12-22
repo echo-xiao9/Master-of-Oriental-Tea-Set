@@ -13,7 +13,7 @@
 #include "include/shader.h"
 #include "include/camera.h"
 #include "include/model.h"
-
+#include "const.h"
 #include "Material/Material.h"
 #include "Knife/Knife.h"
 #include "Base/Base.h"
@@ -21,6 +21,7 @@
 #include "Button/Button.h"
 #include "CurveArea/CurveArea.h"
 #include "SkyBox/SkyBox.h"
+
 
 //控制是否显示命令台
 //#pragma comment(linker, "/subsystem:\"windows\" /entry:\"mainCRTStartup\"")
@@ -135,6 +136,7 @@ int main() {
     // calculate time
     float lastTime = glfwGetTime(),currentTime,bezierTime = 0,rate=0;
     srand(time(0));
+ 
 
     // render loop
     // -----------
@@ -170,7 +172,10 @@ int main() {
 
         glm::mat4 projection = glm::perspective(glm::radians(camera.Zoom), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f);
         glm::mat4 view = camera.GetViewMatrix();
-        glm::mat4 model = glm::mat4(1.0f),rotate=glm::mat4(1.0f);
+        glm::mat4 model = glm::mat4(1.0f);
+        glm::mat4 rotate=glm::mat4(1.0f);
+        rotate =glm::rotate(rotate,-80.1f,glm::vec3(0.0,0.0,1.0f));
+        
 
         ps.updateParticle(deltaTime);
 
@@ -203,10 +208,12 @@ int main() {
         
         if(!ifdisplay){
             model = glm::translate(glm::mat4(1.0f), knifePos);
-            knife.drawKnife(view,projection,model,rotate);
+            // !! no draw knife
+            if(origin)knife.drawKnife(view,projection,model,rotate);
 
-            rotate=glm::rotate(rotate,1071*totalTime,glm::vec3(1.0,0.0,0.0f));
+//            rotate=glm::rotate(rotate,1071*totalTime,glm::vec3(1.0,0.0,0.0f));
             //! no base
+            
             base.drawBase(view,projection,glm::mat4(1.0f),rotate);
         }
         else {
@@ -217,7 +224,7 @@ int main() {
         }
         if(Select!=AREA)
             material.updateRadius(knifePos,lastKnifePos,&ps,deltaTime);
-        
+//        rotate =glm::rotate(rotate,-80.1f,glm::vec3(0.0,0.0,1.0f));
         material.drawMaterial(view,projection,glm::mat4(1.0f),rotate,ifdisplay);
 
 

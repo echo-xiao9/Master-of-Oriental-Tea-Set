@@ -1,3 +1,4 @@
+
 #ifndef MODEL_H
 #define MODEL_H
 
@@ -5,7 +6,7 @@
 
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
-//#include <stb_image.h>
+#include <stb_image.h>
 #include <assimp/Importer.hpp>
 #include <assimp/scene.h>
 #include <assimp/postprocess.h>
@@ -211,4 +212,3 @@ unsigned int TextureFromFile(const char *path, const string &directory, bool gam
     return loadTexture(filename.data());
 }
 #endif
-
