@@ -5,13 +5,6 @@
 #include <glm/gtc/matrix_transform.hpp>
 using namespace std;
 
-#define Pi 3.1416
-#define eNum 180
-#define rNum 800
-#define fNum 9
-#define MIN(a,b) ((a)<(b)?(a):(b))
-#define MAX(a,b) ((a)>(b)?(a):(b))
-
 
 float rPointer[(rNum+1) * eNum * 4 * 3 * fNum];
 float radius[rNum];
@@ -41,7 +34,7 @@ private:
 	float length;
 	float initR;
 	string texture;
-
+    int textureId=0;
 	void renderPiece(int num){
 		float y1, z1, y2, z2, y3, z3, y4, z4, tl,tr,tt,tb,leftR, rightR, normalX, normalY, normalZ,ifsurface;
 		float pieceWidth = length / (2*rNum), offset;
@@ -459,10 +452,12 @@ private:
 	}
 
 public:
-	Shader ironShader,woodShader;
+	Shader ironShader,woodShader,glassShader;
 
 	Material(glm::vec3 lightPos, glm::vec3 viewPos,float offsetX,float initR,float length)
-	:ironShader(Shader("Material/Iron.vs", "Material/Iron.fs")),woodShader(Shader("Material/Wood.vs","Material/Wood.fs"))
+	:ironShader(Shader("Material/Iron.vs", "Material/Iron.fs")),
+    woodShader(Shader("Material/Wood.vs","Material/Wood.fs")),
+    glassShader(Shader("Material/glass.vs","Material/glass.fs"))
 	{
 		this->offsetX=offsetX;
 		this->initR=initR;
@@ -544,6 +539,9 @@ public:
         ironShader.setVec3("surface.diffuse", 0.427451, 0.427451, 0.427451);
         ironShader.setVec3("surface.specular", 0.333333, 0.333333, 0.521569);
         ironShader.setFloat("surface.shininess",  9.846150);
+        
+        glassShader.use();
+        glassShader.setInt("texture1", 0);
 	}
 
 	void initialize(){
@@ -579,13 +577,20 @@ public:
 			woodShader.setMat4("projection", projection);
 			woodShader.setMat4("model", model);
 			woodShader.setMat4("rotate",rotate);
-		} else {
+		} else if(texture=="iron"){
 			ironShader.use();
 			ironShader.setMat4("view", view);
 			ironShader.setMat4("projection", projection);
 			ironShader.setMat4("model", model);
 			ironShader.setMat4("rotate",rotate);
-		}
+        } else if(texture == "glass"){
+            glassShader.use();
+            glassShader.setMat4("view", view);
+            glassShader.setMat4("projection", projection);
+            glassShader.setMat4("model", model);
+            glassShader.setMat4("rotate",rotate);
+            glassShader.setVec3("cameraPos", camera.Position);
+        }
 
 		glBindVertexArray(materialVAO);
 		if(ifdisplay)
@@ -595,10 +600,12 @@ public:
 		glBindVertexArray(0);
 	}
 
-	void changeTexure(ParticleSystem *ps){
-		texture=(texture=="wood")?"iron":"wood";
-		ps->changeColor(texture);
-	}
+    void changeTexure(ParticleSystem *ps){
+    //        texture=(texture=="wood")?"iron":"wood";
+            texture=textures[(++textureId) % textureNum];
+            cout<<"texture:"<<texture<<endl;
+            ps->changeColor(texture);
+        }
 
 	void updateRadius(glm::vec3 knifePos,glm::vec3 lastPos,ParticleSystem *ps,float dt){
 		float pieceWidth = length / (2*rNum),leftLimit=offsetX-length/2,rightLimit=offsetX+length/2;

@@ -213,6 +213,8 @@
 		E894A65B2772F71A002B7CB1 /* 10014_dolphin_v2_max2011_it2.mtl */ = {isa = PBXFileReference; lastKnownFileType = text; path = 10014_dolphin_v2_max2011_it2.mtl; sourceTree = "<group>"; };
 		E894A65C2772F71A002B7CB1 /* 10014_dolphin_v1_Diffuse.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 10014_dolphin_v1_Diffuse.jpg; sourceTree = "<group>"; };
 		E894A65E2772F775002B7CB1 /* 10014_dolphin_v2_max2011_it2.obj */ = {isa = PBXFileReference; lastKnownFileType = text; path = 10014_dolphin_v2_max2011_it2.obj; sourceTree = "<group>"; };
+		E894A6652776C66F002B7CB1 /* glass.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = glass.vs; sourceTree = "<group>"; };
+		E894A6662776C675002B7CB1 /* glass.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = glass.fs; sourceTree = "<group>"; };
 		E8A22F9F276DAE510066C506 /* NZ.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NZ.png; sourceTree = "<group>"; };
 		E8CFE8AF2725187000E0F327 /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = System/Library/Frameworks/GLUT.framework; sourceTree = SDKROOT; };
 		E8E7F021276C287B004CBD2A /* CurveArea.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurveArea.h; sourceTree = "<group>"; };
@@ -2763,7 +2765,6 @@
 				E8E7F05D276C287B004CBD2A /* main.cpp */,
 				E8E7F03D276C287B004CBD2A /* Material */,
 				E8E7F045276C287B004CBD2A /* Particle */,
-				E8E7F062276C287B004CBD2A /* README.md */,
 				E8E7F063276C287B004CBD2A /* resources */,
 				E8E7F049276C287B004CBD2A /* shaders */,
 				E8E7F025276C287B004CBD2A /* SkyBox */,
@@ -3051,6 +3052,8 @@
 		E8E7F03D276C287B004CBD2A /* Material */ = {
 			isa = PBXGroup;
 			children = (
+				E894A6662776C675002B7CB1 /* glass.fs */,
+				E894A6652776C66F002B7CB1 /* glass.vs */,
 				E8E7F03E276C287B004CBD2A /* Surface.jpg */,
 				E8E7F03F276C287B004CBD2A /* Wood.vs */,
 				E8E7F040276C287B004CBD2A /* Iron.fs */,
@@ -3128,6 +3131,7 @@
 		E8E7F063276C287B004CBD2A /* resources */ = {
 			isa = PBXGroup;
 			children = (
+				E8E7F062276C287B004CBD2A /* README.md */,
 				E894A65A2772F71A002B7CB1 /* Dolphin */,
 				E894A6572772EC84002B7CB1 /* Models */,
 				E8E7F064276C287B004CBD2A /* Base */,

@@ -34,30 +34,9 @@ void scroll_callback(GLFWwindow* window, double xoffset, double yoffset);
 void processInput(GLFWwindow *window);
 glm::vec3 Screen2World(float x,float y, glm::mat4 projection, glm::mat4 view);
 glm::vec3 BezierCurve(glm::vec3 p0,glm::vec3 p1,glm::vec3 p2,glm::vec3 p3,glm::vec3 p4,glm::vec3 p5,float t);
-// settings
-const unsigned int SCR_WIDTH = 1400;
-const unsigned int SCR_HEIGHT = 800;
 
-enum type{BEZIER,CURSOR};
-enum select{AREA,MODE,START,RESET,TEXTURE,CHANGED,DISPLAY,NONE};
 
-// button
-const int buttonWidth=160,buttonHeight=80,buttonOffsetX=600,buttonOffsetY=320,buttonDist=100;
 
-// control the points of the curve
-int mouseX,mouseY;
-bool ifstart=false;
-
-// mode of program
-type Mode = BEZIER;
-select Select = NONE;
-
-// camera
-Camera camera(glm::vec3(0.0f, 0.0f, 20.0f));
-float lastX = SCR_WIDTH / 2.0f;
-float lastY = SCR_HEIGHT / 2.0f;
-bool firstMouse = true;
-bool mouseControlCamera=true;
 
 //time
 float deltaTime = 0.0f;
@@ -223,7 +202,8 @@ int main() {
             knifePos=glm::vec3(0.0f,-2.0f,0.0f);
             lastKnifePos=glm::vec3(0.0f,-2.0f,0.0f);
 
-            cupRotate=glm::rotate(cupRotate,totalTime/10,glm::vec3(1.0,0.0,0.0f));
+//            cupRotate=glm::rotate(cupRotate,totalTime/100,glm::vec3(1.0,0.0,0.0f));
+            cupRotate=glm::rotate(cupRotate,0.01f,glm::vec3(1.0,0.0,0.0f));
         }
         if(Select!=AREA)
             material.updateRadius(knifePos,lastKnifePos,&ps,deltaTime);
