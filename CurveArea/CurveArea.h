@@ -8,12 +8,12 @@ float curvePoint[LINENUM*3];
 
 class CurveArea{
 private:
-    glm::vec3 p0,p1,p2,p3;
-    glm::vec3 b0,b1,b2,b3;
+    glm::vec3 p0,p1,p2,p3,p4,p5;
+    glm::vec3 b0,b1,b2,b3,b4,b5;
 
     float offsetX,initR,length;
     float normW,normH;
-    int selected;//-1,0,1,2,3
+    int selected;//-1,0,1,2,3,4,5
     int screenW,screenH;
     glm::mat4 model;
 
@@ -30,8 +30,8 @@ private:
             return false;
     }
     glm::vec3 areaCurve(float t){
-        glm::vec3 b=b0*((float)pow(1-t,3))+b1*((float)(3*t*pow(1-t,2)))+b2*((float)(3*pow(t,2)*(1-t)))+b3*((float)pow(t,3));
-        
+//        glm::vec3 b=b0*((float)pow(1-t,3))+b1*((float)(3*t*pow(1-t,2)))+b2*((float)(3*pow(t,2)*(1-t)))+b3*((float)pow(t,3));
+        glm::vec3 b=b0*((float)pow(1-t,5))+b1*((float)(5*t*pow(1-t,4)))+b2*((float)(10*pow(t,2)*pow(1-t,3)))+b3*((float)(10*pow(t,3)*pow(1-t,2)))+b4*((float)(5*pow(t,4)*(1-t)))+b5*((float)pow(t,5));
         return b;
     }
     
@@ -42,6 +42,8 @@ private:
             case 1:b1=glm::vec3(normX,normY,0);p1=glm::vec3(worldX+offsetX,worldY,0);break;
             case 2:b2=glm::vec3(normX,normY,0);p2=glm::vec3(worldX+offsetX,worldY,0);break;
             case 3:b3=glm::vec3(normX,normY,0);p3=glm::vec3(worldX+offsetX,worldY,0);break;
+            case 4:b4=glm::vec3(normX,normY,0);p4=glm::vec3(worldX+offsetX,worldY,0);break;
+            case 5:b5=glm::vec3(normX,normY,0);p5=glm::vec3(worldX+offsetX,worldY,0);break;
             default:break;
         }
     }
@@ -51,6 +53,8 @@ private:
              b1.x,b1.y,0,
              b2.x,b2.y,0,
              b3.x,b3.y,0,
+             b4.x,b4.y,0,
+             b5.x,b5.y,0,
         };
 
         glm::vec3 p;
@@ -105,21 +109,31 @@ public:
 		glGenBuffers(1, &curveVBO);
 
         p0=glm::vec3(length/2+offsetX,-initR,0.0f);
-        p1=glm::vec3(length/4+offsetX, 0.0f, 0.0f);
-        p2=glm::vec3(-length/4+offsetX, 0.0f, 0.0f);
-        p3=glm::vec3(-length/2+offsetX,-initR,0.0f);
+        p1=glm::vec3(length/3+offsetX,-initR/2,0.0f);
+        p2=glm::vec3(length/4+offsetX, 0.0f, 0.0f);
+        p3=glm::vec3(-length/4+offsetX, 0.0f, 0.0f);
+        p4=glm::vec3(-length/3+offsetX,-initR/2,0.0f);
+        p5=glm::vec3(-length/2+offsetX,-initR,0.0f);
+        
+        
+        
         
         b0=glm::vec3(normW,-normH,0);
-        b1=glm::vec3(normW/3,normH,0);
-        b2=glm::vec3(-normW/3,normH,0);
-        b3=glm::vec3(-normW,-normH,0);
-
+        b1=glm::vec3(5*normW/6,0,0);
+        b2=glm::vec3(normW/3,normH,0);
+        b3=glm::vec3(-normW/3,normH,0);
+        b4=glm::vec3(-5*normW/6,0,0);
+        b5=glm::vec3(-normW,-normH,0);
+        
+       
         updateBuffer();
     };
     ~CurveArea(){}
     void updateCurveArea(int mouseX,int mouseY){
         float normX=float(mouseX)*2/screenW,normY=float(mouseY)*2/screenH;
         if(selected==-1){
+            cout<<"updateCurveArea selected:"<<selected<<endl;
+            cout<<"normX:"<<normX<<" normY:"<<normY<<endl;
             if(inRange(normX,normY,b0))
                 selected=0;
             else if(inRange(normX,normY,b1))
@@ -128,6 +142,11 @@ public:
                 selected=2;
             else if(inRange(normX,normY,b3))
                 selected=3;
+            else if(inRange(normX,normY,b4))
+                selected=4;
+            else if(inRange(normX,normY,b5))
+                selected=5;
+            
         }
         updatePoint(normX,normY);
         updateBuffer();
@@ -137,8 +156,7 @@ public:
     }
     glm::vec3 gerRealCurve(float t){
         // Bessel curve formula to the third power
-        glm::vec3 v=p0*((float)pow(1-t,3))+p1*((float)(3*t*pow(1-t,2)))+p2*((float)(3*pow(t,2)*(1-t)))+p3*((float)pow(t,3));
-        
+        glm::vec3 v=p0*((float)pow(1-t,5))+p1*((float)(5*t*pow(1-t,4)))+p2*((float)(10*pow(t,2)*pow(1-t,3)))+p3*((float)(10*pow(t,3)*pow(1-t,2)))+p4*((float)(5*pow(t,4)*(1-t)))+p5*((float)pow(t,5));
         return v;
     }
 
@@ -147,7 +165,7 @@ public:
 		pointShader.use();
         glBindVertexArray(pointVAO);
         glPointSize(15);
-		glDrawArrays(GL_POINTS, 0, 4);
+		glDrawArrays(GL_POINTS, 0, 6);
 		glBindVertexArray(0);
 
         glBindVertexArray(curveVAO);

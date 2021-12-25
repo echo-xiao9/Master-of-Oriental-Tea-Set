@@ -33,7 +33,7 @@ void mouse_callback(GLFWwindow* window, double xpos, double ypos);
 void scroll_callback(GLFWwindow* window, double xoffset, double yoffset);
 void processInput(GLFWwindow *window);
 glm::vec3 Screen2World(float x,float y, glm::mat4 projection, glm::mat4 view);
-glm::vec3 BezierCurve(glm::vec3 p0,glm::vec3 p1,glm::vec3 p2,glm::vec3 p3,float t);
+glm::vec3 BezierCurve(glm::vec3 p0,glm::vec3 p1,glm::vec3 p2,glm::vec3 p3,glm::vec3 p4,glm::vec3 p5,float t);
 // settings
 const unsigned int SCR_WIDTH = 1400;
 const unsigned int SCR_HEIGHT = 800;
@@ -66,6 +66,9 @@ float totalTime = 0.0f;
 float rotate_radius = 0.0f;
 
 bool ifreset=true,ifdisplay=false;
+
+glm::mat4 cupRotate=glm::mat4(1.0f);
+
 
 int main() {
     glfwInit();
@@ -136,7 +139,7 @@ int main() {
     // calculate time
     float lastTime = glfwGetTime(),currentTime,bezierTime = 0,rate=0;
     srand(time(0));
- 
+    cupRotate =glm::rotate(cupRotate,-80.1f,glm::vec3(0.0,0.0,1.0f));
 
     // render loop
     // -----------
@@ -173,8 +176,8 @@ int main() {
         glm::mat4 projection = glm::perspective(glm::radians(camera.Zoom), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f);
         glm::mat4 view = camera.GetViewMatrix();
         glm::mat4 model = glm::mat4(1.0f);
-        glm::mat4 rotate=glm::mat4(1.0f);
-        rotate =glm::rotate(rotate,-80.1f,glm::vec3(0.0,0.0,1.0f));
+        
+//        cupRotate =glm::rotate(cupRotate,-80.1f,glm::vec3(0.0,0.0,1.0f));
         
 
         ps.updateParticle(deltaTime);
@@ -209,28 +212,28 @@ int main() {
         if(!ifdisplay){
             model = glm::translate(glm::mat4(1.0f), knifePos);
             // !! no draw knife
-            if(origin)knife.drawKnife(view,projection,model,rotate);
+            if(origin)knife.drawKnife(view,projection,model,cupRotate);
 
-//            rotate=glm::rotate(rotate,1071*totalTime,glm::vec3(1.0,0.0,0.0f));
+//            cupRotate=glm::rotate(cupRotate,1071*totalTime,glm::vec3(1.0,0.0,0.0f));
             //! no base
             
-            base.drawBase(view,projection,glm::mat4(1.0f),rotate);
+            base.drawBase(view,projection,glm::mat4(1.0f),cupRotate);
         }
         else {
             knifePos=glm::vec3(0.0f,-2.0f,0.0f);
             lastKnifePos=glm::vec3(0.0f,-2.0f,0.0f);
 
-            rotate=glm::rotate(rotate,totalTime,glm::vec3(0.0,1.0,0.0f));
+            cupRotate=glm::rotate(cupRotate,totalTime/10,glm::vec3(1.0,0.0,0.0f));
         }
         if(Select!=AREA)
             material.updateRadius(knifePos,lastKnifePos,&ps,deltaTime);
-//        rotate =glm::rotate(rotate,-80.1f,glm::vec3(0.0,0.0,1.0f));
-        material.drawMaterial(view,projection,glm::mat4(1.0f),rotate,ifdisplay);
+//        cupRotate =glm::rotate(cupRotate,-80.1f,glm::vec3(0.0,0.0,1.0f));
+        material.drawMaterial(view,projection,glm::mat4(1.0f),cupRotate,ifdisplay);
 
 
-        rotate=glm::mat4(1.0f);
+//        cupRotate=glm::mat4(1.0f);
         ps.simulate(deltaTime);
-        ps.render(view, projection, glm::mat4(1.0f), rotate);
+        ps.render(view, projection, glm::mat4(1.0f), cupRotate);
 
 
         
@@ -275,6 +278,20 @@ void processInput(GLFWwindow *window) {
         ifreset=true;
     if (glfwGetKey(window, GLFW_KEY_M) == GLFW_PRESS)
         mouseControlCamera=!mouseControlCamera;
+    if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS){
+        cupRotate=glm::rotate(cupRotate,0.1f,glm::vec3(0.0,1.0,0.0f));
+    }
+        
+    if (glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS)
+        cupRotate=glm::rotate(cupRotate,-0.1f,glm::vec3(0.0,1.0,0.0f));
+//    if (glfwGetKey(window, GLFW_KEY_LEFT) == GLFW_PRESS){
+//        cupRotate=glm::rotate(cupRotate,0.1f,glm::vec3(1.0,0.0,0.0f));
+//    }
+//        
+//    if (glfwGetKey(window, GLFW_KEY_RIGHT) == GLFW_PRESS)
+//        cupRotate=glm::rotate(cupRotate,-0.1f,glm::vec3(1.0,0.0,0.0f));
+    
+    
     //if (glfwGetKey(window, GLFW_KEY_Z) == GLFW_PRESS)
     //    rotate_radius -= (deltaTime/TIMESTEP)* 360.0f;
     //if (glfwGetKey(window, GLFW_KEY_C) == GLFW_PRESS)
@@ -382,7 +399,13 @@ glm::vec3 Screen2World(float x,float y,glm::mat4 projection,glm::mat4 view ){
         0);
 }
 
-glm::vec3 BezierCurve(glm::vec3 p0,glm::vec3 p1,glm::vec3 p2,glm::vec3 p3,float t){
-    glm::vec3 v=p0*((float)pow(1-t,3))+p1*((float)(3*t*pow(1-t,2)))+p2*((float)(3*pow(t,2)*(1-t)))+p3*((float)pow(t,3));
+glm::vec3 BezierCurve(glm::vec3 p0,glm::vec3 p1,glm::vec3 p2,glm::vec3 p3,glm::vec3 p4,glm::vec3 p5,float t){
+//    glm::vec3 v=p0*((float)pow(1-t,3))+p1*((float)(3*t*pow(1-t,2)))+p2*((float)(3*pow(t,2)*(1-t)))+p3*((float)pow(t,3));
+//
+//
+//    return v;
+    
+    glm::vec3 v=p0*((float)pow(1-t,5))+p1*((float)(5*t*pow(1-t,4)))+p2*((float)(10*pow(t,2)*pow(1-t,3)))+p3*((float)(10*pow(t,3)*pow(1-t,2)))+p4*((float)(5*pow(t,4)*(1-t)))+p5*((float)pow(t,5));
     return v;
+    
 }
