@@ -9,8 +9,8 @@ in VS_OUT {
     vec3 TangentFragPos;
 } fs_in;
 
-uniform sampler2D diffuseMap;
-uniform sampler2D normalMap;
+uniform sampler2D greenGlassDiffuseMap;
+uniform sampler2D greenGlassNormalMap;
 
 uniform vec3 lightPos;
 uniform vec3 viewPos;
@@ -18,12 +18,12 @@ uniform vec3 viewPos;
 void main()
 {
      // obtain normal from normal map in range [0,1]
-    vec3 normal = texture(normalMap, fs_in.TexCoords).rgb;
+    vec3 normal = texture(greenGlassNormalMap, fs_in.TexCoords).rgb;
     // transform normal vector to range [-1,1]
     normal = normalize(normal * 2.0 - 1.0);  // this normal is in tangent space
    
     // get diffuse color
-    vec3 color = texture(diffuseMap, fs_in.TexCoords).rgb;
+    vec3 color = texture(greenGlassDiffuseMap, fs_in.TexCoords).rgb;
 //    vec3 color = vec3(0.4,0.5,0.7);
     // ambient
     vec3 ambient = 0.1 * color;

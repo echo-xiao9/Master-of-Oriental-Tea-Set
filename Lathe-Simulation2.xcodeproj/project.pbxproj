@@ -229,6 +229,8 @@
 		E898F3412779FE7E001B1987 /* pannel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = pannel.h; sourceTree = "<group>"; };
 		E898F342277A005F001B1987 /* pannel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pannel.png; sourceTree = "<group>"; };
 		E898F343277A0508001B1987 /* bezier2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bezier2.png; sourceTree = "<group>"; };
+		E898F348277A13F1001B1987 /* clayColor.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clayColor.png; sourceTree = "<group>"; };
+		E898F349277A13F1001B1987 /* clayNormal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clayNormal.png; sourceTree = "<group>"; };
 		E8A22F9F276DAE510066C506 /* NZ.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NZ.png; sourceTree = "<group>"; };
 		E8CFE8AF2725187000E0F327 /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = System/Library/Frameworks/GLUT.framework; sourceTree = SDKROOT; };
 		E8E7F021276C287B004CBD2A /* CurveArea.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurveArea.h; sourceTree = "<group>"; };
@@ -3015,6 +3017,15 @@
 			path = Dolphin;
 			sourceTree = "<group>";
 		};
+		E898F347277A13F1001B1987 /* clay */ = {
+			isa = PBXGroup;
+			children = (
+				E898F348277A13F1001B1987 /* clayColor.png */,
+				E898F349277A13F1001B1987 /* clayNormal.png */,
+			);
+			path = clay;
+			sourceTree = "<group>";
+		};
 		E8E7F020276C287B004CBD2A /* CurveArea */ = {
 			isa = PBXGroup;
 			children = (
@@ -3081,6 +3092,7 @@
 		E8E7F03D276C287B004CBD2A /* Material */ = {
 			isa = PBXGroup;
 			children = (
+				E898F347277A13F1001B1987 /* clay */,
 				E82363F7277708650060E7CB /* greenGlass */,
 				E894A6662776C675002B7CB1 /* glass.fs */,
 				E894A6652776C66F002B7CB1 /* glass.vs */,
