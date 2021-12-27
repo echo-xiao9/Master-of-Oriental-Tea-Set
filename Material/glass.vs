@@ -10,6 +10,7 @@ uniform mat4 view;
 uniform mat4 projection;
 uniform mat4 rotate;
 
+
 void main()
 {
     Normal = mat3(transpose(inverse(model))) * aNormal;

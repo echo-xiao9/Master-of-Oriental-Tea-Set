@@ -1,5 +1,5 @@
 #include "include/shader.h"
-#include "texture.h"
+//#include "texture.h"
 #include "Particle/Particle.h"
 #include <SOIL/SOIL.h>
 #include <glm/gtc/matrix_transform.hpp>
@@ -30,6 +30,7 @@ private:
 	// ---------------------------------------------------
 	unsigned int materialVAO, materialVBO;
     unsigned int woodID,woodSurfaceID;
+    unsigned int greenWoodID, greenWoodNormolID;
 	float offsetX;
 	float length;
 	float initR;
@@ -287,6 +288,14 @@ private:
 			rPointer[rNum * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 7] = tl;
 			rPointer[rNum * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 8] = tt;
             
+            rPointer[rNum * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 9] = 0;
+            rPointer[rNum * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 10] = tl;
+            rPointer[rNum * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 11] = tt;
+            
+            rPointer[rNum * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 12] = ifsurface;
+            rPointer[rNum * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 13] = tl;
+            rPointer[rNum * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 14] = tt;
+            
             //2
 			rPointer[rNum * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 1 * fNum] = offset - pieceWidth;
 			rPointer[rNum * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 1 * fNum + 1] = y2;
@@ -452,97 +461,105 @@ private:
 	}
 
 public:
-	Shader ironShader,woodShader,glassShader;
+	Shader ironShader,woodShader,glassShader,greenGlassShader;
+    unsigned int diffuseMap;
+    unsigned int normalMap;
 
 	Material(glm::vec3 lightPos, glm::vec3 viewPos,float offsetX,float initR,float length)
 	:ironShader(Shader("Material/Iron.vs", "Material/Iron.fs")),
     woodShader(Shader("Material/Wood.vs","Material/Wood.fs")),
-    glassShader(Shader("Material/glass.vs","Material/glass.fs"))
+    glassShader(Shader("Material/glass.vs","Material/glass.fs")),
+    greenGlassShader(Shader("Material/greenGlass/greenGlass.vs","Material/greenGlass/greenGlass.fs"))
 	{
 		this->offsetX=offsetX;
 		this->initR=initR;
 		this->length=length;
 		this->texture="iron";
-
 		this->initialize();
 
 		glGenVertexArrays(1, &materialVAO);
 		glGenBuffers(1, &materialVBO);
         
         // glGenTextures函数首先需要输入生成纹理的数量，然后把它们储存在第二个参数的woodId，就像其他对象一样，我们需要绑定它，让之后任何的纹理指令都可以配置当前绑定的纹理：
-		glGenTextures(1, &this->woodID);
-		glBindTexture(GL_TEXTURE_2D, this->woodID);
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);   
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
 //        string path="Material/Wood.jpg";
 //        string path="Material/Marble021_1K_Color.jpg";
-        string path="Material/porcelain.jpeg";
-//        loadTextureSimple(path.data());
-        
-        
-        int texwidth,texheight;//nrChannels表示通道数，R/G/B/A，一共4个通道，有些图片只有3个，A即为alpha
-//        unsigned char *image = SOIL_load_image("Material/Wood.jpg", &texwidth, &texheight, 0, SOIL_LOAD_RGB);
-        unsigned char *image = SOIL_load_image(path.data(), &texwidth, &texheight, 0, SOIL_LOAD_RGB);
-            // 现在纹理已经绑定了，我们可以使用前面载入的图片数据生成一个纹理了。纹理可以通过glTexImage2D来生成：
-            glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, texwidth, texheight, 0, GL_RGB, GL_UNSIGNED_BYTE, image);
-            if(image){
-                glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, texwidth, texheight, 0, GL_RGB, GL_UNSIGNED_BYTE, image);
-                glGenerateMipmap(GL_TEXTURE_2D);
-            }
-            else
-                std::cout<<SOIL_last_result()<<std::endl;
-            SOIL_free_image_data(image);
 
+//        diffuseMap = loadTexture("Material/greenGlass/Glass_Blocks_001a_Base_Color.png");
+//        normalMap  = loadTexture("Material/greenGlass/Glass_Blocks_001a_Normal.png");
 
-		glGenTextures(1, &this->woodSurfaceID);
-		glBindTexture(GL_TEXTURE_2D, this->woodSurfaceID);
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);   
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-
-
-        
     
-
-		woodShader.use();
-        woodShader.setInt("woodTexture",0);
-        woodShader.setInt("surfaceTexture",1);
-
-		woodShader.setVec3("lightColor", 1.0f, 1.0f, 1.0f);
-		woodShader.setVec3("lightPos", lightPos);
-		woodShader.setVec3("viewPos", viewPos);
-
-        woodShader.setVec3("wood.ambient", 0.450000, 0.450000, 0.450000);
-        woodShader.setVec3("wood.diffuse", 0.45, 0.45, 0.45);
-        woodShader.setVec3("wood.specular", 0.444597, 0.444597, 0.444597);
-        woodShader.setFloat("wood.shininess",  14.800003);
-
-		woodShader.setVec3("surface.ambient", 0.505882, 0.505882, 0.505882);
-        woodShader.setVec3("surface.diffuse", 0.227451, 0.227451, 0.227451);
-        woodShader.setVec3("surface.specular", 0.333333, 0.333333, 0.521569);
-        woodShader.setFloat("surface.shininess",  9.846150);
-
-		ironShader.use();
-		ironShader.setVec3("lightColor", 1.0f, 1.0f, 1.0f);
-		ironShader.setVec3("lightPos", lightPos);
-		ironShader.setVec3("viewPos", viewPos);
-
+		
+        initWoodShader(lightPos,viewPos);
+        initIronShader(lightPos,viewPos);
+        
+        glassShader.use();
+        glassShader.setInt("texture1", 0);
+        
+//        greenGlassShader.use();
+//        greenGlassShader.setVec3("lightPos", lightPos);
+//        greenGlassShader.setInt("diffuseMap", 0);
+//        greenGlassShader.setInt("normalMap", 1);
+        
+        
+	}
+    void initIronShader(glm::vec3 lightPos, glm::vec3 viewPos){
+        ironShader.use();
+        ironShader.setVec3("lightColor", 1.0f, 1.0f, 1.0f);
+        ironShader.setVec3("lightPos", lightPos);
+        ironShader.setVec3("viewPos", viewPos);
         ironShader.setVec3("steel.ambient", 0.250000, 0.250000, 0.250000);
         ironShader.setVec3("steel.diffuse", 0.65, 0.65, 0.65);
         ironShader.setVec3("steel.specular", 0.774597, 0.774597, 0.774597);
         ironShader.setFloat("steel.shininess",  76.800003);
-
-		ironShader.setVec3("surface.ambient", 0.305882, 0.305882, 0.305882);
+        ironShader.setVec3("surface.ambient", 0.305882, 0.305882, 0.305882);
         ironShader.setVec3("surface.diffuse", 0.427451, 0.427451, 0.427451);
         ironShader.setVec3("surface.specular", 0.333333, 0.333333, 0.521569);
         ironShader.setFloat("surface.shininess",  9.846150);
+    }
+    
+    void initWoodShader(glm::vec3 lightPos, glm::vec3 viewPos){
+        // glGenTextures函数首先需要输入生成纹理的数量，然后把它们储存在第二个参数的woodId，就像其他对象一样，我们需要绑定它，让之后任何的纹理指令都可以配置当前绑定的纹理：
+        glGenTextures(1, &this->woodID);
+        glBindTexture(GL_TEXTURE_2D, this->woodID);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+        char* path="Material/porcelain5.jpeg";
+        loadTextureSimple(path);
+        glGenTextures(1, &this->woodSurfaceID);
+        glBindTexture(GL_TEXTURE_2D, this->woodSurfaceID);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
         
-        glassShader.use();
-        glassShader.setInt("texture1", 0);
-	}
+        woodShader.use();
+        woodShader.setInt("woodTexture",0);
+        woodShader.setInt("surfaceTexture",1);
+        woodShader.setVec3("lightColor", 1.0f, 1.0f, 1.0f);
+        woodShader.setVec3("lightPos", lightPos);
+        woodShader.setVec3("viewPos", viewPos);
+        woodShader.setVec3("wood.ambient", 0.450000, 0.450000, 0.450000);
+        woodShader.setVec3("wood.diffuse", 0.45, 0.45, 0.45);
+        woodShader.setVec3("wood.specular", 0.444597, 0.444597, 0.444597);
+        woodShader.setFloat("wood.shininess",  14.800003);
+        woodShader.setVec3("surface.ambient", 0.505882, 0.505882, 0.505882);
+        woodShader.setVec3("surface.diffuse", 0.227451, 0.227451, 0.227451);
+        woodShader.setVec3("surface.specular", 0.333333, 0.333333, 0.521569);
+        woodShader.setFloat("surface.shininess",  9.846150);
+    }
+    void initGreenGlass(glm::vec3 lightPos, glm::vec3 viewPos){
+        diffuseMap = loadTexture("images/greenGlass/Glass_Blocks_001a_Base_Color.png");
+        normalMap  = loadTexture("images/greenGlass//Glass_Blocks_001a_Normal.png");
+        greenGlassShader.use();
+        greenGlassShader.setInt("diffuseMap", 0);
+        greenGlassShader.setVec3("lightPos", lightPos);
+        greenGlassShader.setInt("normalMap", 1);
+    }
+    
+    
 
 	void initialize(){
 		this->renderInit();
@@ -560,6 +577,11 @@ public:
 		glEnableVertexAttribArray(2);
 		glVertexAttribPointer(3, 2, GL_FLOAT, GL_FALSE, fNum * sizeof(float), (void *)(7 * sizeof(float)));
 		glEnableVertexAttribArray(3);
+        glVertexAttribPointer(4, 3, GL_FLOAT, GL_FALSE, fNum * sizeof(float), (void*)(9 * sizeof(float)));
+        glEnableVertexAttribArray(4);
+        glVertexAttribPointer(5, 3, GL_FLOAT, GL_FALSE, fNum * sizeof(float), (void*)(12 * sizeof(float)));
+        glEnableVertexAttribArray(5);
+        
 	}
 
 	void drawMaterial(glm::mat4 view, glm::mat4 projection, glm::mat4 model,glm::mat4 rotate,bool ifdisplay)
@@ -590,6 +612,19 @@ public:
             glassShader.setMat4("model", model);
             glassShader.setMat4("rotate",rotate);
             glassShader.setVec3("cameraPos", camera.Position);
+        } else if(texture == "greenGlass"){
+            
+            greenGlassShader.use();
+            greenGlassShader.setMat4("view", view);
+            greenGlassShader.setMat4("projection", projection);
+            greenGlassShader.setMat4("model", model);
+            greenGlassShader.setMat4("rotate",rotate);
+            greenGlassShader.setVec3("cameraPos", camera.Position);
+            glActiveTexture(GL_TEXTURE0);
+            glBindTexture(GL_TEXTURE_2D, diffuseMap);
+            glActiveTexture(GL_TEXTURE1);
+            glBindTexture(GL_TEXTURE_2D, normalMap);
+        
         }
 
 		glBindVertexArray(materialVAO);
@@ -662,20 +697,87 @@ public:
 		glBindBuffer(GL_ARRAY_BUFFER, materialVBO);
         // position changes so maybe use dynamic
 //		glBufferData(GL_ARRAY_BUFFER, sizeof(rPointer), &rPointer, GL_STATIC_DRAW);
-        
+//
         glBufferData(GL_ARRAY_BUFFER, sizeof(rPointer), &rPointer, GL_DYNAMIC_DRAW);
 
-		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, fNum * sizeof(float), (void *)0);
+		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, fNum * sizeof(float), (void *)0); // aPos;
 		glEnableVertexAttribArray(0);
-		glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, fNum * sizeof(float), (void *)(3 * sizeof(float)));
+        
+		glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, fNum * sizeof(float), (void *)(3 * sizeof(float))); // aNormal;
 		glEnableVertexAttribArray(1);
-		glVertexAttribPointer(2, 1, GL_FLOAT, GL_FALSE, fNum * sizeof(float), (void *)(6 * sizeof(float)));
+        
+		glVertexAttribPointer(2, 1, GL_FLOAT, GL_FALSE, fNum * sizeof(float), (void *)(6 * sizeof(float))); // aRadius;
 		glEnableVertexAttribArray(2);
-		glVertexAttribPointer(3, 2, GL_FLOAT, GL_FALSE, fNum * sizeof(float), (void *)(7 * sizeof(float)));
+        
+		glVertexAttribPointer(3, 2, GL_FLOAT, GL_FALSE, fNum * sizeof(float), (void *)(7 * sizeof(float))); //aTexCoord;
 		glEnableVertexAttribArray(3);
+        
+        glVertexAttribPointer(3, 3, GL_FLOAT, GL_FALSE, fNum * sizeof(float), (void*)(9 * sizeof(float))); // aTangent;
+        glEnableVertexAttribArray(4);
+
+        glVertexAttribPointer(4, 3, GL_FLOAT, GL_FALSE, fNum * sizeof(float), (void*)(12 * sizeof(float))); // aBitangent;
+        glEnableVertexAttribArray(5);
+//
+        
+        
 		
 		return;
 	}
+    
+    void loadTextureSimple(char*path){
+        int texwidth,texheight,nrComponents=0;//nrChannels表示通道数，R/G/B/A，一共4个通道，有些图片只有3个，A即为alpha
+        unsigned char *data = SOIL_load_image(path, &texwidth, &texheight, &nrComponents, SOIL_LOAD_RGB);
+            glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, texwidth, texheight, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
+            if(data){
+                glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, texwidth, texheight, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
+                glGenerateMipmap(GL_TEXTURE_2D);
+            }
+            else
+                std::cout<<SOIL_last_result()<<std::endl;
+            SOIL_free_image_data(data);
+        return ;
+    }
+    unsigned int loadTexture(char const * path)
+    {
+        unsigned int textureID;
+        glGenTextures(1, &textureID);
+        std::cout<<path<<std::endl;
+        int width, height, nrComponents = 0;
+        unsigned char *data = SOIL_load_image(path, &width, &height, &nrComponents, SOIL_LOAD_RGB);
+    //    unsigned char *data = stbi_load(path, &width, &height, &nrComponents, 0);
+        // gamma
+        glTexImage2D(GL_TEXTURE_2D, 0, GL_SRGB, width, height,  nrComponents, GL_RGB, GL_UNSIGNED_BYTE, data);
+        if (data)
+        {
+            cout<<"load data successfully"<<endl;
+            GLenum format;
+            if (nrComponents == 1)
+                format = GL_RED;
+            else if (nrComponents == 3)
+                format = GL_RGB;
+            else if (nrComponents == 4)
+                format = GL_RGBA;
+            cout<<"nrComponents:"<<nrComponents<<endl;
+            glBindTexture(GL_TEXTURE_2D, textureID);
+            glTexImage2D(GL_TEXTURE_2D, 0, format, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
+            glGenerateMipmap(GL_TEXTURE_2D);
+            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
+            SOIL_free_image_data(data);
+        }
+        else
+        {
+            std::cout << "Texture failed to load at path: " << path << std::endl;
+            std::cout<<SOIL_last_result()<<std::endl;
+            SOIL_free_image_data(data);
+        }
+
+        return textureID;
+    }
+        
 };
 
 

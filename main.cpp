@@ -14,6 +14,7 @@
 #include "include/camera.h"
 #include "include/model.h"
 #include "const.h"
+#include "state.h"
 #include "Material/Material.h"
 #include "Knife/Knife.h"
 #include "Base/Base.h"
@@ -43,7 +44,6 @@ float deltaTime = 0.0f;
 float lastTime = 0.0f;
 float totalTime = 0.0f;
 float rotate_radius = 0.0f;
-
 bool ifreset=true,ifdisplay=false;
 
 glm::mat4 cupRotate=glm::mat4(1.0f);
@@ -91,26 +91,33 @@ int main() {
     glm::vec3 lightPos(-5.0f,0.0f,6.0f);
     glm::vec3 p0(-2.0f,-1.5f,0),p1(-4.0f,-0.0f,0),p2(-6.0f,-0.0f,0),p3(-8.0f,-1.5f,0);
 
-    Material material(lightPos,camera.Position,-5.0f,3.0f,6.0f);
+    Material material(lightPos,camera.Position,-5.0f,3.0f,length);
     ParticleSystem ps(lightPos);
     Knife knife(lightPos,camera.Position);
     Base base(lightPos,camera.Position);
 
     SkyBox skybox;
+    
+    Button pannel("Button/show2.png",SCR_WIDTH,SCR_HEIGHT,
+    buttonWidth*2,buttonHeight*40, buttonOffsetX-5.0f,buttonOffsetY+10*buttonDist);
+    
 
     CurveArea curveArea(SCR_WIDTH,SCR_HEIGHT,
     buttonWidth,buttonHeight, buttonOffsetX,buttonOffsetY,-5.0f,3.0f,6.0f);
-    Button bezierButton("Button/bezier.jpg",SCR_WIDTH,SCR_HEIGHT,
+//    Button bezierPannel("Button/bezier2.png",SCR_WIDTH,SCR_HEIGHT,
+//                        buttonWidth,buttonHeight, buttonOffsetX,buttonOffsetY);
+    
+    Button bezierButton("Button/fire2.png",SCR_WIDTH,SCR_HEIGHT,
     buttonWidth,buttonHeight, buttonOffsetX,buttonOffsetY-buttonDist);
     Button cursorButton("Button/cursor.jpg",SCR_WIDTH,SCR_HEIGHT,
     buttonWidth,buttonHeight, buttonOffsetX,buttonOffsetY-buttonDist);
-    Button startButton("Button/start.jpg",SCR_WIDTH,SCR_HEIGHT,
+    Button startButton("Button/start2.png",SCR_WIDTH,SCR_HEIGHT,
     buttonWidth,buttonHeight, buttonOffsetX,buttonOffsetY-2*buttonDist);
-    Button resetButton("Button/reset.jpg",SCR_WIDTH,SCR_HEIGHT,
+    Button resetButton("Button/reset2.png",SCR_WIDTH,SCR_HEIGHT,
     buttonWidth,buttonHeight, buttonOffsetX,buttonOffsetY-3*buttonDist);
-    Button textureButton("Button/texture.jpg",SCR_WIDTH,SCR_HEIGHT,
+    Button textureButton("Button/texture2.png",SCR_WIDTH,SCR_HEIGHT,
     buttonWidth,buttonHeight, buttonOffsetX,buttonOffsetY-4*buttonDist);
-    Button displayButton("Button/display.jpg",SCR_WIDTH,SCR_HEIGHT,
+    Button displayButton("Button/show2.png",SCR_WIDTH,SCR_HEIGHT,
     buttonWidth,buttonHeight, buttonOffsetX,buttonOffsetY-5*buttonDist);
 
     glm::vec3 knifePos=p0,lastKnifePos;
@@ -216,7 +223,7 @@ int main() {
         ps.render(view, projection, glm::mat4(1.0f), cupRotate);
 
 
-        
+//        bezierPannel.drawButton();
         if(Mode==CURSOR)
             cursorButton.drawButton();
         else
@@ -227,7 +234,7 @@ int main() {
         displayButton.drawButton();
 
         curveArea.drawCurveArea();
-
+        pannel.drawButton();
         glfwSwapBuffers(window);
         glfwPollEvents();
     }
@@ -277,9 +284,9 @@ void processInput(GLFWwindow *window) {
     //if (glfwGetKey(window, GLFW_KEY_C) == GLFW_PRESS)
     //    rotate_radius += (deltaTime/TIMESTEP)* 360.0f;
     if (glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_LEFT) == GLFW_PRESS) {
-        cout<<"Select:"<<Select<<endl;
+//        cout<<"Select:"<<Select<<endl;
         if(Select==NONE){
-            cout<<"Select:"<<Select<<endl;
+//            cout<<"Select:"<<Select<<endl;
             if(SCR_WIDTH/2.0+buttonOffsetX-buttonWidth/2.0<=lastX&&lastX<=SCR_WIDTH/2.0+buttonOffsetX+buttonWidth/2.0){
                 if(!ifstart&&
                 SCR_HEIGHT/2-buttonOffsetY-buttonHeight/2<=lastY&&lastY<= SCR_HEIGHT /2-buttonOffsetY+buttonHeight/2){
@@ -357,7 +364,7 @@ void mouse_callback(GLFWwindow* window, double xpos, double ypos)
 
     lastX = xpos;
     lastY = ypos;
-    if(mouseControlCamera)camera.ProcessMouseMovement(xoffset, yoffset);
+//    if(mouseControlCamera)camera.ProcessMouseMovement(xoffset, yoffset);
 }
 
 // glfw: whenever the mouse scroll wheel scrolls, this callback is called

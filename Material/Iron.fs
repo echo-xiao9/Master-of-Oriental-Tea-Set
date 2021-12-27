@@ -4,6 +4,7 @@ out vec4 FragColor;
 in vec3 Normal;
 in vec3 FragPos;
 flat in float isSurface;
+in vec2 TexCoord;
 
 struct Material {
     vec3 ambient;
@@ -11,7 +12,7 @@ struct Material {
     vec3 specular;    
     float shininess;
 }; 
-
+uniform sampler2D normalMap;
 uniform vec3 lightColor;
 uniform vec3 lightPos;
 uniform vec3 viewPos;
@@ -22,7 +23,9 @@ void main()
 {   
     vec3 ambient,diffuse,specular;
     vec3 color;
-    vec3 norm = normalize(Normal);
+
+    vec3 norm = texture(normalMap, TexCoord).rgb;
+    norm = normalize(norm * 2.0 - 1.0);
     vec3 lightDir = normalize(lightPos - FragPos);
     float diff = max(dot(norm, lightDir), 0.0);
     vec3 viewDir = normalize(viewPos - FragPos);

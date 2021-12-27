@@ -124,6 +124,13 @@
 		E822F9C927054E78003EA3EC /* glad.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = glad.c; sourceTree = "<group>"; };
 		E822F9CB2705B3B4003EA3EC /* learnopengl */ = {isa = PBXFileReference; lastKnownFileType = folder; path = learnopengl; sourceTree = "<group>"; };
 		E822F9CC2705B3BA003EA3EC /* glm */ = {isa = PBXFileReference; lastKnownFileType = folder; path = glm; sourceTree = "<group>"; };
+		E82363F62776FC2C0060E7CB /* state.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = state.h; sourceTree = "<group>"; };
+		E82363F8277708650060E7CB /* Glass_Blocks_001a_Normal.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Glass_Blocks_001a_Normal.jpg; sourceTree = "<group>"; };
+		E82363F9277708650060E7CB /* Glass_Blocks_001a_Height.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Glass_Blocks_001a_Height.png; sourceTree = "<group>"; };
+		E82363FA277708650060E7CB /* Glass_Blocks_001a_Base_Color.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Glass_Blocks_001a_Base_Color.jpg; sourceTree = "<group>"; };
+		E82363FB277708650060E7CB /* Glass_Blocks_001a_ambientOcclusion.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Glass_Blocks_001a_ambientOcclusion.jpg; sourceTree = "<group>"; };
+		E82363FC27772F8F0060E7CB /* greenGlass.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = greenGlass.vs; sourceTree = "<group>"; };
+		E82363FD27772F900060E7CB /* greenGlass.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = greenGlass.fs; sourceTree = "<group>"; };
 		E8283EAE2757287400109194 /* image_helper.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = image_helper.c; sourceTree = "<group>"; };
 		E8283EAF2757287400109194 /* stb_image_aug.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = stb_image_aug.h; sourceTree = "<group>"; };
 		E8283EB02757287400109194 /* SOIL.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SOIL.h; sourceTree = "<group>"; };
@@ -215,6 +222,13 @@
 		E894A65E2772F775002B7CB1 /* 10014_dolphin_v2_max2011_it2.obj */ = {isa = PBXFileReference; lastKnownFileType = text; path = 10014_dolphin_v2_max2011_it2.obj; sourceTree = "<group>"; };
 		E894A6652776C66F002B7CB1 /* glass.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = glass.vs; sourceTree = "<group>"; };
 		E894A6662776C675002B7CB1 /* glass.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = glass.fs; sourceTree = "<group>"; };
+		E898F33D2779FA7E001B1987 /* reset2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = reset2.png; sourceTree = "<group>"; };
+		E898F33E2779FA7E001B1987 /* start2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = start2.png; sourceTree = "<group>"; };
+		E898F33F2779FA7E001B1987 /* fire2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fire2.png; sourceTree = "<group>"; };
+		E898F3402779FA7E001B1987 /* texture2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = texture2.png; sourceTree = "<group>"; };
+		E898F3412779FE7E001B1987 /* pannel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = pannel.h; sourceTree = "<group>"; };
+		E898F342277A005F001B1987 /* pannel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pannel.png; sourceTree = "<group>"; };
+		E898F343277A0508001B1987 /* bezier2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bezier2.png; sourceTree = "<group>"; };
 		E8A22F9F276DAE510066C506 /* NZ.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NZ.png; sourceTree = "<group>"; };
 		E8CFE8AF2725187000E0F327 /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = System/Library/Frameworks/GLUT.framework; sourceTree = SDKROOT; };
 		E8E7F021276C287B004CBD2A /* CurveArea.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurveArea.h; sourceTree = "<group>"; };
@@ -2755,6 +2769,7 @@
 		E822F9AB27054A43003EA3EC = {
 			isa = PBXGroup;
 			children = (
+				E82363F62776FC2C0060E7CB /* state.h */,
 				E894A6552772C579002B7CB1 /* const.h */,
 				E894A64D2771FB23002B7CB1 /* Test */,
 				E8E7F05E276C287B004CBD2A /* Base */,
@@ -2816,6 +2831,19 @@
 				E80E926B27567DFF00995E27 /* stb_image.h */,
 			);
 			path = Include;
+			sourceTree = "<group>";
+		};
+		E82363F7277708650060E7CB /* greenGlass */ = {
+			isa = PBXGroup;
+			children = (
+				E82363FD27772F900060E7CB /* greenGlass.fs */,
+				E82363FC27772F8F0060E7CB /* greenGlass.vs */,
+				E82363F8277708650060E7CB /* Glass_Blocks_001a_Normal.jpg */,
+				E82363F9277708650060E7CB /* Glass_Blocks_001a_Height.png */,
+				E82363FA277708650060E7CB /* Glass_Blocks_001a_Base_Color.jpg */,
+				E82363FB277708650060E7CB /* Glass_Blocks_001a_ambientOcclusion.jpg */,
+			);
+			path = greenGlass;
 			sourceTree = "<group>";
 		};
 		E8283EAD2757287400109194 /* SOIL */ = {
@@ -2990,6 +3018,7 @@
 		E8E7F020276C287B004CBD2A /* CurveArea */ = {
 			isa = PBXGroup;
 			children = (
+				E898F343277A0508001B1987 /* bezier2.png */,
 				E8E7F021276C287B004CBD2A /* CurveArea.h */,
 				E8E7F022276C287B004CBD2A /* Point.fs */,
 				E8E7F023276C287B004CBD2A /* Point.vs */,
@@ -3052,6 +3081,7 @@
 		E8E7F03D276C287B004CBD2A /* Material */ = {
 			isa = PBXGroup;
 			children = (
+				E82363F7277708650060E7CB /* greenGlass */,
 				E894A6662776C675002B7CB1 /* glass.fs */,
 				E894A6652776C66F002B7CB1 /* glass.vs */,
 				E8E7F03E276C287B004CBD2A /* Surface.jpg */,
@@ -3091,6 +3121,11 @@
 		E8E7F04C276C287B004CBD2A /* Button */ = {
 			isa = PBXGroup;
 			children = (
+				E898F342277A005F001B1987 /* pannel.png */,
+				E898F33F2779FA7E001B1987 /* fire2.png */,
+				E898F33D2779FA7E001B1987 /* reset2.png */,
+				E898F33E2779FA7E001B1987 /* start2.png */,
+				E898F3402779FA7E001B1987 /* texture2.png */,
 				E8E7F04D276C287B004CBD2A /* cursor.jpg */,
 				E8E7F04E276C287B004CBD2A /* mode.jpg */,
 				E8E7F04F276C287B004CBD2A /* Button.fs */,
@@ -3101,6 +3136,7 @@
 				E8E7F054276C287B004CBD2A /* Button.h */,
 				E8E7F055276C287B004CBD2A /* texture.jpg */,
 				E8E7F056276C287B004CBD2A /* start.jpg */,
+				E898F3412779FE7E001B1987 /* pannel.h */,
 			);
 			path = Button;
 			sourceTree = "<group>";

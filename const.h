@@ -15,7 +15,7 @@ enum type{BEZIER,CURSOR};
 enum select{AREA,MODE,START,RESET,TEXTURE,CHANGED,DISPLAY,NONE};
 
 // button
-const int buttonWidth=160,buttonHeight=80,buttonOffsetX=600,buttonOffsetY=320,buttonDist=100;
+const int buttonWidth=160,buttonHeight=90,buttonOffsetX=600,buttonOffsetY=320,buttonDist=100;
 
 // control the points of the curve
 int mouseX,mouseY;
@@ -36,12 +36,17 @@ bool origin=1;
 
 // material
 #define Pi 3.1416
-#define eNum 180
+#define eNum 360
 #define rNum 800
 #define fNum 9
+//#define fNum 15
 #define MIN(a,b) ((a)<(b)?(a):(b))
 #define MAX(a,b) ((a)>(b)?(a):(b))
-#define textureNum 3
-string textures[]={"steel","wood","glass"};
+#define textureNum 4
+string textures[]={"steel","wood","glass","greenGlass"};
+
+
+
+
 
 #endif /* const_h */

@@ -6,6 +6,7 @@ in vec3 Position;
 
 uniform vec3 cameraPos;
 uniform samplerCube skybox;
+uniform sampler2D normalMap;
 
 //void main()
 //{

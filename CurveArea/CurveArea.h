@@ -83,7 +83,7 @@ private:
 public:
     CurveArea(int screenWidth,int screenHeight,int width=100,int height=80,
     int posX=0,int posY=0,float offsetX=0.0f,float initR=1.5f,float length=6.0f)
-    :button(Button("CurveArea/white.jpg",screenWidth,screenHeight,width,height,posX,posY))
+    :button(Button("Button/bezier2.jpg",screenWidth,screenHeight,width,height,posX,posY))
     ,pointShader(Shader("CurveArea/Point.vs","CurveArea/Point.fs"))
     {
 		this->offsetX=offsetX;
@@ -115,9 +115,6 @@ public:
         p4=glm::vec3(-length/3+offsetX,-initR/2,0.0f);
         p5=glm::vec3(-length/2+offsetX,-initR,0.0f);
         
-        
-        
-        
         b0=glm::vec3(normW,-normH,0);
         b1=glm::vec3(5*normW/6,0,0);
         b2=glm::vec3(normW/3,normH,0);
@@ -125,7 +122,6 @@ public:
         b4=glm::vec3(-5*normW/6,0,0);
         b5=glm::vec3(-normW,-normH,0);
         
-       
         updateBuffer();
     };
     ~CurveArea(){}
