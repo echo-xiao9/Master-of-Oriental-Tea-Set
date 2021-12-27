@@ -8,47 +8,47 @@ using namespace std;
 
 float skyboxVertices[] = {
     // positions          
-    -30.0f,  30.0f, -30.0f,
-    -30.0f, -30.0f, -30.0f,
-     30.0f, -30.0f, -30.0f,
-     30.0f, -30.0f, -30.0f,
-     30.0f,  30.0f, -30.0f,
-    -30.0f,  30.0f, -30.0f,
+    -80.0f,  80.0f, -80.0f,
+    -80.0f, -80.0f, -80.0f,
+     80.0f, -80.0f, -80.0f,
+     80.0f, -80.0f, -80.0f,
+     80.0f,  80.0f, -80.0f,
+    -80.0f,  80.0f, -80.0f,
 
-    -30.0f, -30.0f,  30.0f,
-    -30.0f, -30.0f, -30.0f,
-    -30.0f,  30.0f, -30.0f,
-    -30.0f,  30.0f, -30.0f,
-    -30.0f,  30.0f,  30.0f,
-    -30.0f, -30.0f,  30.0f,
+    -80.0f, -80.0f,  80.0f,
+    -80.0f, -80.0f, -80.0f,
+    -80.0f,  80.0f, -80.0f,
+    -80.0f,  80.0f, -80.0f,
+    -80.0f,  80.0f,  80.0f,
+    -80.0f, -80.0f,  80.0f,
 
-     30.0f, -30.0f, -30.0f,
-     30.0f, -30.0f,  30.0f,
-     30.0f,  30.0f,  30.0f,
-     30.0f,  30.0f,  30.0f,
-     30.0f,  30.0f, -30.0f,
-     30.0f, -30.0f, -30.0f,
+     80.0f, -80.0f, -80.0f,
+     80.0f, -80.0f,  80.0f,
+     80.0f,  80.0f,  80.0f,
+     80.0f,  80.0f,  80.0f,
+     80.0f,  80.0f, -80.0f,
+     80.0f, -80.0f, -80.0f,
 
-    -30.0f, -30.0f,  30.0f,
-    -30.0f,  30.0f,  30.0f,
-     30.0f,  30.0f,  30.0f,
-     30.0f,  30.0f,  30.0f,
-     30.0f, -30.0f,  30.0f,
-    -30.0f, -30.0f,  30.0f,
+    -80.0f, -80.0f,  80.0f,
+    -80.0f,  80.0f,  80.0f,
+     80.0f,  80.0f,  80.0f,
+     80.0f,  80.0f,  80.0f,
+     80.0f, -80.0f,  80.0f,
+    -80.0f, -80.0f,  80.0f,
 
-    -30.0f,  30.0f, -30.0f,
-     30.0f,  30.0f, -30.0f,
-     30.0f,  30.0f,  30.0f,
-     30.0f,  30.0f,  30.0f,
-    -30.0f,  30.0f,  30.0f,
-    -30.0f,  30.0f, -30.0f,
+    -80.0f,  80.0f, -80.0f,
+     80.0f,  80.0f, -80.0f,
+     80.0f,  80.0f,  80.0f,
+     80.0f,  80.0f,  80.0f,
+    -80.0f,  80.0f,  80.0f,
+    -80.0f,  80.0f, -80.0f,
 
-    -30.0f, -30.0f, -30.0f,
-    -30.0f, -30.0f,  30.0f,
-     30.0f, -30.0f, -30.0f,
-     30.0f, -30.0f, -30.0f,
-    -30.0f, -30.0f,  30.0f,
-     30.0f, -30.0f,  30.0f
+    -80.0f, -80.0f, -80.0f,
+    -80.0f, -80.0f,  80.0f,
+     80.0f, -80.0f, -80.0f,
+     80.0f, -80.0f, -80.0f,
+    -80.0f, -80.0f,  80.0f,
+     80.0f, -80.0f,  80.0f
 };
 
 class SkyBox {
@@ -79,7 +79,6 @@ private:
 			}
             
 			SOIL_free_image_data(data);
-
             
 		}
 		glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
@@ -116,12 +115,15 @@ public:
 //			"SkyBox/Forest/NY.jpg",//-y
 //			"SkyBox/Forest/PZ.jpg",//+z
 //			"SkyBox/Forest/NZ.png",//-z
-            "skybox/Lake/right.jpg",
-             "skybox/Lake/left.jpg",
-             "skybox/Lake/top.jpg",
-             "skybox/Lake/bottom.jpg",
-             "skybox/Lake/front.jpg",
-             "skybox/Lake/back.jpg"
+            
+            "skybox/Fire/spark.png",
+            "skybox/Fire/spark.png",
+            "skybox/Fire/spark.png",
+            "skybox/Fire/spark.png",
+            "skybox/Fire/spark.png",
+            "skybox/Fire/spark.png"
+            
+            
 
 //                       "SkyBox/thousand/right_thousands_07.jpg",
 //                        "SkyBox/thousand/left_thousands_05.jpg",

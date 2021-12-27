@@ -42,8 +42,8 @@ bool origin=1;
 //#define fNum 15
 #define MIN(a,b) ((a)<(b)?(a):(b))
 #define MAX(a,b) ((a)>(b)?(a):(b))
-#define textureNum 4
-string textures[]={"steel","wood","glass","greenGlass"};
+#define textureNum 3
+string textures[]={"wood","glass","greenGlass"};
 
 
 

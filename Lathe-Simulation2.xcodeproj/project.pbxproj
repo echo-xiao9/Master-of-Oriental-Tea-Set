@@ -231,6 +231,13 @@
 		E898F343277A0508001B1987 /* bezier2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bezier2.png; sourceTree = "<group>"; };
 		E898F348277A13F1001B1987 /* clayColor.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clayColor.png; sourceTree = "<group>"; };
 		E898F349277A13F1001B1987 /* clayNormal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clayNormal.png; sourceTree = "<group>"; };
+		E898F34B277A1E80001B1987 /* bottom.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = bottom.jpg; sourceTree = "<group>"; };
+		E898F34C277A1E80001B1987 /* left.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = left.jpg; sourceTree = "<group>"; };
+		E898F34D277A1E80001B1987 /* top.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = top.jpg; sourceTree = "<group>"; };
+		E898F34E277A1E80001B1987 /* back.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = back.jpg; sourceTree = "<group>"; };
+		E898F34F277A1E80001B1987 /* right.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = right.jpg; sourceTree = "<group>"; };
+		E898F350277A1E80001B1987 /* front.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = front.jpg; sourceTree = "<group>"; };
+		E898F352277A213F001B1987 /* spark.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = spark.jpg; sourceTree = "<group>"; };
 		E8A22F9F276DAE510066C506 /* NZ.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NZ.png; sourceTree = "<group>"; };
 		E8CFE8AF2725187000E0F327 /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = System/Library/Frameworks/GLUT.framework; sourceTree = SDKROOT; };
 		E8E7F021276C287B004CBD2A /* CurveArea.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurveArea.h; sourceTree = "<group>"; };
@@ -3026,6 +3033,27 @@
 			path = clay;
 			sourceTree = "<group>";
 		};
+		E898F34A277A1E80001B1987 /* Lake */ = {
+			isa = PBXGroup;
+			children = (
+				E898F34B277A1E80001B1987 /* bottom.jpg */,
+				E898F34C277A1E80001B1987 /* left.jpg */,
+				E898F34D277A1E80001B1987 /* top.jpg */,
+				E898F34E277A1E80001B1987 /* back.jpg */,
+				E898F34F277A1E80001B1987 /* right.jpg */,
+				E898F350277A1E80001B1987 /* front.jpg */,
+			);
+			path = Lake;
+			sourceTree = "<group>";
+		};
+		E898F351277A213F001B1987 /* Fire */ = {
+			isa = PBXGroup;
+			children = (
+				E898F352277A213F001B1987 /* spark.jpg */,
+			);
+			path = Fire;
+			sourceTree = "<group>";
+		};
 		E8E7F020276C287B004CBD2A /* CurveArea */ = {
 			isa = PBXGroup;
 			children = (
@@ -3041,6 +3069,8 @@
 		E8E7F025276C287B004CBD2A /* SkyBox */ = {
 			isa = PBXGroup;
 			children = (
+				E898F351277A213F001B1987 /* Fire */,
+				E898F34A277A1E80001B1987 /* Lake */,
 				E8E7F026276C287B004CBD2A /* Forest */,
 				E8E7F02D276C287B004CBD2A /* Forest.fs */,
 				E8E7F02E276C287B004CBD2A /* SkyBox.h */,
