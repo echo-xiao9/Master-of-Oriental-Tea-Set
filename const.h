@@ -49,8 +49,8 @@ int mtrIdx=0; // current material index
 //#define fNum 15
 #define MIN(a,b) ((a)<(b)?(a):(b))
 #define MAX(a,b) ((a)>(b)?(a):(b))
-#define textureNum 3
-string textures[]={"wood","glass","glass"};
+#define textureNum 4
+string textures[]={"wood","glass","glass","porcelain"};
 
 
 

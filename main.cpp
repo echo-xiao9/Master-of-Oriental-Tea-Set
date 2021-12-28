@@ -182,7 +182,8 @@ int main() {
         
         if(Select==FIRE){
             material.changeTexure(&ps);
-            if(mtrIdx<2) skybox.changeTexture();
+            if(mtrIdx<2)
+                skybox.changeTexture();
             Select=CHANGED;
             mtrIdx++;
         }

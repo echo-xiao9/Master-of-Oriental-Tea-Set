@@ -157,6 +157,12 @@
 		E8283ECB2757287400109194 /* stb_image_aug.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = stb_image_aug.c; sourceTree = "<group>"; };
 		E8283ECC2757287400109194 /* image_helper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = image_helper.h; sourceTree = "<group>"; };
 		E8283ECD2757287400109194 /* image_DXT.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = image_DXT.h; sourceTree = "<group>"; };
+		E83D4E3F277B048D00105E67 /* gold.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gold.png; sourceTree = "<group>"; };
+		E83D4E40277B048D00105E67 /* gold.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = gold.jpg; sourceTree = "<group>"; };
+		E83D4E41277B08FA00105E67 /* porcelain.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; name = porcelain.vs; path = Material/porcelain.vs; sourceTree = SOURCE_ROOT; };
+		E83D4E42277B090100105E67 /* porcelain.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; name = porcelain.fs; path = Material/porcelain.fs; sourceTree = SOURCE_ROOT; };
+		E83D4E43277B122700105E67 /* porcelain3Color.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = porcelain3Color.png; sourceTree = "<group>"; };
+		E83D4E44277B122700105E67 /* porcelain3Normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = porcelain3Normal.png; sourceTree = "<group>"; };
 		E83F53B72725993300DAA31A /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
 		E83F53CF27259EA800DAA31A /* GL */ = {isa = PBXFileReference; lastKnownFileType = folder; name = GL; path = freeglut/include/GL; sourceTree = "<group>"; };
 		E869B9D7276A26B0005CA84B /* IOSystem.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = IOSystem.hpp; sourceTree = "<group>"; };
@@ -2912,6 +2918,17 @@
 			path = original;
 			sourceTree = "<group>";
 		};
+		E83D4E3E277B048D00105E67 /* porcelain */ = {
+			isa = PBXGroup;
+			children = (
+				E83D4E43277B122700105E67 /* porcelain3Color.png */,
+				E83D4E44277B122700105E67 /* porcelain3Normal.png */,
+				E83D4E3F277B048D00105E67 /* gold.png */,
+				E83D4E40277B048D00105E67 /* gold.jpg */,
+			);
+			path = porcelain;
+			sourceTree = "<group>";
+		};
 		E869B9D6276A26B0005CA84B /* assimp */ = {
 			isa = PBXGroup;
 			children = (
@@ -3122,6 +3139,9 @@
 		E8E7F03D276C287B004CBD2A /* Material */ = {
 			isa = PBXGroup;
 			children = (
+				E83D4E42277B090100105E67 /* porcelain.fs */,
+				E83D4E41277B08FA00105E67 /* porcelain.vs */,
+				E83D4E3E277B048D00105E67 /* porcelain */,
 				E898F347277A13F1001B1987 /* clay */,
 				E82363F7277708650060E7CB /* greenGlass */,
 				E894A6662776C675002B7CB1 /* glass.fs */,

@@ -30,6 +30,7 @@ private:
     // ---------------------------------------------------
     unsigned int materialVAO, materialVBO;
     unsigned int woodID,woodSurfaceID;
+    unsigned int porcelainID,porcelainSurfaceID;
     float offsetX;
     float length;
     float initR;
@@ -453,12 +454,14 @@ private:
     }
 
 public:
-    Shader ironShader,woodShader,glassShader;
+    Shader ironShader,woodShader,glassShader,porcelainShader;
     unsigned int woodNormalMap;
+    unsigned int porcelainNormalMap;
     Material(glm::vec3 lightPos, glm::vec3 viewPos,float offsetX,float initR,float length)
     :ironShader(Shader("Material/Iron.vs", "Material/Iron.fs")),
     woodShader(Shader("Material/Wood.vs","Material/Wood.fs")),
-    glassShader(Shader("Material/glass.vs","Material/glass.fs"))
+    glassShader(Shader("Material/glass.vs","Material/glass.fs")),
+    porcelainShader(Shader("Material/porcelain.vs","Material/porcelain.fs"))
     {
         this->offsetX=offsetX;
         this->initR=initR;
@@ -480,23 +483,11 @@ public:
 //        string path="Material/Wood.jpg";
 //        string path="Material/Marble021_1K_Color.jpg";
         string path="Material/clay/clayColor.png";
+//        string path="Material/porcelain/cloud1.jpg";
+//        string path="Material/porcelain/tree1.jpg";
+//        string path="Material/porcelain/tree2.jpg";
 //        loadTextureSimple(path.data());
         loadTextureSimple(path.data());
-//
-//        int texwidth,texheight;//nrChannels表示通道数，R/G/B/A，一共4个通道，有些图片只有3个，A即为alpha
-////        unsigned char *image = SOIL_load_image("Material/Wood.jpg", &texwidth, &texheight, 0, SOIL_LOAD_RGB);
-//        unsigned char *image = SOIL_load_image(path.data(), &texwidth, &texheight, 0, SOIL_LOAD_RGB);
-//            // 现在纹理已经绑定了，我们可以使用前面载入的图片数据生成一个纹理了。纹理可以通过glTexImage2D来生成：
-//            glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, texwidth, texheight, 0, GL_RGB, GL_UNSIGNED_BYTE, image);
-//            if(image){
-//                glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, texwidth, texheight, 0, GL_RGB, GL_UNSIGNED_BYTE, image);
-//                glGenerateMipmap(GL_TEXTURE_2D);
-//            }
-//            else
-//                std::cout<<SOIL_last_result()<<std::endl;
-//            SOIL_free_image_data(image);
-
-        
         glGenTextures(1, &this->woodSurfaceID);
         glBindTexture(GL_TEXTURE_2D, this->woodSurfaceID);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
@@ -542,6 +533,47 @@ public:
         
         glassShader.use();
         glassShader.setInt("texture1", 0);
+        
+        
+        glGenTextures(1, &this->porcelainID);
+        glBindTexture(GL_TEXTURE_2D, this->porcelainID);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+        path="Material/porcelain/moutain.png";
+        
+        loadTextureSimple(path.data());
+        glGenTextures(1, &this->porcelainSurfaceID);
+        glBindTexture(GL_TEXTURE_2D, this->porcelainSurfaceID);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+        
+        porcelainNormalMap  = loadTexture("/Users/kangyixiao/EchoFile/coding/MasterOfOrientalTeaSet/Material/porcelain/porcelain3Normal.png");
+        
+
+        porcelainShader.use();
+        porcelainShader.setInt("porcelainTexture",3);
+        porcelainShader.setInt("porcelainSurfaceTexture",4);
+        porcelainShader.setInt("porcelainNormalMap",5);
+        
+        porcelainShader.setVec3("lightColor", 1.0f, 1.0f, 1.0f);
+        porcelainShader.setVec3("lightPos", lightPos);
+        porcelainShader.setVec3("viewPos", viewPos);
+
+        porcelainShader.setVec3("porcelain.ambient", 1.0000, 1.00000, 1.00000);
+        porcelainShader.setVec3("porcelain.diffuse",0.5, 0.5, 0.5);
+        porcelainShader.setVec3("porcelain.specular", 0.844597, 0.844597, 0.844597);
+        porcelainShader.setFloat("porcelain.shininess",  60.846150);
+
+        porcelainShader.setVec3("surface.ambient", 0.7000, 0.70000, 0.70000);
+        porcelainShader.setVec3("surface.diffuse", 0.5, 0.5, 0.5);
+        porcelainShader.setVec3("surface.specular", 0.844597, 0.844597, 0.844597);
+        porcelainShader.setFloat("surface.shininess",  60.846150);
+        
+        
     }
 
     void initialize(){
@@ -592,6 +624,18 @@ public:
             glassShader.setMat4("model", model);
             glassShader.setMat4("rotate",rotate);
             glassShader.setVec3("cameraPos", camera.Position);
+        } else if(texture=="porcelain"){
+            glActiveTexture(GL_TEXTURE3);//在绑定纹理之前先激活纹理单元
+            glBindTexture(GL_TEXTURE_2D, this->porcelainID);
+            glActiveTexture(GL_TEXTURE4);
+            glBindTexture(GL_TEXTURE_2D, this->porcelainSurfaceID);
+            glActiveTexture(GL_TEXTURE5);
+            glBindTexture(GL_TEXTURE_2D, porcelainNormalMap);
+            porcelainShader.use();
+            porcelainShader.setMat4("view", view);
+            porcelainShader.setMat4("projection", projection);
+            porcelainShader.setMat4("model", model);
+            porcelainShader.setMat4("rotate",rotate);
         }
 
         glBindVertexArray(materialVAO);

@@ -153,7 +153,14 @@ public:
     glm::vec3 gerRealCurve(float t){
         // Bessel curve formula to the third power
         glm::vec3 v=p0*((float)pow(1-t,5))+p1*((float)(5*t*pow(1-t,4)))+p2*((float)(10*pow(t,2)*pow(1-t,3)))+p3*((float)(10*pow(t,3)*pow(1-t,2)))+p4*((float)(5*pow(t,4)*(1-t)))+p5*((float)pow(t,5));
+//        float x=v.y;
+//        float y=v.x;
+//        return glm::vec3(x,y,v.z);
+        
+        
+        
         return v;
+        
     }
 
     void drawCurveArea(){
