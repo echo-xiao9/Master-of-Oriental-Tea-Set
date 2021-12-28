@@ -54,7 +54,7 @@ float skyboxVertices[] = {
 class SkyBox {
 private:
 	unsigned int skyboxVAO, skyboxVBO;
-	unsigned int forestTexture,factoryTexture;
+	unsigned int fireTexture,lakeTexture;
 	string texture;
 
 	unsigned int loadCubemap(vector<std::string> faces)
@@ -91,11 +91,11 @@ private:
 	}
 
 public:
-	Shader forestShader,factoryShader;
+	Shader fireShader,lakeShader;
 
-	SkyBox():forestShader(Shader("SkyBox/Forest.vs", "SkyBox/Forest.fs")),
-			factoryShader(Shader("SkyBox/Factory.vs", "SkyBox/Factory.fs")) {
-		this->texture="factory";
+	SkyBox():fireShader(Shader("SkyBox/Forest.vs", "SkyBox/Forest.fs")),
+			lakeShader(Shader("SkyBox/Factory.vs", "SkyBox/Factory.fs")) {
+		this->texture="lake";
 		// skybox VAO
 		glGenVertexArrays(1, &skyboxVAO);
 		glGenBuffers(1, &skyboxVBO);
@@ -133,9 +133,9 @@ public:
 //                        "SkyBox/thousand/back_thousands_06.jpg"
             
 		};
-		forestTexture = loadCubemap(faces1);
-		forestShader.use();
-		forestShader.setInt("forest", 0);
+		fireTexture = loadCubemap(faces1);
+		fireShader.use();
+		fireShader.setInt("fire", 0);
 
 		vector<std::string> faces2
 		{
@@ -153,28 +153,27 @@ public:
              "skybox/Lake/back.jpg"
 		};
                 
-		factoryTexture = loadCubemap(faces2);
-		factoryShader.use();
-		factoryShader.setInt("factory", 0);
+		lakeTexture = loadCubemap(faces2);
+		lakeShader.use();
+		lakeShader.setInt("lake", 0);
 
 	}
 
 	void drawSkybox(glm::mat4 view, glm::mat4 projection) {
 		glDepthFunc(GL_LEQUAL);
 		glActiveTexture(GL_TEXTURE0);
-		if(texture=="forest"){
-			glBindTexture(GL_TEXTURE_CUBE_MAP, forestTexture);
+		if(texture=="fire"){
+			glBindTexture(GL_TEXTURE_CUBE_MAP, fireTexture);
 		
-    	    forestShader.use();
-			forestShader.setMat4("view", view);
-			forestShader.setMat4("projection", projection);
+    	    fireShader.use();
+			fireShader.setMat4("view", view);
+			fireShader.setMat4("projection", projection);
 		} else
 		{
-			glBindTexture(GL_TEXTURE_CUBE_MAP, factoryTexture);
-		
-    	    factoryShader.use();
-			factoryShader.setMat4("view", view);
-			factoryShader.setMat4("projection", projection);
+			glBindTexture(GL_TEXTURE_CUBE_MAP, lakeTexture);
+    	    lakeShader.use();
+			lakeShader.setMat4("view", view);
+			lakeShader.setMat4("projection", projection);
 		}
 		
 		glBindVertexArray(skyboxVAO);
@@ -185,6 +184,6 @@ public:
 	}
 
 	void changeTexture(){
-		texture=(texture=="factory")?"forest":"factory";
+		texture=(texture=="lake")?"fire":"lake";
 	}
 };

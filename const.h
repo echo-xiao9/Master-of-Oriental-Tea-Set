@@ -11,8 +11,8 @@
 const unsigned int SCR_WIDTH = 1400;
 const unsigned int SCR_HEIGHT = 800;
 
-enum type{BEZIER,CURSOR};
-enum select{AREA,MODE,START,RESET,TEXTURE,CHANGED,DISPLAY,NONE};
+enum type{BEZIER,CURSOR,UNFIRED, FIRED};
+enum select{AREA,MODE,START,RESET,TEXTURE,CHANGED,DISPLAY,NONE,FIRE};
 
 // button
 const int buttonWidth=160,buttonHeight=90,buttonOffsetX=600,buttonOffsetY=320,buttonDist=100;
@@ -23,6 +23,7 @@ bool ifstart=false;
 
 // mode of program
 type Mode = BEZIER;
+type FIREMODE=UNFIRED;
 select Select = NONE;
 // camera
 Camera camera(glm::vec3(0.0f, 0.0f, 20.0f));
@@ -39,11 +40,17 @@ bool origin=1;
 #define eNum 360
 #define rNum 800
 #define fNum 9
+
+int mtrIdx=0; // current material index
+
+
+
+
 //#define fNum 15
 #define MIN(a,b) ((a)<(b)?(a):(b))
 #define MAX(a,b) ((a)>(b)?(a):(b))
 #define textureNum 3
-string textures[]={"wood","glass","greenGlass"};
+string textures[]={"wood","glass","glass"};
 
 
 

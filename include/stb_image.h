@@ -122,7 +122,7 @@ smarter.
 - The old STBI_SIMD system which allowed installing a user-defined
 IDCT etc. has been removed. If you need this, don't upgrade. My
 assumption is that almost nobody was doing this, and those who
-were will find the built-in SIMD more satisfactory anyway.
+were will find the built-in SIMD more satislake anyway.
 
 - RGB values computed for JPEG images are slightly different from
 previous versions of stb_image. (This is due to using less

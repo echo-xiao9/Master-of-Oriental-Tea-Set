@@ -602,9 +602,10 @@ public:
         glBindVertexArray(0);
     }
 
-    void changeTexure(ParticleSystem *ps){
+    void changeTexure(ParticleSystem *ps,string texture1=""){
     //        texture=(texture=="wood")?"iron":"wood";
-            texture=textures[(++textureId) % textureNum];
+        if(texture1=="")texture=textures[(++textureId) % textureNum];
+        else texture = texture1;
             cout<<"texture:"<<texture<<endl;
             ps->changeColor(texture);
         }

@@ -115,6 +115,8 @@ int main() {
     buttonWidth,buttonHeight, buttonOffsetX,buttonOffsetY-2*buttonDist);
     Button resetButton("Button/reset2.png",SCR_WIDTH,SCR_HEIGHT,
     buttonWidth,buttonHeight, buttonOffsetX,buttonOffsetY-3*buttonDist);
+    Button fireButton("Button/fire2.png",SCR_WIDTH,SCR_HEIGHT,
+    buttonWidth,buttonHeight, buttonOffsetX,buttonOffsetY-4*buttonDist);
     Button textureButton("Button/texture2.png",SCR_WIDTH,SCR_HEIGHT,
     buttonWidth,buttonHeight, buttonOffsetX,buttonOffsetY-4*buttonDist);
     Button displayButton("Button/show2.png",SCR_WIDTH,SCR_HEIGHT,
@@ -138,7 +140,7 @@ int main() {
         currentTime = glfwGetTime();
         deltaTime = currentTime - lastTime;
         totalTime += deltaTime;
-
+        
         if(ifstart)
             bezierTime += deltaTime;
         lastTime = currentTime;
@@ -169,7 +171,7 @@ int main() {
         ps.updateParticle(deltaTime);
 
         lastKnifePos = knifePos;
-
+        
         if(Mode==BEZIER){
                 knifePos = curveArea.gerRealCurve(rate);
         } else
@@ -177,11 +179,12 @@ int main() {
             knifePos = Screen2World(lastX, lastY, projection, view);
             knifePos = glm::vec3(MAX(-8.0f,knifePos.x), MIN(0, knifePos.y), 0);
         }
-
-        if(Select==TEXTURE){
+        
+        if(Select==FIRE){
             material.changeTexure(&ps);
-            skybox.changeTexture();
+            if(mtrIdx<2) skybox.changeTexture();
             Select=CHANGED;
+            mtrIdx++;
         }
 
         if(Select==AREA)
@@ -221,16 +224,25 @@ int main() {
 //        cupRotate=glm::mat4(1.0f);
         ps.simulate(deltaTime);
         ps.render(view, projection, glm::mat4(1.0f), cupRotate);
-
+//        if(Select == FIRE){
+//            material.changeTexure(&ps,"glass");
+//            skybox.changeTexture();
+//            Select=CHANGED;
+//        }
 
 //        bezierPannel.drawButton();
         if(Mode==CURSOR)
             cursorButton.drawButton();
         else
             bezierButton.drawButton();
+        
+        if(FIREMODE==UNFIRED)
+            fireButton.drawButton();
+        else textureButton.drawButton();
+        
         startButton.drawButton();
         resetButton.drawButton();
-        textureButton.drawButton();
+//        textureButton.drawButton();
         displayButton.drawButton();
 
         curveArea.drawCurveArea();
@@ -274,7 +286,7 @@ void processInput(GLFWwindow *window) {
 //    if (glfwGetKey(window, GLFW_KEY_LEFT) == GLFW_PRESS){
 //        cupRotate=glm::rotate(cupRotate,0.1f,glm::vec3(1.0,0.0,0.0f));
 //    }
-//        
+//
 //    if (glfwGetKey(window, GLFW_KEY_RIGHT) == GLFW_PRESS)
 //        cupRotate=glm::rotate(cupRotate,-0.1f,glm::vec3(1.0,0.0,0.0f));
     
@@ -297,9 +309,9 @@ void processInput(GLFWwindow *window) {
                 } else
                 if(!ifdisplay&&
                 SCR_HEIGHT/2-buttonOffsetY-buttonHeight/2+buttonDist<=lastY&&lastY<= SCR_HEIGHT /2-buttonOffsetY+buttonHeight/2+buttonDist){
-                    Select=MODE;
+                    Select=FIRE;
                     ifreset=true;
-                    Mode=(Mode==BEZIER)?CURSOR:BEZIER;
+//                    Mode=(Mode==BEZIER)?CURSOR:BEZIER;
                 } else
                 if(!ifdisplay&&Mode==BEZIER&&
                 SCR_HEIGHT/2-buttonOffsetY-buttonHeight/2+2*buttonDist<=lastY&&lastY<=SCR_HEIGHT/2-buttonOffsetY+buttonHeight/2+2*buttonDist){
@@ -313,7 +325,9 @@ void processInput(GLFWwindow *window) {
                 } else
                 if(
                 SCR_HEIGHT/2-buttonOffsetY-buttonHeight/2+4*buttonDist<=lastY&&lastY<= SCR_HEIGHT/2-buttonOffsetY+buttonHeight/2+4*buttonDist){
-                    Select=TEXTURE;
+                    Select=FIRE;
+//                    FIREMODE=(FIREMODE==UNFIRED)?FIRED:UNFIRED;
+                    if(FIREMODE==UNFIRED)FIREMODE=FIRED;
                 }
                 if(!ifstart&&
                 SCR_HEIGHT/2-buttonOffsetY-buttonHeight/2+5*buttonDist<=lastY&&lastY<= SCR_HEIGHT/2-buttonOffsetY+buttonHeight/2+5*buttonDist){
