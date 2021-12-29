@@ -32,7 +32,7 @@ float lastY = SCR_HEIGHT / 2.0f;
 bool firstMouse = true;
 bool mouseControlCamera=true;
 // tmp:set seen of base and knife
-bool origin=1;
+bool origin=0;
 
 
 // material
