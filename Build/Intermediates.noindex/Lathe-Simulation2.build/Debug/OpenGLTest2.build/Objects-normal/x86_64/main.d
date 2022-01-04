@@ -252,7 +252,6 @@ dependencies: \
   /Users/kangyixiao/EchoFile/coding/MasterOfOrientalTeaSet/Externals/Include/glm/gtc/../mat4x3.hpp \
   /Users/kangyixiao/EchoFile/coding/MasterOfOrientalTeaSet/Externals/Include/glm/gtc/type_ptr.inl \
   /Users/kangyixiao/EchoFile/coding/MasterOfOrientalTeaSet/include/shader.h \
-  /Users/kangyixiao/EchoFile/coding/MasterOfOrientalTeaSet/include/camera.h \
   /Users/kangyixiao/EchoFile/coding/MasterOfOrientalTeaSet/include/model.h \
   /Users/kangyixiao/EchoFile/coding/MasterOfOrientalTeaSet/Externals/Include/stb_image.h \
   /Users/kangyixiao/EchoFile/coding/MasterOfOrientalTeaSet/Externals/Include/assimp/Importer.hpp \
@@ -287,6 +286,7 @@ dependencies: \
   /Users/kangyixiao/EchoFile/coding/MasterOfOrientalTeaSet/include/texture.h \
   /Users/kangyixiao/EchoFile/coding/MasterOfOrientalTeaSet/Externals/Include/SOIL/SOIL.h \
   /Users/kangyixiao/EchoFile/coding/MasterOfOrientalTeaSet/const.h \
+  /Users/kangyixiao/EchoFile/coding/MasterOfOrientalTeaSet/include/camera.h \
   /Users/kangyixiao/EchoFile/coding/MasterOfOrientalTeaSet/state.h \
   /Users/kangyixiao/EchoFile/coding/MasterOfOrientalTeaSet/Material/Material.h \
   /Users/kangyixiao/EchoFile/coding/MasterOfOrientalTeaSet/Particle/Particle.h \
@@ -294,5 +294,6 @@ dependencies: \
   /Users/kangyixiao/EchoFile/coding/MasterOfOrientalTeaSet/Base/Base.h \
   /Users/kangyixiao/EchoFile/coding/MasterOfOrientalTeaSet/Button/Button.h \
   /Users/kangyixiao/EchoFile/coding/MasterOfOrientalTeaSet/CurveArea/CurveArea.h \
+  /Users/kangyixiao/EchoFile/coding/MasterOfOrientalTeaSet/CurveArea/CurveArea2.hpp \
   /Users/kangyixiao/EchoFile/coding/MasterOfOrientalTeaSet/SkyBox/SkyBox.h \
   /Users/kangyixiao/EchoFile/coding/MasterOfOrientalTeaSet/include/stb_image.h

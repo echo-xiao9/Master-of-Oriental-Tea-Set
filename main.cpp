@@ -11,7 +11,7 @@
 #include "time.h"
 
 #include "include/shader.h"
-#include "include/camera.h"
+//#include "include/camera.h"
 #include "include/model.h"
 #include "const.h"
 #include "state.h"
@@ -21,6 +21,8 @@
 #include "Particle/Particle.h"
 #include "Button/Button.h"
 #include "CurveArea/CurveArea.h"
+#include "CurveArea/CurveArea2.hpp"
+
 #include "SkyBox/SkyBox.h"
 
 
@@ -49,6 +51,7 @@ bool ifreset=true,ifdisplay=false;
 glm::mat4 cupRotate=glm::mat4(1.0f);
 
 
+
 int main() {
     glfwInit();
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
@@ -67,6 +70,7 @@ int main() {
         glfwTerminate();
         return -1;
     }
+    
     glfwMakeContextCurrent(window);
     glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
     glfwSetCursorPosCallback(window, mouse_callback);
@@ -91,8 +95,9 @@ int main() {
     glm::vec3 lightPos(-5.0f,0.0f,6.0f);
     glm::vec3 p0(-2.0f,-1.5f,0),p1(-4.0f,-0.0f,0),p2(-6.0f,-0.0f,0),p3(-8.0f,-1.5f,0);
 
-    Material material(lightPos,camera.Position,-5.0f,3.0f,length);
+    Material material(lightPos,camera.Position,-5.0f,3.0f,LENGTH);
     ParticleSystem ps(lightPos);
+    ParticleSystem firePs(lightPos,4);
     Knife knife(lightPos,camera.Position);
     Base base(lightPos,camera.Position);
 
@@ -104,6 +109,10 @@ int main() {
 
     CurveArea curveArea(SCR_WIDTH,SCR_HEIGHT,
     buttonWidth,buttonHeight, buttonOffsetX,buttonOffsetY,-5.0f,3.0f,6.0f);
+    
+    CurveArea2 curveArea2;
+    
+    
 //    Button bezierPannel("Button/bezier2.png",SCR_WIDTH,SCR_HEIGHT,
 //                        buttonWidth,buttonHeight, buttonOffsetX,buttonOffsetY);
     
@@ -172,6 +181,7 @@ int main() {
 
         lastKnifePos = knifePos;
         
+        
         if(Mode==BEZIER){
                 knifePos = curveArea.gerRealCurve(rate);
         } else
@@ -179,17 +189,35 @@ int main() {
             knifePos = Screen2World(lastX, lastY, projection, view);
             knifePos = glm::vec3(MAX(-8.0f,knifePos.x), MIN(0, knifePos.y), 0);
         }
-        
+//        cout<<"select:"<<Select<<endl;
         if(Select==FIRE){
+            sceneId++;
+//            cout<<"Select fire!"<<endl;
             material.changeTexure(&ps);
             if(mtrIdx<2)
                 skybox.changeTexture();
             Select=CHANGED;
             mtrIdx++;
         }
+        if(sceneId==3){
+            
+            int time=currentTime*100;
+            if(time% 10==0)
+                firePs.insertParticle(Particle(glm::vec3(rand()%10-5,rand()%10+5 ,0),glm::vec3(rand()%10-5,-rand()%10,-5+rand()%10),4));
 
-        if(Select==AREA)
+            firePs.simulate(deltaTime);
+            firePs.render(view, projection, glm::mat4(1.0f), cupRotate);
+        }
+
+        if(Select==AREA){
+            cout<<"mouseX:"<<mouseX<<"mouseY:"<<mouseY<<endl;
             curveArea.updateCurveArea(mouseX,mouseY);
+            float mx=(float)mouseX;
+            float my=(float)mouseY;
+            curveArea2.addControlPoint(mx,my);
+            
+        }
+            
         else
             curveArea.releaseSelect();
         
@@ -225,11 +253,7 @@ int main() {
 //        cupRotate=glm::mat4(1.0f);
         ps.simulate(deltaTime);
         ps.render(view, projection, glm::mat4(1.0f), cupRotate);
-//        if(Select == FIRE){
-//            material.changeTexure(&ps,"glass");
-//            skybox.changeTexture();
-//            Select=CHANGED;
-//        }
+    
 
 //        bezierPannel.drawButton();
         if(Mode==CURSOR)
@@ -246,8 +270,9 @@ int main() {
 //        textureButton.drawButton();
         displayButton.drawButton();
 
-        curveArea.drawCurveArea();
-        pannel.drawButton();
+//        curveArea.drawCurveArea();
+        curveArea2.drawCurveArea();
+//        pannel.drawButton();
         glfwSwapBuffers(window);
         glfwPollEvents();
     }
@@ -380,6 +405,7 @@ void mouse_callback(GLFWwindow* window, double xpos, double ypos)
     lastX = xpos;
     lastY = ypos;
 //    if(mouseControlCamera)camera.ProcessMouseMovement(xoffset, yoffset);
+    
 }
 
 // glfw: whenever the mouse scroll wheel scrolls, this callback is called

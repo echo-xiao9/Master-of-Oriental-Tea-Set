@@ -7,6 +7,7 @@
 
 #ifndef const_h
 #define const_h
+#include "camera.h"
 // settings
 const unsigned int SCR_WIDTH = 1400;
 const unsigned int SCR_HEIGHT = 800;
@@ -50,10 +51,42 @@ int mtrIdx=0; // current material index
 #define MIN(a,b) ((a)<(b)?(a):(b))
 #define MAX(a,b) ((a)>(b)?(a):(b))
 #define textureNum 4
-string textures[]={"wood","glass","glass","porcelain"};
+
+std::string textures[]={"wood","glass","glass","porcelain"};
 
 
 
+// some utility function
+float combine(int n, int m) {
+    int i, j;
+    float mat[100][100];
+    if(m == 0 || n == m)
+        return 1;
+
+    for(j = 0; j <= m; j++) { // 只要计算n列就行了，不用计算后面的
+        mat[j][j] = 1.0f;
+        for(i = j+1; i <= n; i++) {
+            if(j == 0)
+                mat[i][j] = 1.0f;
+            else
+                mat[i][j] = mat[i-1][j-1] + mat[i-1][j];
+        } // 计算Cmn
+    }
+    return mat[n][m];
+}
+
+//// curve area2
+float BEZIER_WIDTH=2.0f;
+float CRTL_LINE_WIDTH=2.0f;
+float CRTL_POINT_SIZE=50.0f;
+int MAX_CURVE_NUM=20;
+int LINE_NUM=100;
+
+
+
+
+// particle
+float PARTICLE_LIFE=2.0;
 
 
 #endif /* const_h */

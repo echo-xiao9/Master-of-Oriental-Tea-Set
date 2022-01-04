@@ -1,6 +1,8 @@
 #include "shader.h"
 #include "Button/Button.h"
 #include <glm/gtc/matrix_transform.hpp>
+#include <glad/glad.h>
+#include <GLFW/glfw3.h>
 
 #define LINENUM 101
 
@@ -19,8 +21,9 @@ private:
 
     Button button;
     Shader pointShader;
-	unsigned int pointVAO, pointVBO;
+    unsigned int pointVAO, pointVBO;
     unsigned int curveVAO, curveVBO;
+    
 
     bool inRange(float normX,float normY,glm::vec3 p){
         float halfRangeW=15.0f/screenW,halfRangeH=15.0f/screenH;
@@ -29,6 +32,7 @@ private:
         else
             return false;
     }
+    
     glm::vec3 areaCurve(float t){
 //        glm::vec3 b=b0*((float)pow(1-t,3))+b1*((float)(3*t*pow(1-t,2)))+b2*((float)(3*pow(t,2)*(1-t)))+b3*((float)pow(t,3));
         glm::vec3 b=b0*((float)pow(1-t,5))+b1*((float)(5*t*pow(1-t,4)))+b2*((float)(10*pow(t,2)*pow(1-t,3)))+b3*((float)(10*pow(t,3)*pow(1-t,2)))+b4*((float)(5*pow(t,4)*(1-t)))+b5*((float)pow(t,5));
@@ -56,6 +60,7 @@ private:
              b4.x,b4.y,0,
              b5.x,b5.y,0,
         };
+        cout<<"point 1:"<<b0.x<<' '<<b0.y<<endl;
 
         glm::vec3 p;
         for(int t=0;t<LINENUM;t++){
@@ -66,19 +71,19 @@ private:
         }
 
         glBindVertexArray(pointVAO);
-		glBindBuffer(GL_ARRAY_BUFFER, pointVBO);
-		glBufferData(GL_ARRAY_BUFFER, sizeof(point), &point, GL_STATIC_DRAW);
+        glBindBuffer(GL_ARRAY_BUFFER, pointVBO);
+        glBufferData(GL_ARRAY_BUFFER, sizeof(point), &point, GL_STATIC_DRAW);
 
         glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void *)0);
-		glEnableVertexAttribArray(0);
+        glEnableVertexAttribArray(0);
 
 
         glBindVertexArray(curveVAO);
-		glBindBuffer(GL_ARRAY_BUFFER, curveVBO);
-		glBufferData(GL_ARRAY_BUFFER, sizeof(curvePoint), &curvePoint, GL_STATIC_DRAW);
+        glBindBuffer(GL_ARRAY_BUFFER, curveVBO);
+        glBufferData(GL_ARRAY_BUFFER, sizeof(curvePoint), &curvePoint, GL_STATIC_DRAW);
 
         glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void *)0);
-		glEnableVertexAttribArray(0);
+        glEnableVertexAttribArray(0);
     }
 public:
     CurveArea(int screenWidth,int screenHeight,int width=100,int height=80,
@@ -86,9 +91,9 @@ public:
     :button(Button("Button/bezier2.jpg",screenWidth,screenHeight,width,height,posX,posY))
     ,pointShader(Shader("CurveArea/Point.vs","CurveArea/Point.fs"))
     {
-		this->offsetX=offsetX;
-		this->initR=initR;
-		this->length=length;
+        this->offsetX=offsetX;
+        this->initR=initR;
+        this->length=length;
         this->screenW=screenWidth;
         this->screenH=screenHeight;
         this->selected=-1;
@@ -103,10 +108,10 @@ public:
         pointShader.use();
         pointShader.setMat4("model",model);
 
-		glGenVertexArrays(1, &pointVAO);
-		glGenBuffers(1, &pointVBO);
-		glGenVertexArrays(1, &curveVAO);
-		glGenBuffers(1, &curveVBO);
+        glGenVertexArrays(1, &pointVAO);
+        glGenBuffers(1, &pointVBO);
+        glGenVertexArrays(1, &curveVAO);
+        glGenBuffers(1, &curveVBO);
 
         p0=glm::vec3(length/2+offsetX,-initR,0.0f);
         p1=glm::vec3(length/3+offsetX,-initR/2,0.0f);
@@ -165,17 +170,17 @@ public:
 
     void drawCurveArea(){
         // draw the Bézier panel
-		pointShader.use();
+        pointShader.use();
         glBindVertexArray(pointVAO);
         glPointSize(15);
-		glDrawArrays(GL_POINTS, 0, 6);
-		glBindVertexArray(0);
+        glDrawArrays(GL_POINTS, 0, 6);
+        glBindVertexArray(0);
 
         glBindVertexArray(curveVAO);
         glLineWidth(3);
-		glDrawArrays(GL_LINE_STRIP, 0, 101);
-		glBindVertexArray(0);
+        glDrawArrays(GL_LINE_STRIP, 0, 101);
+        glBindVertexArray(0);
 
-        button.drawButton();
+//        button.drawButton();
     }
 };

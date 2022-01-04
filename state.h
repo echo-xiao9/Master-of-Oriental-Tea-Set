@@ -7,6 +7,6 @@
 
 #ifndef state_h
 #define state_h
-float length=6.0f;
-
+float LENGTH=6.0f;
+int sceneId=0;
 #endif /* state_h */
