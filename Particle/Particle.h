@@ -215,13 +215,14 @@ private:
 public:
     
     Shader particleShader;
-    ParticleSystem(glm::vec3 lightPos,int type=1,float _gravity=-9):
+    ParticleSystem(glm::vec3 lightPos,glm::vec3 lightColor,int type=1,float _gravity=-9):
         type(type),
         particleShader("Particle/Particle.vs","Particle/Particle.fs"){
         gravity = _gravity;
         particleShader.use();
-            if(type==4)particleShader.setVec3("lightColor", 0.8f, 0.3f, 0.2f);
-            else particleShader.setVec3("lightColor", 1.0f, 1.0f, 1.0f);
+        particleShader.setVec3("lightColor", lightColor);
+//            if(type==4)particleShader.setVec3("lightColor", 0.937f, 0.545f, 0.667f);
+//            else particleShader.setVec3("lightColor", lightColor);
         particleShader.setVec3("lightPos", lightPos);
         particleShader.setVec3("particleColor",0.7f,0.7f,0.7f);
         
@@ -250,7 +251,7 @@ public:
         for(std::vector<Particle>::iterator iter=particles.begin();iter!=particles.end();)
         {
             iter->age+=dt;
-            if(iter->age>=2.0)
+            if(iter->age>=PARTICLE_LIFE)
             {
                 particles.erase(iter);
                 continue;
@@ -265,7 +266,7 @@ public:
         for(std::vector<Particle>::iterator iter=particles.begin();iter!=particles.end();iter++)
         {
             iter->position = iter->position+iter->velocity*dt;
-            iter->velocity = glm::vec3(iter->velocity.x,iter->velocity.y+gravity*dt/5,iter->velocity.z);
+            iter->velocity = glm::vec3(iter->velocity.x,iter->velocity.y+gravity*dt/8,iter->velocity.z);
         }
     }
     

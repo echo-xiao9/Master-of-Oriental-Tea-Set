@@ -36,6 +36,12 @@ bool mouseControlCamera=true;
 bool origin=0;
 
 
+
+// light
+glm::vec3 white(1.0f,1.0f,1.0f);
+glm::vec3 pink(0.937f, 0.545f, 0.667f);
+glm::vec3 green(0.271f,0.64f,0.216f);
+
 // material
 #define Pi 3.1416
 #define eNum 360
@@ -86,7 +92,7 @@ int LINE_NUM=100;
 
 
 // particle
-float PARTICLE_LIFE=2.0;
+float PARTICLE_LIFE=10.0;
 
 
 #endif /* const_h */

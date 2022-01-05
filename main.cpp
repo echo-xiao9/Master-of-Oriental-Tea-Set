@@ -96,8 +96,12 @@ int main() {
     glm::vec3 p0(-2.0f,-1.5f,0),p1(-4.0f,-0.0f,0),p2(-6.0f,-0.0f,0),p3(-8.0f,-1.5f,0);
 
     Material material(lightPos,camera.Position,-5.0f,3.0f,LENGTH);
-    ParticleSystem ps(lightPos);
-    ParticleSystem firePs(lightPos,4);
+    ParticleSystem ps(lightPos,white);
+    ParticleSystem leavePs(lightPos,green,2);
+    ParticleSystem flowerPs(lightPos,pink,3);
+    ParticleSystem flower2Ps(lightPos,pink,4);
+    
+    
     Knife knife(lightPos,camera.Position);
     Base base(lightPos,camera.Position);
 
@@ -199,14 +203,32 @@ int main() {
             Select=CHANGED;
             mtrIdx++;
         }
+        int time=currentTime*100;
         if(sceneId==3){
-            
-            int time=currentTime*100;
             if(time% 10==0)
-                firePs.insertParticle(Particle(glm::vec3(rand()%10-5,rand()%10+5 ,0),glm::vec3(rand()%10-5,-rand()%10,-5+rand()%10),4));
+                flower2Ps.insertParticle(Particle(glm::vec3(rand()%10-5,rand()%10+5 ,0),glm::vec3(rand()%10-5,-rand()%8,-2.5+rand()%5),4));
 
-            firePs.simulate(deltaTime);
-            firePs.render(view, projection, glm::mat4(1.0f), cupRotate);
+            flower2Ps.simulate(deltaTime);
+            flower2Ps.render(view, projection, glm::mat4(1.0f), cupRotate);
+            
+           
+            
+        }
+        
+        if(sceneId==4){
+            if(time% 10==0)
+                flowerPs.insertParticle(Particle(glm::vec3(rand()%10-5,rand()%10+5 ,0),glm::vec3(rand()%10-5,-rand()%8,-2.5+rand()%5),3));
+
+            flowerPs.simulate(deltaTime);
+            flowerPs.render(view, projection, glm::mat4(1.0f), cupRotate);
+            
+        }
+        if(sceneId==5){
+            if(time% 10==0)
+                leavePs.insertParticle(Particle(glm::vec3(rand()%10-5,rand()%10+5 ,0),glm::vec3(rand()%10-5,-rand()%8,-2.5+rand()%5),2));
+
+            leavePs.simulate(deltaTime);
+            leavePs.render(view, projection, glm::mat4(1.0f), cupRotate);
         }
 
         if(Select==AREA){
