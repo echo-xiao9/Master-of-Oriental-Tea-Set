@@ -1,6 +1,7 @@
 #include "include/shader.h"
 #include "texture.h"
 #include "Particle/Particle.h"
+#include "state.h"
 #include <SOIL/SOIL.h>
 #include <glm/gtc/matrix_transform.hpp>
 using namespace std;
@@ -457,7 +458,7 @@ public:
     Shader ironShader,woodShader,glassShader,porcelainShader;
     unsigned int woodNormalMap;
     unsigned int porcelainNormalMap;
-    Material(glm::vec3 lightPos, glm::vec3 viewPos,float offsetX,float initR,float length)
+    Material(glm::vec3 lightPos, glm::vec3 lightColor, glm::vec3 viewPos,float offsetX,float initR,float length)
     :ironShader(Shader("Material/Iron.vs", "Material/Iron.fs")),
     woodShader(Shader("Material/Wood.vs","Material/Wood.fs")),
     glassShader(Shader("Material/glass.vs","Material/glass.fs")),
@@ -596,6 +597,7 @@ public:
 
     void drawMaterial(glm::mat4 view, glm::mat4 projection, glm::mat4 model,glm::mat4 rotate,bool ifdisplay)
     {
+        cout<<"lightId:"<<lightId<<endl;
         model=glm::translate(model,glm::vec3(offsetX,0.0f,0.0f));
         if(texture=="wood"){
             // 2 texture unit combined
@@ -607,18 +609,22 @@ public:
             glBindTexture(GL_TEXTURE_2D, woodNormalMap);
             
             woodShader.use();
+            woodShader.setVec3("lightColor",lightColors[lightId]);
             woodShader.setMat4("view", view);
             woodShader.setMat4("projection", projection);
             woodShader.setMat4("model", model);
             woodShader.setMat4("rotate",rotate);
         } else if(texture=="iron"){
             ironShader.use();
+            ironShader.setVec3("lightColor",lightColors[lightId]);
             ironShader.setMat4("view", view);
             ironShader.setMat4("projection", projection);
             ironShader.setMat4("model", model);
             ironShader.setMat4("rotate",rotate);
         } else if(texture == "glass"){
             glassShader.use();
+            
+            glassShader.setVec3("lightColor",lightColors[lightId]);
             glassShader.setMat4("view", view);
             glassShader.setMat4("projection", projection);
             glassShader.setMat4("model", model);
@@ -632,6 +638,7 @@ public:
             glActiveTexture(GL_TEXTURE5);
             glBindTexture(GL_TEXTURE_2D, porcelainNormalMap);
             porcelainShader.use();
+            porcelainShader.setVec3("lightColor",lightColors[lightId]);
             porcelainShader.setMat4("view", view);
             porcelainShader.setMat4("projection", projection);
             porcelainShader.setMat4("model", model);

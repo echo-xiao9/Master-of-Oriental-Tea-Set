@@ -95,7 +95,7 @@ int main() {
     glm::vec3 lightPos(-5.0f,0.0f,6.0f);
     glm::vec3 p0(-2.0f,-1.5f,0),p1(-4.0f,-0.0f,0),p2(-6.0f,-0.0f,0),p3(-8.0f,-1.5f,0);
 
-    Material material(lightPos,camera.Position,-5.0f,3.0f,LENGTH);
+    Material material(lightPos,lightColors[lightId],camera.Position,-5.0f,3.0f,LENGTH);
     ParticleSystem ps(lightPos,white);
     ParticleSystem leavePs(lightPos,green,2);
     ParticleSystem flowerPs(lightPos,pink,3);
@@ -115,12 +115,11 @@ int main() {
     buttonWidth,buttonHeight, buttonOffsetX,buttonOffsetY,-5.0f,3.0f,6.0f);
     
     CurveArea2 curveArea2;
-    
-    
+
 //    Button bezierPannel("Button/bezier2.png",SCR_WIDTH,SCR_HEIGHT,
 //                        buttonWidth,buttonHeight, buttonOffsetX,buttonOffsetY);
     
-    Button bezierButton("Button/fire2.png",SCR_WIDTH,SCR_HEIGHT,
+    Button bezierButton("Button/light2.png",SCR_WIDTH,SCR_HEIGHT,
     buttonWidth,buttonHeight, buttonOffsetX,buttonOffsetY-buttonDist);
     Button cursorButton("Button/cursor.jpg",SCR_WIDTH,SCR_HEIGHT,
     buttonWidth,buttonHeight, buttonOffsetX,buttonOffsetY-buttonDist);
@@ -146,7 +145,7 @@ int main() {
     // -----------
     while (!glfwWindowShouldClose(window)) {
         processInput(window);
-
+        
         glClearColor(0.0f,0.0f,0.0f,0.0f);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
@@ -184,8 +183,7 @@ int main() {
         ps.updateParticle(deltaTime);
 
         lastKnifePos = knifePos;
-        
-        
+
         if(Mode==BEZIER){
                 knifePos = curveArea.gerRealCurve(rate);
         } else
@@ -292,9 +290,9 @@ int main() {
 //        textureButton.drawButton();
         displayButton.drawButton();
 
-//        curveArea.drawCurveArea();
+        curveArea.drawCurveArea();
         curveArea2.drawCurveArea();
-//        pannel.drawButton();
+        pannel.drawButton();
         glfwSwapBuffers(window);
         glfwPollEvents();
     }
@@ -357,8 +355,10 @@ void processInput(GLFWwindow *window) {
                 } else
                 if(!ifdisplay&&
                 SCR_HEIGHT/2-buttonOffsetY-buttonHeight/2+buttonDist<=lastY&&lastY<= SCR_HEIGHT /2-buttonOffsetY+buttonHeight/2+buttonDist){
-                    Select=FIRE;
-                    ifreset=true;
+                    Select=LIGHT;
+//                    ifreset=true;
+                    lightId++;
+                    lightId=(lightId)%LIGHT_NUM;
 //                    Mode=(Mode==BEZIER)?CURSOR:BEZIER;
                 } else
                 if(!ifdisplay&&Mode==BEZIER&&

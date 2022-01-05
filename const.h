@@ -13,7 +13,7 @@ const unsigned int SCR_WIDTH = 1400;
 const unsigned int SCR_HEIGHT = 800;
 
 enum type{BEZIER,CURSOR,UNFIRED, FIRED};
-enum select{AREA,MODE,START,RESET,TEXTURE,CHANGED,DISPLAY,NONE,FIRE};
+enum select{AREA,MODE,START,RESET,TEXTURE,CHANGED,DISPLAY,NONE,FIRE,LIGHT};
 
 // button
 const int buttonWidth=160,buttonHeight=90,buttonOffsetX=600,buttonOffsetY=320,buttonDist=100;
@@ -41,6 +41,16 @@ bool origin=0;
 glm::vec3 white(1.0f,1.0f,1.0f);
 glm::vec3 pink(0.937f, 0.545f, 0.667f);
 glm::vec3 green(0.271f,0.64f,0.216f);
+
+glm::vec3 pink2(0.997f, 0.845f, 0.867f);
+glm::vec3 pink3(0.937f, 0.845f, 0.867f);
+glm::vec3 pink4(0.9f, 0.845f, 0.967f);
+glm::vec3 blue2(0.85,0.81,0.97);
+glm::vec3 blue3(0.8,0.8,1.0);
+glm::vec3 blue4(0.75,0.8,1.0);
+glm::vec3 lightColors[]={white, pink2, pink3,pink4,blue2,blue3,blue4};
+
+int LIGHT_NUM=7;
 
 // material
 #define Pi 3.1416

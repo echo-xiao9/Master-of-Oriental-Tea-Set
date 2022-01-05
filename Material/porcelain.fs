@@ -39,22 +39,16 @@ void main()
     
     if(isSurface==1.0){
         ambient=surface.ambient * lightColor;
-
         diffuse = (diff * surface.diffuse) * lightColor;
-
         float spec = pow(max(dot(viewDir, reflectDir), 0.0), surface.shininess);
         specular = surface.specular * spec * lightColor;
-        
         vec3 result = (ambient + diffuse + specular);
         FragColor = texture(porcelainSurfaceTexture, TexCoord)*vec4(result,1.0);
     }else {
         ambient=porcelain.ambient * lightColor;
-
         diffuse = (diff * porcelain.diffuse) * lightColor;
-        
         float spec = pow(max(dot(viewDir, reflectDir), 0.0), porcelain.shininess);
         specular = porcelain.specular * spec * lightColor;
-
         vec3 result = (ambient + diffuse + specular);
         FragColor = texture(porcelainTexture, TexCoord)*vec4(result,1.0);
     }

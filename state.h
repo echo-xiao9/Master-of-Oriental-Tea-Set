@@ -9,4 +9,7 @@
 #define state_h
 float LENGTH=6.0f;
 int sceneId=0;
+int lightId=0;
+
+
 #endif /* state_h */
