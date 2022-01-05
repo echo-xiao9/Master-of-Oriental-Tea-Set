@@ -13,7 +13,7 @@ const unsigned int SCR_WIDTH = 1400;
 const unsigned int SCR_HEIGHT = 800;
 
 enum type{BEZIER,CURSOR,UNFIRED, FIRED};
-enum select{AREA,MODE,START,RESET,TEXTURE,CHANGED,DISPLAY,NONE,FIRE,LIGHT};
+enum select{AREA,MODE,START,RESET,TEXTURE,CHANGED,DISPLAY,NONE,FIRE,LIGHT,POINT};
 
 // button
 const int buttonWidth=160,buttonHeight=90,buttonOffsetX=600,buttonOffsetY=320,buttonDist=100;
@@ -95,7 +95,8 @@ float combine(int n, int m) {
 float BEZIER_WIDTH=2.0f;
 float CRTL_LINE_WIDTH=2.0f;
 float CRTL_POINT_SIZE=50.0f;
-int MAX_CURVE_NUM=20;
+const int MAX_CURVE_NUM=20;
+const int MAX_CTRL_POINT=MAX_CURVE_NUM*4*2;
 int LINE_NUM=100;
 
 

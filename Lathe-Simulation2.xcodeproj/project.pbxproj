@@ -253,9 +253,11 @@
 		E898F350277A1E80001B1987 /* front.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = front.jpg; sourceTree = "<group>"; };
 		E898F352277A213F001B1987 /* spark.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = spark.jpg; sourceTree = "<group>"; };
 		E8A22F9F276DAE510066C506 /* NZ.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NZ.png; sourceTree = "<group>"; };
-		E8BC6B6927846DAA006A371C /* fireParticle.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = fireParticle.vs; sourceTree = "<group>"; };
 		E8BC6B6A27846DB2006A371C /* fireParticle.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = fireParticle.fs; sourceTree = "<group>"; };
 		E8BC6B6E278477C6006A371C /* fire.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fire.png; sourceTree = "<group>"; };
+		E8BC6B7A2785E0A8006A371C /* 9.1.geometry_shader.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = 9.1.geometry_shader.fs; sourceTree = "<group>"; };
+		E8BC6B7B2785E0B9006A371C /* 9.1.geometry_shader.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = 9.1.geometry_shader.vs; sourceTree = "<group>"; };
+		E8BC6B7C2785E660006A371C /* CurveArea3.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CurveArea3.h; sourceTree = "<group>"; };
 		E8CFE8AF2725187000E0F327 /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = System/Library/Frameworks/GLUT.framework; sourceTree = SDKROOT; };
 		E8E7F021276C287B004CBD2A /* CurveArea.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurveArea.h; sourceTree = "<group>"; };
 		E8E7F022276C287B004CBD2A /* Point.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Point.fs; sourceTree = "<group>"; };
@@ -3095,6 +3097,8 @@
 		E8E7F020276C287B004CBD2A /* CurveArea */ = {
 			isa = PBXGroup;
 			children = (
+				E8BC6B7A2785E0A8006A371C /* 9.1.geometry_shader.fs */,
+				E8BC6B7B2785E0B9006A371C /* 9.1.geometry_shader.vs */,
 				E84176F7277ED5D80064C00D /* ControlPoint.vs */,
 				E84176F6277ED5D30064C00D /* ControlPoint.fs */,
 				E898F343277A0508001B1987 /* bezier2.png */,
@@ -3104,6 +3108,7 @@
 				E8E7F024276C287B004CBD2A /* white.jpg */,
 				E84176F0277DF5700064C00D /* CurveArea2.cpp */,
 				E84176F1277DF5700064C00D /* CurveArea2.hpp */,
+				E8BC6B7C2785E660006A371C /* CurveArea3.h */,
 			);
 			path = CurveArea;
 			sourceTree = "<group>";
@@ -3185,7 +3190,6 @@
 		E8E7F045276C287B004CBD2A /* Particle */ = {
 			isa = PBXGroup;
 			children = (
-				E8BC6B6927846DAA006A371C /* fireParticle.vs */,
 				E8BC6B6A27846DB2006A371C /* fireParticle.fs */,
 				E8E7F046276C287B004CBD2A /* Particle.fs */,
 				E8E7F047276C287B004CBD2A /* Particle.h */,

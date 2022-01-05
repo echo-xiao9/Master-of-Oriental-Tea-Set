@@ -31,7 +31,8 @@ private:
     unsigned int lineVAO,  lineVBO;
     Shader pointShader;
     Shader curveShader;
-
+    Shader testShader;
+    unsigned int VBO, VAO;
     
 public:
     
@@ -55,7 +56,11 @@ public:
     void drawControlLines();
     void updateBuffer();
     void genCurvePoint();
-    
+    void testDraw(){
+        testShader.use();
+        glBindVertexArray(VAO);
+        glDrawArrays(GL_POINTS, 0, 6);
+    }
 };
 
 
@@ -63,25 +68,55 @@ public:
 
 CurveArea2::CurveArea2():
     pointShader(Shader("CurveArea/ControlPoint.vs","CurveArea/ControlPoint.fs")),
-    curveShader(Shader("CurveArea/ControlPoint.vs","CurveArea/ControlPoint.fs")){
-    glGenVertexArrays(1, &pointVAO);
-    glGenBuffers(1, &pointVBO);
-//    glGenVertexArrays(1, &curveVAO);
-//    glGenBuffers(1, &curveVBO);
-//    glGenVertexArrays(1, &lineVAO);
-//    glGenBuffers(1, &lineVBO);
+    curveShader(Shader("CurveArea/ControlPoint.vs","CurveArea/ControlPoint.fs")),
+    testShader(Shader("CurveArea/9.1.geometry_shader.vs", "CurveArea/9.1.geometry_shader.fs"))
+{
+//    glGenVertexArrays(1, &pointVAO);
+//    glGenBuffers(1, &pointVBO);
+////    glGenVertexArrays(1, &curveVAO);
+////    glGenBuffers(1, &curveVBO);
+////    glGenVertexArrays(1, &lineVAO);
+////    glGenBuffers(1, &lineVBO);
+//        controlPointsData=new float[1];
+//        curvePointsData = new float[1];
+//        updateBuffer();
     
-    
-    
+
+    float points[] = {
+        -0.5f,  0.5f, // 左上
+         0.5f,  0.5f, // 右上
+         0.5f, -0.5f, // 右下
+        -0.5f, -0.5f  // 左下
+        -2,-2,
+        0,0,
+    };
+
+    glGenBuffers(1, &VBO);
+    glGenVertexArrays(1, &VAO);
+    glBindVertexArray(VAO);
+    glBindBuffer(GL_ARRAY_BUFFER, VBO);
+    glBufferData(GL_ARRAY_BUFFER,sizeof(points), &points, GL_STATIC_DRAW);
+    glEnableVertexAttribArray(0);
+    glEnable(GL_PROGRAM_POINT_SIZE);
+    glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 2 * sizeof(float), 0);
+
+
 }
 
 void CurveArea2::updateBuffer(){
 //    cout<<"update buffer"<<endl;
     glBindVertexArray(pointVAO);
     glBindBuffer(GL_ARRAY_BUFFER, pointVBO);
-    
-    glBufferData(GL_ARRAY_BUFFER,controlNum*3, &controlPointsData, GL_STATIC_DRAW);
-
+//    cout<<"controlNum"<<controlNum<<endl;
+//    cout<<"sizeeof controlPointsData"<<sizeof(controlPointsData)<<endl;
+//    glBufferData(GL_ARRAY_BUFFER,3*controlNum*4, &controlPointsData, GL_STATIC_DRAW);
+    float testPoints[]={
+        0.5,0.5,0.5,
+        0.7,0.7,0.7,
+        -0.3,-0.3,-0.3,
+        0,0,0
+    };
+    glBufferData(GL_ARRAY_BUFFER, sizeof(testPoints), &testPoints, GL_STATIC_DRAW);
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void *)0);
     glEnableVertexAttribArray(0);
 
@@ -107,8 +142,35 @@ void CurveArea2::addControlPoint(float mouseX, float mouseY){
     vec3 v(mouseX, mouseY,0);
     controlPoints.push_back(v);
     controlNum++;
+    
+    
+    
+    
     if(controlNum/4==0)bezierNum++;
-    cout<<"control num:"<<controlNum<<endl;
+//    cout<<"control num:"<<controlNum<<endl;
+    
+    
+    delete []controlPointsData;
+    delete []curvePointsData;
+    controlPointsData=new float[controlPoints.size()*3];
+    curvePointsData = new float[curvePoints.size()*3];
+    for(int i=0;i<controlPoints.size();i++){
+//        float clipX=controlPoints[i].x/SCR_WIDTH*2-1,clipY=1-y/SCR_HEIGHT*2;
+//
+        controlPointsData[3*i]=controlPoints[i].x;
+        controlPointsData[3*i+1]=1-controlPoints[i].y;
+        controlPointsData[3*i+2]=0;
+    }
+    for(int i=0;i<curvePoints.size();i++){
+        controlPointsData[3*i]=curvePoints[i].x;
+        controlPointsData[3*i+1]=curvePoints[i].y;
+        controlPointsData[3*i+2]=0;
+    }
+    
+    updateBuffer();
+    
+    
+    
 }
 
 void CurveArea2::genCurve(){
@@ -133,30 +195,15 @@ void CurveArea2::genCurvePoint(float t, vec3 p, vec3 p0, vec3 p1, vec3 p2, vec3 
 
 
 void CurveArea2::drawCurveArea(){
-    controlPointsData=new float[controlPoints.size()*3];
-    curvePointsData = new float[curvePoints.size()*3];
-    for(int i=0;i<controlPoints.size();i++){
-//        float clipX=controlPoints[i].x/SCR_WIDTH*2-1,clipY=1-y/SCR_HEIGHT*2;
-//
-        controlPointsData[3*i]=controlPoints[i].x/SCR_WIDTH*2-1;
-        controlPointsData[3*i+1]=1-controlPoints[i].y/SCR_HEIGHT*2;
-        controlPointsData[3*i+2]=0;
-    }
-    for(int i=0;i<curvePoints.size();i++){
-        controlPointsData[3*i]=curvePoints[i].x*2/SCR_WIDTH;
-        controlPointsData[3*i+1]=curvePoints[i].y*2/SCR_HEIGHT;
-        controlPointsData[3*i+2]=0;
-    }
     
     
     
     
-    updateBuffer();
+   
     drawPoint();
     drawControlLines();
     drawCurve();
-    delete []controlPointsData;
-    delete []curvePointsData;
+    
 }
 
 void CurveArea2::drawPoint(){

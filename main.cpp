@@ -22,7 +22,7 @@
 #include "Button/Button.h"
 #include "CurveArea/CurveArea.h"
 #include "CurveArea/CurveArea2.hpp"
-
+#include "CurveArea/CurveArea3.h"
 #include "SkyBox/SkyBox.h"
 
 
@@ -37,9 +37,9 @@ void scroll_callback(GLFWwindow* window, double xoffset, double yoffset);
 void processInput(GLFWwindow *window);
 glm::vec3 Screen2World(float x,float y, glm::mat4 projection, glm::mat4 view);
 glm::vec3 BezierCurve(glm::vec3 p0,glm::vec3 p1,glm::vec3 p2,glm::vec3 p3,glm::vec3 p4,glm::vec3 p5,float t);
-
-
-
+void addPs(int sceneId,float currentTime, ParticleSystem &flower2Ps,ParticleSystem& flowerPs, ParticleSystem&leavePs, glm::mat4 projection, glm::mat4 view);
+void drawButtons(Button &bezierButton,Button& cursorButton,Button &startButton,Button &resetButton ,Button &fireButton, Button& textureButton,Button &displayButton,CurveArea &curveArea,CurveArea3& curveArea3,Button &pannel);
+void screen2World2(float sx, float sy, float & wx, float &wy);
 
 //time
 float deltaTime = 0.0f;
@@ -50,6 +50,8 @@ bool ifreset=true,ifdisplay=false;
 
 glm::mat4 cupRotate=glm::mat4(1.0f);
 
+// tmp
+float wx, wy=0;
 
 
 int main() {
@@ -115,7 +117,8 @@ int main() {
     buttonWidth,buttonHeight, buttonOffsetX,buttonOffsetY,-5.0f,3.0f,6.0f);
     
     CurveArea2 curveArea2;
-
+    
+    CurveArea3 curveArea3;
 //    Button bezierPannel("Button/bezier2.png",SCR_WIDTH,SCR_HEIGHT,
 //                        buttonWidth,buttonHeight, buttonOffsetX,buttonOffsetY);
     
@@ -153,10 +156,8 @@ int main() {
         deltaTime = currentTime - lastTime;
         totalTime += deltaTime;
         
-        if(ifstart)
-            bezierTime += deltaTime;
+        if(ifstart) bezierTime += deltaTime;
         lastTime = currentTime;
-
         rate = MIN(bezierTime/10.0f,1.0f);
 
         if(rate==1.0f)
@@ -165,11 +166,9 @@ int main() {
         if(ifreset){
             material.initialize();
             ifreset=false;
-
             bezierTime = 0;
             rate = 0;
             ifstart = false;
-            
             knifePos = glm::vec3(-1.9f,-1.5f,0.0f);
         }
 
@@ -192,107 +191,61 @@ int main() {
             knifePos = glm::vec3(MAX(-8.0f,knifePos.x), MIN(0, knifePos.y), 0);
         }
 //        cout<<"select:"<<Select<<endl;
-        if(Select==FIRE){
-            sceneId++;
-//            cout<<"Select fire!"<<endl;
-            material.changeTexure(&ps);
-            if(mtrIdx<2)
-                skybox.changeTexture();
-            Select=CHANGED;
-            mtrIdx++;
-        }
-        int time=currentTime*100;
-        if(sceneId==3){
-            if(time% 10==0)
-                flower2Ps.insertParticle(Particle(glm::vec3(rand()%10-5,rand()%10+5 ,0),glm::vec3(rand()%10-5,-rand()%8,-2.5+rand()%5),4));
-
-            flower2Ps.simulate(deltaTime);
-            flower2Ps.render(view, projection, glm::mat4(1.0f), cupRotate);
+    
+        switch (Select) {
+            case FIRE:
+                sceneId++;
+    //            cout<<"Select fire!"<<endl;
+                material.changeTexure(&ps);
+                if(mtrIdx<2)
+                    skybox.changeTexture();
+                Select=CHANGED;
+                mtrIdx++;
+                curveArea.releaseSelect();
+                material.updateRadius(knifePos,lastKnifePos,&ps,deltaTime);
+                break;
+                
+            case AREA:
+                curveArea.updateCurveArea(mouseX,mouseY);
+                knifePos=lastKnifePos;
+                
+                break;
             
-           
-            
+            case POINT:
+                screen2World2(mouseX, mouseY, wx, wy);
+                cout<<"mouseeX："<<mouseX<<" mouseY:"<<mouseY<<"worldX"<<wx<<" worldY:"<<wy<<endl;
+                curveArea3.addPoint(wx, wy);
+                break;
+                
+                
+            default:
+                curveArea.releaseSelect();
+                material.updateRadius(knifePos,lastKnifePos,&ps,deltaTime);
+                break;
         }
         
-        if(sceneId==4){
-            if(time% 10==0)
-                flowerPs.insertParticle(Particle(glm::vec3(rand()%10-5,rand()%10+5 ,0),glm::vec3(rand()%10-5,-rand()%8,-2.5+rand()%5),3));
 
-            flowerPs.simulate(deltaTime);
-            flowerPs.render(view, projection, glm::mat4(1.0f), cupRotate);
-            
-        }
-        if(sceneId==5){
-            if(time% 10==0)
-                leavePs.insertParticle(Particle(glm::vec3(rand()%10-5,rand()%10+5 ,0),glm::vec3(rand()%10-5,-rand()%8,-2.5+rand()%5),2));
-
-            leavePs.simulate(deltaTime);
-            leavePs.render(view, projection, glm::mat4(1.0f), cupRotate);
-        }
-
-        if(Select==AREA){
-            cout<<"mouseX:"<<mouseX<<"mouseY:"<<mouseY<<endl;
-            curveArea.updateCurveArea(mouseX,mouseY);
-            float mx=(float)mouseX;
-            float my=(float)mouseY;
-            curveArea2.addControlPoint(mx,my);
-            
-        }
-            
-        else
-            curveArea.releaseSelect();
         
         skybox.drawSkybox(view,projection);
 
-        // the knife shouldn't move
-         if(Select==AREA)
-             knifePos=lastKnifePos;
-        
+             
         if(!ifdisplay){
             model = glm::translate(glm::mat4(1.0f), knifePos);
             // !! no draw knife
             if(origin)knife.drawKnife(view,projection,model,cupRotate);
-
-//            cupRotate=glm::rotate(cupRotate,1071*totalTime,glm::vec3(1.0,0.0,0.0f));
-            //! no base
-            
             base.drawBase(view,projection,glm::mat4(1.0f),cupRotate);
         }
         else {
             knifePos=glm::vec3(0.0f,-2.0f,0.0f);
             lastKnifePos=glm::vec3(0.0f,-2.0f,0.0f);
-
-//            cupRotate=glm::rotate(cupRotate,totalTime/100,glm::vec3(1.0,0.0,0.0f));
-            cupRotate=glm::rotate(cupRotate,0.01f,glm::vec3(1.0,0.0,0.0f));
+            cupRotate=glm::rotate(cupRotate,0.05f,glm::vec3(1.0,0.0,0.0f));
         }
-        if(Select!=AREA)
-            material.updateRadius(knifePos,lastKnifePos,&ps,deltaTime);
-//        cupRotate =glm::rotate(cupRotate,-80.1f,glm::vec3(0.0,0.0,1.0f));
+
         material.drawMaterial(view,projection,glm::mat4(1.0f),cupRotate,ifdisplay);
-
-
-//        cupRotate=glm::mat4(1.0f);
+        addPs( sceneId, currentTime, flower2Ps, flowerPs,leavePs,projection,  view);
         ps.simulate(deltaTime);
         ps.render(view, projection, glm::mat4(1.0f), cupRotate);
-    
-
-//        bezierPannel.drawButton();
-        if(Mode==CURSOR)
-            cursorButton.drawButton();
-        else
-            bezierButton.drawButton();
-        
-        if(FIREMODE==UNFIRED)
-            fireButton.drawButton();
-        else textureButton.drawButton();
-        
-        startButton.drawButton();
-        resetButton.drawButton();
-//        textureButton.drawButton();
-        displayButton.drawButton();
-
-        curveArea.drawCurveArea();
-        curveArea2.drawCurveArea();
-        pannel.drawButton();
+        drawButtons(bezierButton,cursorButton,startButton,resetButton ,fireButton,  textureButton,displayButton,curveArea, curveArea3,pannel);
         glfwSwapBuffers(window);
         glfwPollEvents();
     }
@@ -342,7 +295,7 @@ void processInput(GLFWwindow *window) {
     //if (glfwGetKey(window, GLFW_KEY_C) == GLFW_PRESS)
     //    rotate_radius += (deltaTime/TIMESTEP)* 360.0f;
     if (glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_LEFT) == GLFW_PRESS) {
-//        cout<<"Select:"<<Select<<endl;
+        cout<<"get mouse Select:"<<Select<<endl;
         if(Select==NONE){
 //            cout<<"Select:"<<Select<<endl;
             if(SCR_WIDTH/2.0+buttonOffsetX-buttonWidth/2.0<=lastX&&lastX<=SCR_WIDTH/2.0+buttonOffsetX+buttonWidth/2.0){
@@ -352,38 +305,46 @@ void processInput(GLFWwindow *window) {
                     mouseY=MAX(MIN(SCR_HEIGHT/2-lastY-buttonOffsetY,buttonHeight/2),-buttonHeight/2);
                     Select=AREA;
                     cout<<mouseX<<" "<<mouseY<<endl;
-                } else
-                if(!ifdisplay&&
+                }
+                else if(!ifdisplay&&
                 SCR_HEIGHT/2-buttonOffsetY-buttonHeight/2+buttonDist<=lastY&&lastY<= SCR_HEIGHT /2-buttonOffsetY+buttonHeight/2+buttonDist){
                     Select=LIGHT;
 //                    ifreset=true;
                     lightId++;
                     lightId=(lightId)%LIGHT_NUM;
 //                    Mode=(Mode==BEZIER)?CURSOR:BEZIER;
-                } else
-                if(!ifdisplay&&Mode==BEZIER&&
+                }
+                else if(!ifdisplay&&Mode==BEZIER&&
                 SCR_HEIGHT/2-buttonOffsetY-buttonHeight/2+2*buttonDist<=lastY&&lastY<=SCR_HEIGHT/2-buttonOffsetY+buttonHeight/2+2*buttonDist){
                     Select=START;
                     ifstart=true;
-                } else
-                if(!ifdisplay&&
+                }
+                else if(!ifdisplay&&
                 SCR_HEIGHT/2-buttonOffsetY-buttonHeight/2+3*buttonDist<=lastY&&lastY<= SCR_HEIGHT/2-buttonOffsetY+buttonHeight/2+3*buttonDist){
                     Select=RESET;
                     ifreset = true;
-                } else
-                if(
+                }
+                else if(
                 SCR_HEIGHT/2-buttonOffsetY-buttonHeight/2+4*buttonDist<=lastY&&lastY<= SCR_HEIGHT/2-buttonOffsetY+buttonHeight/2+4*buttonDist){
                     Select=FIRE;
 //                    FIREMODE=(FIREMODE==UNFIRED)?FIRED:UNFIRED;
                     if(FIREMODE==UNFIRED)FIREMODE=FIRED;
                 }
-                if(!ifstart&&
+                else if(!ifstart&&
                 SCR_HEIGHT/2-buttonOffsetY-buttonHeight/2+5*buttonDist<=lastY&&lastY<= SCR_HEIGHT/2-buttonOffsetY+buttonHeight/2+5*buttonDist){
                     Select=DISPLAY;
                     ifdisplay=!ifdisplay;
                     totalTime=0;
                 }
             }
+            else{
+                cout<<"POINT:"<<lastX<<" "<<lastY<<endl;
+                Select=POINT;
+                mouseX = lastX;
+                mouseY = lastY;
+                
+            }
+            
         } else if(Select==AREA)
         {
             mouseX=MAX(MIN(lastX-SCR_WIDTH/2-buttonOffsetX,buttonWidth/2),-buttonWidth/2);
@@ -449,6 +410,15 @@ glm::vec3 Screen2World(float x,float y,glm::mat4 projection,glm::mat4 view ){
         0);
 }
 
+void screen2World2(float sx, float sy, float & wx, float &wy){
+    wx=sx/SCR_WIDTH*2-1;
+    wy=1-sy/SCR_HEIGHT*2;
+}
+
+
+
+
+
 glm::vec3 BezierCurve(glm::vec3 p0,glm::vec3 p1,glm::vec3 p2,glm::vec3 p3,glm::vec3 p4,glm::vec3 p5,float t){
 //    glm::vec3 v=p0*((float)pow(1-t,3))+p1*((float)(3*t*pow(1-t,2)))+p2*((float)(3*pow(t,2)*(1-t)))+p3*((float)pow(t,3));
 //
@@ -459,3 +429,56 @@ glm::vec3 BezierCurve(glm::vec3 p0,glm::vec3 p1,glm::vec3 p2,glm::vec3 p3,glm::v
     return v;
     
 }
+
+
+void addPs(int sceneId,float currentTime, ParticleSystem &flower2Ps,ParticleSystem& flowerPs, ParticleSystem&leavePs, glm::mat4 projection, glm::mat4 view){
+    int time=currentTime*100;
+    if(sceneId==3){
+        if(time% 10==0)
+            flower2Ps.insertParticle(Particle(glm::vec3(rand()%10-5,rand()%10+5 ,0),glm::vec3(rand()%10-5,-rand()%8,-2.5+rand()%5),4));
+
+        flower2Ps.simulate(deltaTime);
+        flower2Ps.render(view, projection, glm::mat4(1.0f), cupRotate);
+    }
+    
+    if(sceneId==4){
+        if(time% 10==0)
+            flowerPs.insertParticle(Particle(glm::vec3(rand()%10-5,rand()%10+5 ,0),glm::vec3(rand()%10-5,-rand()%8,-2.5+rand()%5),3));
+
+        flowerPs.simulate(deltaTime);
+        flowerPs.render(view, projection, glm::mat4(1.0f), cupRotate);
+        
+    }
+    if(sceneId==5){
+        if(time% 10==0)
+            leavePs.insertParticle(Particle(glm::vec3(rand()%10-5,rand()%10+5 ,0),glm::vec3(rand()%10-5,-rand()%8,-2.5+rand()%5),2));
+
+        leavePs.simulate(deltaTime);
+        leavePs.render(view, projection, glm::mat4(1.0f), cupRotate);
+    }
+
+}
+
+
+void drawButtons(Button &bezierButton,Button& cursorButton,Button &startButton,Button &resetButton ,Button &fireButton, Button& textureButton,Button &displayButton,CurveArea &curveArea,CurveArea3& curveArea3,Button &pannel){
+    if(Mode==CURSOR)
+        cursorButton.drawButton();
+    else
+        bezierButton.drawButton();
+    
+    if(FIREMODE==UNFIRED)
+        fireButton.drawButton();
+    else textureButton.drawButton();
+    
+    startButton.drawButton();
+    resetButton.drawButton();
+//        textureButton.drawButton();
+    displayButton.drawButton();
+
+    curveArea.drawCurveArea();
+//    curveArea2.drawCurveArea();
+    curveArea3.testDraw();
+    pannel.drawButton();
+}
+
+

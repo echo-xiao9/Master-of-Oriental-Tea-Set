@@ -133,8 +133,8 @@ public:
     void updateCurveArea(int mouseX,int mouseY){
         float normX=float(mouseX)*2/screenW,normY=float(mouseY)*2/screenH;
         if(selected==-1){
-            cout<<"updateCurveArea selected:"<<selected<<endl;
-            cout<<"normX:"<<normX<<" normY:"<<normY<<endl;
+//            cout<<"updateCurveArea selected:"<<selected<<endl;
+//            cout<<"normX:"<<normX<<" normY:"<<normY<<endl;
             if(inRange(normX,normY,b0))
                 selected=0;
             else if(inRange(normX,normY,b1))

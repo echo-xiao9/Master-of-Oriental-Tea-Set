@@ -597,7 +597,6 @@ public:
 
     void drawMaterial(glm::mat4 view, glm::mat4 projection, glm::mat4 model,glm::mat4 rotate,bool ifdisplay)
     {
-        cout<<"lightId:"<<lightId<<endl;
         model=glm::translate(model,glm::vec3(offsetX,0.0f,0.0f));
         if(texture=="wood"){
             // 2 texture unit combined

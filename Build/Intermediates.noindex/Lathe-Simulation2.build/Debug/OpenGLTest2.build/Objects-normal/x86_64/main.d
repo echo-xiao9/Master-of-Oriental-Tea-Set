@@ -295,5 +295,6 @@ dependencies: \
   /Users/kangyixiao/EchoFile/coding/MasterOfOrientalTeaSet/Button/Button.h \
   /Users/kangyixiao/EchoFile/coding/MasterOfOrientalTeaSet/CurveArea/CurveArea.h \
   /Users/kangyixiao/EchoFile/coding/MasterOfOrientalTeaSet/CurveArea/CurveArea2.hpp \
+  /Users/kangyixiao/EchoFile/coding/MasterOfOrientalTeaSet/CurveArea/CurveArea3.h \
   /Users/kangyixiao/EchoFile/coding/MasterOfOrientalTeaSet/SkyBox/SkyBox.h \
   /Users/kangyixiao/EchoFile/coding/MasterOfOrientalTeaSet/include/stb_image.h
