@@ -560,7 +560,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "198"
             endingLineNumber = "198"
-            landmarkName = "getCtrlPoint(curveId, x0, y0, x1, y1, x2, y2, x3, y3)"
+            landmarkName = "getRadius(radius)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
