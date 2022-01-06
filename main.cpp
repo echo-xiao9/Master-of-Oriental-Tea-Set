@@ -166,9 +166,6 @@ int main() {
    
         
         
-        
-        
-        
         if(rate==1.0f)
             ifstart=false;
 

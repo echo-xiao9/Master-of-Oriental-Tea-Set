@@ -66,9 +66,9 @@ int mtrIdx=0; // current material index
 //#define fNum 15
 #define MIN(a,b) ((a)<(b)?(a):(b))
 #define MAX(a,b) ((a)>(b)?(a):(b))
-#define textureNum 4
+#define textureNum 5
 
-std::string textures[]={"wood","glass","glass","porcelain"};
+std::string textures[]={"wood","glass","glass","porcelain","tree"};
 
 
 

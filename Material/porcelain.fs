@@ -21,7 +21,7 @@ uniform Material surface;
 uniform Material porcelain;
 uniform sampler2D porcelainTexture;
 uniform sampler2D porcelainSurfaceTexture;
-uniform sampler2D porcelainNormalMap;
+
 
 
 void main()
@@ -29,7 +29,6 @@ void main()
     vec3 ambient,diffuse,specular;
     vec3 color;
     vec3 norm = normalize(Normal);
-//    vec3 norm = texture(porcelainNormalMap, TexCoord).rgb;
     norm = normalize(norm * 2.0 - 1.0);
     vec3 lightDir = normalize(lightPos - FragPos);
     float diff = max(dot(norm, lightDir), 0.0);
