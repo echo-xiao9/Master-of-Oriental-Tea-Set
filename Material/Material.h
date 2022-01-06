@@ -729,6 +729,32 @@ public:
         
         return;
     }
+    
+    void updateRadiusAll(float newRadius[] ){
+        for(int i=0;i<rNum;i++){
+            radius[i]=newRadius[i];
+        }
+        for (int j = 0; j < rNum; j++)
+        {
+            renderPiece(j);
+        }
+        glBindVertexArray(materialVAO);
+        glBindBuffer(GL_ARRAY_BUFFER, materialVBO);
+        // position changes so maybe use dynamic
+//        glBufferData(GL_ARRAY_BUFFER, sizeof(rPointer), &rPointer, GL_STATIC_DRAW);
+        
+        glBufferData(GL_ARRAY_BUFFER, sizeof(rPointer), &rPointer, GL_DYNAMIC_DRAW);
+
+        glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, fNum * sizeof(float), (void *)0);
+        glEnableVertexAttribArray(0);
+        glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, fNum * sizeof(float), (void *)(3 * sizeof(float)));
+        glEnableVertexAttribArray(1);
+        glVertexAttribPointer(2, 1, GL_FLOAT, GL_FALSE, fNum * sizeof(float), (void *)(6 * sizeof(float)));
+        glEnableVertexAttribArray(2);
+        glVertexAttribPointer(3, 2, GL_FLOAT, GL_FALSE, fNum * sizeof(float), (void *)(7 * sizeof(float)));
+        glEnableVertexAttribArray(3);
+        
+    }
     void loadTextureSimple(const char*path){
         int texwidth,texheight,nrComponents=0;//nrChannels表示通道数，R/G/B/A，一共4个通道，有些图片只有3个，A即为alpha
         unsigned char *data = SOIL_load_image(path, &texwidth, &texheight, &nrComponents, SOIL_LOAD_RGB);

@@ -97,7 +97,7 @@ int main() {
     glm::vec3 lightPos(-5.0f,0.0f,6.0f);
     glm::vec3 p0(-2.0f,-1.5f,0),p1(-4.0f,-0.0f,0),p2(-6.0f,-0.0f,0),p3(-8.0f,-1.5f,0);
 
-    Material material(lightPos,lightColors[lightId],camera.Position,-5.0f,3.0f,LENGTH);
+    Material material(lightPos,lightColors[lightId],camera.Position,-5.0f,RADIUS,LENGTH);
     ParticleSystem ps(lightPos,white);
     ParticleSystem leavePs(lightPos,green,2);
     ParticleSystem flowerPs(lightPos,pink,3);
@@ -121,6 +121,10 @@ int main() {
     CurveArea3 curveArea3;
 //    Button bezierPannel("Button/bezier2.png",SCR_WIDTH,SCR_HEIGHT,
 //                        buttonWidth,buttonHeight, buttonOffsetX,buttonOffsetY);
+    
+    
+    Button test("CurveArea/bezier2.png",SCR_WIDTH,SCR_HEIGHT,
+    buttonWidth,buttonHeight, buttonOffsetX,buttonOffsetY);
     
     Button bezierButton("Button/light2.png",SCR_WIDTH,SCR_HEIGHT,
     buttonWidth,buttonHeight, buttonOffsetX,buttonOffsetY-buttonDist);
@@ -159,7 +163,12 @@ int main() {
         if(ifstart) bezierTime += deltaTime;
         lastTime = currentTime;
         rate = MIN(bezierTime/10.0f,1.0f);
-
+   
+        
+        
+        
+        
+        
         if(rate==1.0f)
             ifstart=false;
 
@@ -169,6 +178,7 @@ int main() {
             bezierTime = 0;
             rate = 0;
             ifstart = false;
+            curveArea3.reset();
             knifePos = glm::vec3(-1.9f,-1.5f,0.0f);
         }
 
@@ -202,21 +212,28 @@ int main() {
                 Select=CHANGED;
                 mtrIdx++;
                 curveArea.releaseSelect();
-                material.updateRadius(knifePos,lastKnifePos,&ps,deltaTime);
                 break;
                 
             case AREA:
-                curveArea.updateCurveArea(mouseX,mouseY);
+//                curveArea.updateCurveArea(mouseX,mouseY);
                 knifePos=lastKnifePos;
+                screen2World2(mouseX, mouseY, wx, wy);
+//                cout<<"mouseeX："<<mouseX<<" mouseY:"<<mouseY<<"worldX"<<wx<<" worldY:"<<wy<<endl;
+                curveArea3.addPoint(wx, wy);
+               
                 
                 break;
             
             case POINT:
-                screen2World2(mouseX, mouseY, wx, wy);
-                cout<<"mouseeX："<<mouseX<<" mouseY:"<<mouseY<<"worldX"<<wx<<" worldY:"<<wy<<endl;
-                curveArea3.addPoint(wx, wy);
+//                screen2World2(mouseX, mouseY, wx, wy);
+//                cout<<"mouseeX："<<mouseX<<" mouseY:"<<mouseY<<"worldX"<<wx<<" worldY:"<<wy<<endl;
+//                curveArea3.addPoint(wx, wy);
                 break;
                 
+            case START:
+                curveArea3.getRadius(tmpRadius);
+                material.updateRadiusAll(tmpRadius);
+                break;
                 
             default:
                 curveArea.releaseSelect();
@@ -245,6 +262,7 @@ int main() {
         addPs( sceneId, currentTime, flower2Ps, flowerPs,leavePs,projection,  view);
         ps.simulate(deltaTime);
         ps.render(view, projection, glm::mat4(1.0f), cupRotate);
+//        test.drawButton();
         drawButtons(bezierButton,cursorButton,startButton,resetButton ,fireButton,  textureButton,displayButton,curveArea, curveArea3,pannel);
         glfwSwapBuffers(window);
         glfwPollEvents();
@@ -295,14 +313,21 @@ void processInput(GLFWwindow *window) {
     //if (glfwGetKey(window, GLFW_KEY_C) == GLFW_PRESS)
     //    rotate_radius += (deltaTime/TIMESTEP)* 360.0f;
     if (glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_LEFT) == GLFW_PRESS) {
-        cout<<"get mouse Select:"<<Select<<endl;
+//        cout<<"get mouse Select:"<<Select<<endl;
         if(Select==NONE){
 //            cout<<"Select:"<<Select<<endl;
             if(SCR_WIDTH/2.0+buttonOffsetX-buttonWidth/2.0<=lastX&&lastX<=SCR_WIDTH/2.0+buttonOffsetX+buttonWidth/2.0){
                 if(!ifstart&&
-                SCR_HEIGHT/2-buttonOffsetY-buttonHeight/2<=lastY&&lastY<= SCR_HEIGHT /2-buttonOffsetY+buttonHeight/2){
-                    mouseX=MAX(MIN(lastX-SCR_WIDTH/2-buttonOffsetX,buttonWidth/2),-buttonWidth/2);
-                    mouseY=MAX(MIN(SCR_HEIGHT/2-lastY-buttonOffsetY,buttonHeight/2),-buttonHeight/2);
+                SCR_HEIGHT/2-buttonOffsetY-buttonHeight/2- buttonDist<=lastY&&lastY<= SCR_HEIGHT /2-buttonOffsetY+buttonHeight/2){
+                    
+                    
+//                    mouseX=MAX(MIN(lastX-SCR_WIDTH/2-buttonOffsetX,buttonWidth/2),-buttonWidth/2);
+//                    mouseY=MAX(MIN(SCR_HEIGHT/2-lastY-buttonOffsetY,buttonHeight/2),-buttonHeight/2);
+                    
+                    // test
+                    mouseX = lastX;
+                    mouseY = lastY;
+                    
                     Select=AREA;
                     cout<<mouseX<<" "<<mouseY<<endl;
                 }
@@ -317,7 +342,7 @@ void processInput(GLFWwindow *window) {
                 else if(!ifdisplay&&Mode==BEZIER&&
                 SCR_HEIGHT/2-buttonOffsetY-buttonHeight/2+2*buttonDist<=lastY&&lastY<=SCR_HEIGHT/2-buttonOffsetY+buttonHeight/2+2*buttonDist){
                     Select=START;
-                    ifstart=true;
+//                    ifstart=true;
                 }
                 else if(!ifdisplay&&
                 SCR_HEIGHT/2-buttonOffsetY-buttonHeight/2+3*buttonDist<=lastY&&lastY<= SCR_HEIGHT/2-buttonOffsetY+buttonHeight/2+3*buttonDist){
@@ -475,7 +500,7 @@ void drawButtons(Button &bezierButton,Button& cursorButton,Button &startButton,B
 //        textureButton.drawButton();
     displayButton.drawButton();
 
-    curveArea.drawCurveArea();
+//    curveArea.drawCurveArea();
 //    curveArea2.drawCurveArea();
     curveArea3.testDraw();
     pannel.drawButton();

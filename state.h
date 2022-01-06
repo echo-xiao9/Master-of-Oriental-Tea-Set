@@ -7,9 +7,10 @@
 
 #ifndef state_h
 #define state_h
+#include "const.h"
 float LENGTH=6.0f;
 int sceneId=0;
 int lightId=0;
-
+float tmpRadius[rNum]={0};
 
 #endif /* state_h */

@@ -258,6 +258,8 @@
 		E8BC6B7A2785E0A8006A371C /* 9.1.geometry_shader.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = 9.1.geometry_shader.fs; sourceTree = "<group>"; };
 		E8BC6B7B2785E0B9006A371C /* 9.1.geometry_shader.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = 9.1.geometry_shader.vs; sourceTree = "<group>"; };
 		E8BC6B7C2785E660006A371C /* CurveArea3.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CurveArea3.h; sourceTree = "<group>"; };
+		E8BC6B7D2786B362006A371C /* CurveShader.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = CurveShader.vs; sourceTree = "<group>"; };
+		E8BC6B7E2786B36B006A371C /* CurveShader.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = CurveShader.fs; sourceTree = "<group>"; };
 		E8CFE8AF2725187000E0F327 /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = System/Library/Frameworks/GLUT.framework; sourceTree = SDKROOT; };
 		E8E7F021276C287B004CBD2A /* CurveArea.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurveArea.h; sourceTree = "<group>"; };
 		E8E7F022276C287B004CBD2A /* Point.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Point.fs; sourceTree = "<group>"; };
@@ -3097,6 +3099,8 @@
 		E8E7F020276C287B004CBD2A /* CurveArea */ = {
 			isa = PBXGroup;
 			children = (
+				E8BC6B7D2786B362006A371C /* CurveShader.vs */,
+				E8BC6B7E2786B36B006A371C /* CurveShader.fs */,
 				E8BC6B7A2785E0A8006A371C /* 9.1.geometry_shader.fs */,
 				E8BC6B7B2785E0B9006A371C /* 9.1.geometry_shader.vs */,
 				E84176F7277ED5D80064C00D /* ControlPoint.vs */,

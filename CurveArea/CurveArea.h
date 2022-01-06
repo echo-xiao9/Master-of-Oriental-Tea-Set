@@ -24,7 +24,6 @@ private:
     unsigned int pointVAO, pointVBO;
     unsigned int curveVAO, curveVBO;
     
-
     bool inRange(float normX,float normY,glm::vec3 p){
         float halfRangeW=15.0f/screenW,halfRangeH=15.0f/screenH;
         if(p.x-halfRangeW<=normX&&normX<=p.x+halfRangeW&&p.y-halfRangeH<=normY&&normY<=p.y+halfRangeH)

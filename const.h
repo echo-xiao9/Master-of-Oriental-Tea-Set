@@ -16,7 +16,7 @@ enum type{BEZIER,CURSOR,UNFIRED, FIRED};
 enum select{AREA,MODE,START,RESET,TEXTURE,CHANGED,DISPLAY,NONE,FIRE,LIGHT,POINT};
 
 // button
-const int buttonWidth=160,buttonHeight=90,buttonOffsetX=600,buttonOffsetY=320,buttonDist=100;
+const int buttonWidth=160,buttonHeight=90,buttonOffsetX=600,buttonOffsetY=220,buttonDist=100;
 
 // control the points of the curve
 int mouseX,mouseY;
@@ -57,7 +57,7 @@ int LIGHT_NUM=7;
 #define eNum 360
 #define rNum 800
 #define fNum 9
-
+float RADIUS = 3.0f;
 int mtrIdx=0; // current material index
 
 
@@ -96,7 +96,15 @@ float BEZIER_WIDTH=2.0f;
 float CRTL_LINE_WIDTH=2.0f;
 float CRTL_POINT_SIZE=50.0f;
 const int MAX_CURVE_NUM=20;
-const int MAX_CTRL_POINT=MAX_CURVE_NUM*4*2;
+const int MAX_CTRL_POINT=MAX_CURVE_NUM*4;
+const int MAX_CTRL_POINT_DATA=MAX_CTRL_POINT*2;
+const int POINTS_IN_CURVE=100;
+const int POINTS_IN_CURVES =POINTS_IN_CURVE*MAX_CURVE_NUM;
+const int POINTS_IN_CURVES_DATA = POINTS_IN_CURVES*2;
+
+
+
+
 int LINE_NUM=100;
 
 
