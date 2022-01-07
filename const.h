@@ -16,7 +16,7 @@ enum type{BEZIER,CURSOR,UNFIRED, FIRED};
 enum select{AREA,MODE,START,RESET,TEXTURE,CHANGED,DISPLAY,NONE,FIRE,LIGHT,POINT};
 
 // button
-const int buttonWidth=160,buttonHeight=90,buttonOffsetX=600,buttonOffsetY=220,buttonDist=100;
+const int buttonWidth=160,buttonHeight=45,buttonOffsetX=600,buttonOffsetY=220,buttonDist=70;
 
 // control the points of the curve
 int mouseX,mouseY;

@@ -110,7 +110,7 @@ int main() {
     SkyBox skybox;
     
     Button pannel("Button/show2.png",SCR_WIDTH,SCR_HEIGHT,
-    buttonWidth*2,buttonHeight*40, buttonOffsetX-5.0f,buttonOffsetY+10*buttonDist);
+    buttonWidth*2,buttonHeight*100, buttonOffsetX-5.0f,buttonOffsetY+10*buttonDist);
     
 
     CurveArea curveArea(SCR_WIDTH,SCR_HEIGHT,
@@ -126,19 +126,19 @@ int main() {
     Button test("CurveArea/bezier2.png",SCR_WIDTH,SCR_HEIGHT,
     buttonWidth,buttonHeight, buttonOffsetX,buttonOffsetY);
     
-    Button bezierButton("Button/light2.png",SCR_WIDTH,SCR_HEIGHT,
+    Button bezierButton("Button/light3.png",SCR_WIDTH,SCR_HEIGHT,
     buttonWidth,buttonHeight, buttonOffsetX,buttonOffsetY-buttonDist);
     Button cursorButton("Button/cursor.jpg",SCR_WIDTH,SCR_HEIGHT,
     buttonWidth,buttonHeight, buttonOffsetX,buttonOffsetY-buttonDist);
-    Button startButton("Button/start2.png",SCR_WIDTH,SCR_HEIGHT,
+    Button startButton("Button/start3.png",SCR_WIDTH,SCR_HEIGHT,
     buttonWidth,buttonHeight, buttonOffsetX,buttonOffsetY-2*buttonDist);
-    Button resetButton("Button/reset2.png",SCR_WIDTH,SCR_HEIGHT,
+    Button resetButton("Button/reset3.png",SCR_WIDTH,SCR_HEIGHT,
     buttonWidth,buttonHeight, buttonOffsetX,buttonOffsetY-3*buttonDist);
-    Button fireButton("Button/fire2.png",SCR_WIDTH,SCR_HEIGHT,
+    Button fireButton("Button/fire3.png",SCR_WIDTH,SCR_HEIGHT,
     buttonWidth,buttonHeight, buttonOffsetX,buttonOffsetY-4*buttonDist);
-    Button textureButton("Button/texture2.png",SCR_WIDTH,SCR_HEIGHT,
+    Button textureButton("Button/texture3.png",SCR_WIDTH,SCR_HEIGHT,
     buttonWidth,buttonHeight, buttonOffsetX,buttonOffsetY-4*buttonDist);
-    Button displayButton("Button/show2.png",SCR_WIDTH,SCR_HEIGHT,
+    Button displayButton("Button/show3.png",SCR_WIDTH,SCR_HEIGHT,
     buttonWidth,buttonHeight, buttonOffsetX,buttonOffsetY-5*buttonDist);
 
     glm::vec3 knifePos=p0,lastKnifePos;
@@ -315,7 +315,7 @@ void processInput(GLFWwindow *window) {
 //            cout<<"Select:"<<Select<<endl;
             if(SCR_WIDTH/2.0+buttonOffsetX-buttonWidth/2.0<=lastX&&lastX<=SCR_WIDTH/2.0+buttonOffsetX+buttonWidth/2.0){
                 if(!ifstart&&
-                SCR_HEIGHT/2-buttonOffsetY-buttonHeight/2- buttonDist<=lastY&&lastY<= SCR_HEIGHT /2-buttonOffsetY+buttonHeight/2){
+                SCR_HEIGHT/2-buttonOffsetY-buttonHeight/2- 2*buttonDist<=lastY&&lastY<= SCR_HEIGHT /2-buttonOffsetY+buttonHeight/2){
                     
                     
 //                    mouseX=MAX(MIN(lastX-SCR_WIDTH/2-buttonOffsetX,buttonWidth/2),-buttonWidth/2);

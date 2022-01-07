@@ -35,7 +35,7 @@ private:
     map<float,float> ctrlPoints;
     
 public:
-    CurveArea3():testShader(Shader("CurveArea/9.1.geometry_shader.vs", "CurveArea/9.1.geometry_shader.fs")),curveShader(Shader("CurveArea/CurveShader.vs", "CurveArea/CurveShader.fs")),bezierButton("Button/bezier2.png",SCR_WIDTH,SCR_HEIGHT,buttonWidth,2*buttonHeight, buttonOffsetX,buttonOffsetY+buttonDist/2){
+    CurveArea3():testShader(Shader("CurveArea/9.1.geometry_shader.vs", "CurveArea/9.1.geometry_shader.fs")),curveShader(Shader("CurveArea/CurveShader.vs", "CurveArea/CurveShader.fs")),bezierButton("Button/bezier2.png",SCR_WIDTH,SCR_HEIGHT,buttonWidth,4*buttonHeight, buttonOffsetX,buttonOffsetY+buttonDist){
         
         for(int i=0;i<MAX_CTRL_POINT_DATA;i++)points[i]=2.0f;
         for(int i=0;i<POINTS_IN_CURVES_DATA;i++)curvePoints[i]=2.0f;
