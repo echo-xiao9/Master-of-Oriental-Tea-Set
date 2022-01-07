@@ -33,6 +33,8 @@ private:
     unsigned int woodID,woodSurfaceID;
     unsigned int treeID,treeSurfaceID;
     unsigned int porcelainID,porcelainSurfaceID;
+    unsigned int porcelain2ID,porcelain2SurfaceID;
+    unsigned int marbleID,marbleSurfaceID;
     float offsetX;
     float length;
     float initR;
@@ -41,6 +43,7 @@ private:
     
     void renderPiece(int num){
         float y1, z1, y2, z2, y3, z3, y4, z4, tl,tr,tt,tb,leftR, rightR, normalX, normalY, normalZ,ifsurface;
+        float ya, za, yb, zb, yc, zc, yd, zd;
         float pieceWidth = length / (2*rNum), offset;
         // if need the upper and lower bound.
         
@@ -89,12 +92,30 @@ private:
             y4 = rightR * cos(2 * Pi / eNum * (i + 1));
             z4 = rightR * sin(2 * Pi / eNum * (i + 1));
 
+            ya= leftR *0.9 * cos(2 * Pi / eNum * i);
+            za= leftR *0.9 * sin(2 * Pi / eNum * i);
+                        
+            yb = leftR *0.9 * cos(2 * Pi / eNum * (i + 1));
+            zb = leftR *0.9 * sin(2 * Pi / eNum * (i + 1));
+
+            yc = rightR *0.9 * cos(2 * Pi / eNum * i);
+            zc = rightR *0.9* sin(2 * Pi / eNum * i);
+
+            yd = rightR *0.9* cos(2 * Pi / eNum * (i + 1));
+            zd = rightR *0.9* sin(2 * Pi / eNum * (i + 1));
+
+            
+            
+            
             tt = float(i)/eNum;
             tb = float(i+1)/eNum;
 
             normalX = ((y1 - y3) * (z2 - z1) + (y2 - y1) * (z3 - z1)) / (2 * pieceWidth);
             normalY = z2 - z1;
             normalZ = y1 - y2;
+            
+            
+            
             // 1
             rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 0] = offset - pieceWidth;
             rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 1] = y1;
@@ -160,7 +181,7 @@ private:
 
             rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 4 * fNum + 7] = tl;
             rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 4 * fNum + 8] = tb;
-            //6
+//            6
             rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 5 * fNum] = offset + pieceWidth;
             rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 5 * fNum + 1] = y4;
             rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 5 * fNum + 2] = z4;
@@ -173,84 +194,279 @@ private:
 
             rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 5 * fNum + 7] = tr;
             rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 5 * fNum + 8] = tb;
+            
+            
+         
+            // render buttom
+            
+           
+                
+            
+            
+            if(num>rNum-10){
             // 7
-//            rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 6 * fNum] = offset - pieceWidth;
-//            rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 6 * fNum + 1] = 0;
-//            rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 6 * fNum + 2] = 0;
-//
-//            rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 6 * fNum + 3] = -1;
-//            rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 6 * fNum + 4] = 0;
-//            rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 6 * fNum + 5] = 0;
-//
-//            rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 6 * fNum + 6] = 0.0;
-//
-//            rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 6 * fNum + 7] = 0.0;
-//            rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 6 * fNum + 8] = 0.0;
-//            // 8
-//            rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 7 * fNum] = offset - pieceWidth;
-//            rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 7 * fNum + 1] = y1;
-//            rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 7 * fNum + 2] = z1;
-//
-//            rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 7 * fNum + 3] = -1;
-//            rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 7 * fNum + 4] = 0;
-//            rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 7 * fNum + 5] = 0;
-//
-//            rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 7 * fNum + 6] = 0.0;
-//
-//            rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 7 * fNum + 7] = 1.0;
-//            rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 7 * fNum + 8] = 1.0;
-//            // 9
-//            rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 8 * fNum] = offset - pieceWidth;
-//            rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 8 * fNum + 1] = y2;
-//            rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 8 * fNum + 2] = z2;
-//
-//            rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 8 * fNum + 3] = -1;
-//            rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 8 * fNum + 4] = 0;
-//            rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 8 * fNum + 5] = 0;
-//
-//            rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 8 * fNum + 6] = 0.0;
-//
-//            rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 8 * fNum + 7] = 1.0;
-//            rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 8 * fNum + 8] = 1.0;
-//            // 10
-//            rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 9 * fNum] = offset + pieceWidth;
-//            rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 9 * fNum + 1] = 0;
-//            rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 9 * fNum + 2] = 0;
-//
-//            rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 9 * fNum + 3] = 1;
-//            rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 9 * fNum + 4] = 0;
-//            rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 9 * fNum + 5] = 0;
-//
-//            rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 9 * fNum + 6] = 0.0;
-//
-//            rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 9 * fNum + 7] = 0.0;
-//            rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 9 * fNum + 8] = 0.0;
-//            // 11
-//            rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 10 * fNum] = offset + pieceWidth;
-//            rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 10 * fNum + 1] = y3;
-//            rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 10 * fNum + 2] = z3;
-//
-//            rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 10 * fNum + 3] = 1;
-//            rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 10 * fNum + 4] = 0;
-//            rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 10 * fNum + 5] = 0;
-//
-//            rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 10 * fNum + 6] = 0.0;
-//
-//            rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 10 * fNum + 7] = 1.0;
-//            rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 10 * fNum + 8] = 1.0;
-//            // 12
-//            rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 11 * fNum] = offset + pieceWidth;
-//            rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 11 * fNum + 1] = y4;
-//            rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 11 * fNum + 2] = z4;
-//
-//            rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 11 * fNum + 3] = 1;
-//            rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 11 * fNum + 4] = 0;
-//            rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 11 * fNum + 5] = 0;
-//
-//            rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 11 * fNum + 6] = 0.0;
-//
-//            rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 11 * fNum + 7] = 1.0;
-//            rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 11 * fNum + 8] = 1.0;
+            rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 6 * fNum] = offset - pieceWidth;
+            rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 6 * fNum + 1] = 0;
+            rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 6 * fNum + 2] = 0;
+
+            rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 6 * fNum + 3] = -1;
+            rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 6 * fNum + 4] = 0;
+            rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 6 * fNum + 5] = 0;
+
+            rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 6 * fNum + 6] = 0.0;
+
+            rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 6 * fNum + 7] = 0.0;
+            rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 6 * fNum + 8] = 0.0;
+            // 8
+            rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 7 * fNum] = offset - pieceWidth;
+            rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 7 * fNum + 1] = y1;
+            rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 7 * fNum + 2] = z1;
+
+            rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 7 * fNum + 3] = -1;
+            rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 7 * fNum + 4] = 0;
+            rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 7 * fNum + 5] = 0;
+
+            rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 7 * fNum + 6] = 0.0;
+
+            rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 7 * fNum + 7] = 1.0;
+            rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 7 * fNum + 8] = 1.0;
+            // 9
+            rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 8 * fNum] = offset - pieceWidth;
+            rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 8 * fNum + 1] = y2;
+            rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 8 * fNum + 2] = z2;
+
+            rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 8 * fNum + 3] = -1;
+            rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 8 * fNum + 4] = 0;
+            rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 8 * fNum + 5] = 0;
+
+            rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 8 * fNum + 6] = 0.0;
+
+            rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 8 * fNum + 7] = 1.0;
+            rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 8 * fNum + 8] = 1.0;
+            // 10
+            rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 9 * fNum] = offset + pieceWidth;
+            rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 9 * fNum + 1] = 0;
+            rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 9 * fNum + 2] = 0;
+
+            rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 9 * fNum + 3] = 1;
+            rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 9 * fNum + 4] = 0;
+            rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 9 * fNum + 5] = 0;
+
+            rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 9 * fNum + 6] = 0.0;
+
+            rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 9 * fNum + 7] = 0.0;
+            rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 9 * fNum + 8] = 0.0;
+            // 11
+            rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 10 * fNum] = offset + pieceWidth;
+            rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 10 * fNum + 1] = y3;
+            rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 10 * fNum + 2] = z3;
+
+            rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 10 * fNum + 3] = 1;
+            rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 10 * fNum + 4] = 0;
+            rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 10 * fNum + 5] = 0;
+
+            rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 10 * fNum + 6] = 0.0;
+
+            rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 10 * fNum + 7] = 1.0;
+            rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 10 * fNum + 8] = 1.0;
+            // 12
+            rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 11 * fNum] = offset + pieceWidth;
+            rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 11 * fNum + 1] = y4;
+            rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 11 * fNum + 2] = z4;
+
+            rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 11 * fNum + 3] = 1;
+            rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 11 * fNum + 4] = 0;
+            rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 11 * fNum + 5] = 0;
+
+            rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 11 * fNum + 6] = 0.0;
+
+            rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 11 * fNum + 7] = 1.0;
+            rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 11 * fNum + 8] = 1.0;
+            }
+            else if(num>3 && num<50){
+                // b
+                rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 6 * fNum] = offset - pieceWidth;
+                rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 6 * fNum + 1] = yb;
+                rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 6 * fNum + 2] = zb;
+
+                rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 6 * fNum + 3] = normalX;
+                rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 6 * fNum + 4] = normalY;
+                rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 6 * fNum + 5] = normalZ;
+
+                rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 6 * fNum + 6] = ifsurface;
+
+                rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 6 * fNum + 7] = tl;
+                rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 6 * fNum + 8] = tt;
+                
+                //2
+                rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 7 * fNum] = offset - pieceWidth;
+                rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 7 * fNum + 1] = y2;
+                rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 7 * fNum + 2] = z2;
+
+                rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 7 * fNum + 3] = normalX;
+                rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 7 * fNum + 4] = normalY;
+                rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 7 * fNum + 5] = normalZ;
+
+                rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 7 * fNum + 6] = ifsurface;
+
+                rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 7 * fNum + 7] = tl;
+                rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 7 * fNum + 8] = tb;
+                
+                
+                //6
+                rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 8 * fNum] = offset + pieceWidth;
+                rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 8 * fNum + 1] = y4;
+                rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 8 * fNum + 2] = z4;
+
+                rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 8 * fNum + 3] = normalX;
+                rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 8 * fNum + 4] = normalY;
+                rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 8 * fNum + 5] = normalZ;
+
+                rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 8 * fNum + 6] = ifsurface;
+
+                rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 8 * fNum + 7] = tr;
+                rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 8 * fNum + 8] = tt;
+                
+                //6
+                rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 9 * fNum] = offset + pieceWidth;
+                rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 9 * fNum + 1] = y4;
+                rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 9 * fNum + 2] = z4;
+
+                rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 9 * fNum + 3] = normalX;
+                rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 9 * fNum + 4] = normalY;
+                rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 9 * fNum + 5] = normalZ;
+
+                rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 9 * fNum + 6] = ifsurface;
+
+                rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 9 * fNum + 7] = tr;
+                rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 9 * fNum + 8] = tt;
+                
+                
+                //b
+                rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 10 * fNum] = offset - pieceWidth;
+                rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 10 * fNum + 1] = yb;
+                rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 10 * fNum + 2] = zb;
+
+                rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 10 * fNum + 3] = normalX;
+                rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 10 * fNum + 4] = normalY;
+                rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 10 * fNum + 5] = normalZ;
+
+                rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 10 * fNum + 6] = ifsurface;
+
+                rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 10 * fNum + 7] = tl;
+                rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 10 * fNum + 8] = tb;
+                
+                
+                //d
+                rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 11 * fNum] = offset + pieceWidth;
+                rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 11 * fNum + 1] = yd;
+                rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 11 * fNum + 2] = zd;
+
+                rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 11 * fNum + 3] = normalX;
+                rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 11 * fNum + 4] = normalY;
+                rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 11 * fNum + 5] = normalZ;
+
+                rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 11 * fNum + 6] = ifsurface;
+
+                rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 11 * fNum + 7] = tr;
+                rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 11 * fNum + 8] = tb;
+                
+                
+                
+                
+            }
+            // render edge
+            else {
+                // a
+                rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 6 * fNum] = offset - pieceWidth;
+                rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 6 * fNum + 1] = ya;
+                rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 6 * fNum + 2] = za;
+
+                rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 6 * fNum + 3] = normalX;
+                rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 6 * fNum + 4] = normalY;
+                rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 6 * fNum + 5] = normalZ;
+
+                rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 6 * fNum + 6] = ifsurface;
+
+                rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 6 * fNum + 7] = tl;
+                rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 6 * fNum + 8] = tt;
+
+                //b
+                rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 7 * fNum] = offset - pieceWidth;
+                rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 7 * fNum + 1] = yb;
+                rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 7 * fNum + 2] = zb;
+
+                rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 7 * fNum + 3] = normalX;
+                rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 7 * fNum + 4] = normalY;
+                rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 7 * fNum + 5] = normalZ;
+
+                rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 7 * fNum + 6] = ifsurface;
+
+                rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 7 * fNum + 7] = tl;
+                rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 7 * fNum + 8] = tb;
+
+                //c
+                rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 8 * fNum] = offset + pieceWidth;
+                rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 8 * fNum + 1] = yc;
+                rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 8 * fNum + 2] = zc;
+
+                rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 8 * fNum + 3] = normalX;
+                rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 8 * fNum + 4] = normalY;
+                rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 8 * fNum + 5] = normalZ;
+
+                rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 8 * fNum + 6] = ifsurface;
+
+                rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 8 * fNum + 7] = tr;
+                rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 8 * fNum + 8] = tt;
+
+                //c
+                rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 9 * fNum] = offset + pieceWidth;
+                rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 9 * fNum + 1] = yc;
+                rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 9 * fNum + 2] = zc;
+
+                rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 9 * fNum + 3] = normalX;
+                rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 9 * fNum + 4] = normalY;
+                rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 9 * fNum + 5] = normalZ;
+
+                rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 9 * fNum + 6] = ifsurface;
+
+                rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 9 * fNum + 7] = tr;
+                rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 9 * fNum + 8] = tt;
+
+                // b
+                rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 10 * fNum] = offset - pieceWidth;
+                rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 10 * fNum + 1] = yb;
+                rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 10 * fNum + 2] = zb;
+
+                rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 10 * fNum + 3] = normalX;
+                rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 10 * fNum + 4] = normalY;
+                rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 10 * fNum + 5] = normalZ;
+
+                rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 10 * fNum + 6] = ifsurface;
+
+                rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 10 * fNum + 7] = tl;
+                rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 10 * fNum + 8] = tb;
+
+                //d
+                rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 11 * fNum] = offset + pieceWidth;
+                rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 11 * fNum + 1] = yd;
+                rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 11 * fNum + 2] = zd;
+
+                rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 11 * fNum + 3] = normalX;
+                rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 11 * fNum + 4] = normalY;
+                rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 11 * fNum + 5] = normalZ;
+
+                rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 11 * fNum + 6] = ifsurface;
+
+                rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 11 * fNum + 7] = tr;
+                rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 11 * fNum + 8] = tb;
+
+
+
+            }
+
+
+            
         }
     }
 
@@ -270,6 +486,8 @@ private:
 
             y2 = initR * cos(2 * Pi / eNum * (i + 1));
             z2 = initR * sin(2 * Pi / eNum * (i + 1));
+            
+            
 
             tt = float(i)/eNum;
             tb = float(i+1)/eNum;
@@ -277,6 +495,8 @@ private:
             normalX = 0;
             normalY = z2 - z1;
             normalZ = y1 - y2;
+            
+         
             //1
             rPointer[rNum * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 0] = offset - pieceWidth;
             rPointer[rNum * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 1] = y1;
@@ -362,86 +582,98 @@ private:
             rPointer[rNum * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 5 * fNum + 8] = tb;
             
             //7
-//            rPointer[rNum * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 6 * fNum] = offset - pieceWidth;
-//            rPointer[rNum * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 6 * fNum + 1] = 0;
-//            rPointer[rNum * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 6 * fNum + 2] = 0;
-//
-//            rPointer[rNum * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 6 * fNum + 3] = -1;
-//            rPointer[rNum * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 6 * fNum + 4] = 0;
-//            rPointer[rNum * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 6 * fNum + 5] = 0;
-//
-//            rPointer[rNum * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 6 * fNum + 6] = 0.0;
-//
-//            rPointer[rNum * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 6 * fNum + 7] = 0.0;
-//            rPointer[rNum * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 6 * fNum + 8] = 0.0;
-//
-//            //8
-//            rPointer[rNum * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 7 * fNum] = offset - pieceWidth;
-//            rPointer[rNum * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 7 * fNum + 1] = y1;
-//            rPointer[rNum * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 7 * fNum + 2] = z1;
-//
-//            rPointer[rNum * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 7 * fNum + 3] = -1;
-//            rPointer[rNum * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 7 * fNum + 4] = 0;
-//            rPointer[rNum * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 7 * fNum + 5] = 0;
-//
-//            rPointer[rNum * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 7 * fNum + 6] = 0.0;
-//
-//            rPointer[rNum * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 7 * fNum + 7] = 1.0;
-//            rPointer[rNum * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 7 * fNum + 8] = 1.0;
-//
-//            // 9
-//            rPointer[rNum * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 8 * fNum] = offset - pieceWidth;
-//            rPointer[rNum * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 8 * fNum + 1] = y2;
-//            rPointer[rNum * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 8 * fNum + 2] = z2;
-//
-//            rPointer[rNum * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 8 * fNum + 3] = -1;
-//            rPointer[rNum * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 8 * fNum + 4] = 0;
-//            rPointer[rNum * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 8 * fNum + 5] = 0;
-//
-//            rPointer[rNum * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 8 * fNum + 6] = 0.0;
-//
-//            rPointer[rNum * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 8 * fNum + 7] = 1.0;
-//            rPointer[rNum * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 8 * fNum + 8] = 1.0;
-//            //10
-//            rPointer[rNum * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 9 * fNum] = offset + pieceWidth;
-//            rPointer[rNum * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 9 * fNum + 1] = 0;
-//            rPointer[rNum * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 9 * fNum + 2] = 0;
-//
-//            rPointer[rNum * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 9 * fNum + 3] = 1;
-//            rPointer[rNum * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 9 * fNum + 4] = 0;
-//            rPointer[rNum * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 9 * fNum + 5] = 0;
-//
-//            rPointer[rNum * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 9 * fNum + 6] = 0.0;
-//
-//            rPointer[rNum * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 9 * fNum + 7] = 0.0;
-//            rPointer[rNum * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 9 * fNum + 8] = 0.0;
-//            //11
-//            rPointer[rNum * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 10 * fNum] = offset + pieceWidth;
-//            rPointer[rNum * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 10 * fNum + 1] = y1;
-//            rPointer[rNum * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 10 * fNum + 2] = z1;
-//
-//            rPointer[rNum * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 10 * fNum + 3] = 1;
-//            rPointer[rNum * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 10 * fNum + 4] = 0;
-//            rPointer[rNum * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 10 * fNum + 5] = 0;
-//
-//            rPointer[rNum * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 10 * fNum + 6] = 0.0;
-//
-//            rPointer[rNum * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 10 * fNum + 7] = 1.0;
-//            rPointer[rNum * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 10 * fNum + 8] = 1.0;
-//            //12
-//            rPointer[rNum * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 11 * fNum] = offset + pieceWidth;
-//            rPointer[rNum * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 11 * fNum + 1] = y2;
-//            rPointer[rNum * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 11 * fNum + 2] = z2;
-//
-//            rPointer[rNum * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 11 * fNum + 3] = 1;
-//            rPointer[rNum * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 11 * fNum + 4] = 0;
-//            rPointer[rNum * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 11 * fNum + 5] = 0;
-//
-//            rPointer[rNum * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 11 * fNum + 6] = 0.0;
-//
-//            rPointer[rNum * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 11 * fNum + 7] = 1.0;
-//            rPointer[rNum * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 11 * fNum + 8] = 1.0;
+            rPointer[rNum * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 6 * fNum] = offset - pieceWidth;
+            rPointer[rNum * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 6 * fNum + 1] = 0;
+            rPointer[rNum * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 6 * fNum + 2] = 0;
+
+            rPointer[rNum * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 6 * fNum + 3] = -1;
+            rPointer[rNum * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 6 * fNum + 4] = 0;
+            rPointer[rNum * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 6 * fNum + 5] = 0;
+
+            rPointer[rNum * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 6 * fNum + 6] = 0.0;
+
+            rPointer[rNum * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 6 * fNum + 7] = 0.0;
+            rPointer[rNum * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 6 * fNum + 8] = 0.0;
+
+            //8
+            rPointer[rNum * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 7 * fNum] = offset - pieceWidth;
+            rPointer[rNum * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 7 * fNum + 1] = y1;
+            rPointer[rNum * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 7 * fNum + 2] = z1;
+
+            rPointer[rNum * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 7 * fNum + 3] = -1;
+            rPointer[rNum * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 7 * fNum + 4] = 0;
+            rPointer[rNum * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 7 * fNum + 5] = 0;
+
+            rPointer[rNum * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 7 * fNum + 6] = 0.0;
+
+            rPointer[rNum * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 7 * fNum + 7] = 1.0;
+            rPointer[rNum * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 7 * fNum + 8] = 1.0;
+
+            // 9
+            rPointer[rNum * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 8 * fNum] = offset - pieceWidth;
+            rPointer[rNum * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 8 * fNum + 1] = y2;
+            rPointer[rNum * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 8 * fNum + 2] = z2;
+
+            rPointer[rNum * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 8 * fNum + 3] = -1;
+            rPointer[rNum * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 8 * fNum + 4] = 0;
+            rPointer[rNum * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 8 * fNum + 5] = 0;
+
+            rPointer[rNum * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 8 * fNum + 6] = 0.0;
+
+            rPointer[rNum * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 8 * fNum + 7] = 1.0;
+            rPointer[rNum * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 8 * fNum + 8] = 1.0;
+            //10
+            rPointer[rNum * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 9 * fNum] = offset + pieceWidth;
+            rPointer[rNum * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 9 * fNum + 1] = 0;
+            rPointer[rNum * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 9 * fNum + 2] = 0;
+
+            rPointer[rNum * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 9 * fNum + 3] = 1;
+            rPointer[rNum * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 9 * fNum + 4] = 0;
+            rPointer[rNum * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 9 * fNum + 5] = 0;
+
+            rPointer[rNum * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 9 * fNum + 6] = 0.0;
+
+            rPointer[rNum * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 9 * fNum + 7] = 0.0;
+            rPointer[rNum * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 9 * fNum + 8] = 0.0;
+            //11
+            rPointer[rNum * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 10 * fNum] = offset + pieceWidth;
+            rPointer[rNum * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 10 * fNum + 1] = y1;
+            rPointer[rNum * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 10 * fNum + 2] = z1;
+
+            rPointer[rNum * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 10 * fNum + 3] = 1;
+            rPointer[rNum * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 10 * fNum + 4] = 0;
+            rPointer[rNum * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 10 * fNum + 5] = 0;
+
+            rPointer[rNum * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 10 * fNum + 6] = 0.0;
+
+            rPointer[rNum * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 10 * fNum + 7] = 1.0;
+            rPointer[rNum * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 10 * fNum + 8] = 1.0;
+            //12
+            rPointer[rNum * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 11 * fNum] = offset + pieceWidth;
+            rPointer[rNum * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 11 * fNum + 1] = y2;
+            rPointer[rNum * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 11 * fNum + 2] = z2;
+
+            rPointer[rNum * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 11 * fNum + 3] = 1;
+            rPointer[rNum * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 11 * fNum + 4] = 0;
+            rPointer[rNum * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 11 * fNum + 5] = 0;
+
+            rPointer[rNum * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 11 * fNum + 6] = 0.0;
+
+            rPointer[rNum * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 11 * fNum + 7] = 1.0;
+            rPointer[rNum * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 11 * fNum + 8] = 1.0;
         }
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
     }
     void renderInit()
     {
@@ -449,14 +681,14 @@ private:
         {
             radius[j] = initR * normal(j, "CONSTANT");
         }
-        for (int j = 0; j < rNum; j++)
+        for (int j = 3; j < rNum-1; j++)
         {
             renderPiece(j);
         }
     }
 
 public:
-    Shader ironShader,woodShader,glassShader,porcelainShader,treeShader;
+    Shader ironShader,woodShader,glassShader,porcelainShader,treeShader,porcelain2Shader,marbleShader;
     unsigned int woodNormalMap;
     unsigned int porcelainNormalMap;
     Material(glm::vec3 lightPos, glm::vec3 lightColor, glm::vec3 viewPos,float offsetX,float initR,float length)
@@ -464,7 +696,9 @@ public:
     woodShader(Shader("Material/Wood.vs","Material/Wood.fs")),
     glassShader(Shader("Material/glass.vs","Material/glass.fs")),
     porcelainShader(Shader("Material/porcelain.vs","Material/porcelain.fs")),
-    treeShader(Shader("Material/Wood.vs","Material/Wood.fs"))
+    treeShader(Shader("Material/Wood.vs","Material/Wood.fs")),
+    porcelain2Shader(Shader("Material/porcelain.vs","Material/porcelain.fs")),
+    marbleShader(Shader("Material/porcelain.vs","Material/porcelain.fs"))
     {
         this->offsetX=offsetX;
         this->initR=initR;
@@ -550,6 +784,7 @@ public:
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
         path="Material/porcelain/moutain.png";
+//        path="Material/porcelain/p1.png";
 //        path="Material/porcelain/tree1.png";
         loadTextureSimple(path.data());
         glGenTextures(1, &this->porcelainSurfaceID);
@@ -580,8 +815,7 @@ public:
         porcelainShader.setVec3("surface.diffuse", 0.5, 0.5, 0.5);
         porcelainShader.setVec3("surface.specular", 0.844597, 0.844597, 0.844597);
         porcelainShader.setFloat("surface.shininess",  60.846150);
-        
-        
+
         
         
         
@@ -599,6 +833,10 @@ public:
 //        string path="Material/clay/p2.png";
 //        string path="Material/porcelain/cloud1.jpg";
         path="Material/porcelain/tree1.jpg";
+//        path="Material/marbleYellow.jpg";
+
+       
+
 //        string path="Material/porcelain/tree2.jpg";
 //        loadTextureSimple(path.data());
         loadTextureSimple(path.data());
@@ -631,6 +869,82 @@ public:
         
         
         
+        glGenTextures(1, &this->porcelain2ID);
+        glBindTexture(GL_TEXTURE_2D, this->porcelain2ID);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+//        path="Material/porcelain/moutain.png";
+        path="Material/porcelain/p1.png";
+//        path="Material/marbleYellow.jpg";
+//        path="Material/porcelain/tree1.png";
+        loadTextureSimple(path.data());
+        glGenTextures(1, &this->porcelain2SurfaceID);
+        glBindTexture(GL_TEXTURE_2D, this->porcelain2SurfaceID);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+        
+        porcelain2Shader.use();
+        porcelain2Shader.setInt("porcelainTexture",8);
+        porcelain2Shader.setInt("porcelainSurfaceTexture",9);
+        porcelain2Shader.setInt("porcelainNormalMap",10);
+        
+        porcelain2Shader.setVec3("lightColor", 1.0f, 1.0f, 1.0f);
+        porcelain2Shader.setVec3("lightPos", lightPos);
+        porcelain2Shader.setVec3("viewPos", viewPos);
+
+        porcelain2Shader.setVec3("porcelain.ambient", 1.0000, 1.00000, 1.00000);
+        porcelain2Shader.setVec3("porcelain.diffuse",0.5, 0.5, 0.5);
+        porcelain2Shader.setVec3("porcelain.specular", 0.844597, 0.844597, 0.844597);
+        porcelain2Shader.setFloat("porcelain.shininess",  60.846150);
+
+        porcelain2Shader.setVec3("surface.ambient", 0.7000, 0.70000, 0.70000);
+        porcelain2Shader.setVec3("surface.diffuse", 0.5, 0.5, 0.5);
+        porcelain2Shader.setVec3("surface.specular", 0.844597, 0.844597, 0.844597);
+        porcelain2Shader.setFloat("surface.shininess",  60.846150);
+        
+        
+        
+        
+        
+        glGenTextures(1, &this->marbleID);
+        glBindTexture(GL_TEXTURE_2D, this->marbleID);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+        path="Material/marbleYellow.jpg";
+        loadTextureSimple(path.data());
+        glGenTextures(1, &this->marbleSurfaceID);
+        glBindTexture(GL_TEXTURE_2D, this->marbleSurfaceID);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+        
+
+        marbleShader.use();
+        marbleShader.setInt("porcelainTexture",11);
+        marbleShader.setInt("porcelainSurfaceTexture",12);
+        marbleShader.setInt("porcelainNormalMap",13);
+        
+        marbleShader.setVec3("lightColor", 1.0f, 1.0f, 1.0f);
+        marbleShader.setVec3("lightPos", lightPos);
+        marbleShader.setVec3("viewPos", viewPos);
+
+        marbleShader.setVec3("porcelain.ambient", 1.0000, 1.00000, 1.00000);
+        marbleShader.setVec3("porcelain.diffuse",0.5, 0.5, 0.5);
+        marbleShader.setVec3("porcelain.specular", 0.844597, 0.844597, 0.844597);
+        marbleShader.setFloat("porcelain.shininess",  60.846150);
+
+        marbleShader.setVec3("surface.ambient", 0.7000, 0.70000, 0.70000);
+        marbleShader.setVec3("surface.diffuse", 0.5, 0.5, 0.5);
+        marbleShader.setVec3("surface.specular", 0.844597, 0.844597, 0.844597);
+        marbleShader.setFloat("surface.shininess",  60.846150);
+        
         
         
         
@@ -640,7 +954,7 @@ public:
 
     void initialize(){
         this->renderInit();
-        this->renderBase();
+//        this->renderBase();
 
         glBindVertexArray(materialVAO);
         glBindBuffer(GL_ARRAY_BUFFER, materialVBO);
@@ -716,11 +1030,34 @@ public:
             treeShader.setMat4("projection", projection);
             treeShader.setMat4("model", model);
             treeShader.setMat4("rotate",rotate);
-
             
-            
-            
-            
+        }else if(texture == "porcelain2"){
+            glActiveTexture(GL_TEXTURE8);//在绑定纹理之前先激活纹理单元
+            glBindTexture(GL_TEXTURE_2D, this->porcelain2ID);
+            glActiveTexture(GL_TEXTURE9);
+            glBindTexture(GL_TEXTURE_2D, this->porcelain2SurfaceID);
+            glActiveTexture(GL_TEXTURE10);
+            glBindTexture(GL_TEXTURE_2D, porcelainNormalMap);
+            porcelain2Shader.use();
+            porcelain2Shader.setVec3("lightColor",lightColors[lightId]);
+            porcelain2Shader.setMat4("view", view);
+            porcelain2Shader.setMat4("projection", projection);
+            porcelain2Shader.setMat4("model", model);
+            porcelain2Shader.setMat4("rotate",rotate);
+        }
+        else if(texture == "marble"){
+            glActiveTexture(GL_TEXTURE11);//在绑定纹理之前先激活纹理单元
+            glBindTexture(GL_TEXTURE_2D, this->marbleID);
+            glActiveTexture(GL_TEXTURE12);
+            glBindTexture(GL_TEXTURE_2D, this->marbleSurfaceID);
+            glActiveTexture(GL_TEXTURE13);
+            glBindTexture(GL_TEXTURE_2D, porcelainNormalMap);
+            porcelain2Shader.use();
+            porcelain2Shader.setVec3("lightColor",lightColors[lightId]);
+            porcelain2Shader.setMat4("view", view);
+            porcelain2Shader.setMat4("projection", projection);
+            porcelain2Shader.setMat4("model", model);
+            porcelain2Shader.setMat4("rotate",rotate);
         }
 
         glBindVertexArray(materialVAO);
@@ -787,6 +1124,12 @@ public:
             }
             for(int i=MAX(0,rightNum-1);i<=MIN(rNum-1,leftNum+1);i++){
                 renderPiece(i);
+                
+                
+                
+                
+                
+                
             }
         }
 
@@ -813,7 +1156,7 @@ public:
         for(int i=0;i<rNum;i++){
             radius[i]=newRadius[i];
         }
-        for (int j = 0; j < rNum; j++)
+        for (int j = 3; j < rNum; j++)
         {
             renderPiece(j);
         }
@@ -855,5 +1198,6 @@ public:
         return ;
     }
 };
+
 
 

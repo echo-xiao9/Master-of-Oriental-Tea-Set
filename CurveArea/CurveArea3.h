@@ -175,7 +175,8 @@ public:
    
 
 
-    void getRadius(float radius[]){
+    bool getRadius(float radius[]){
+        if(curves==0)return false;
         int n = rNum/curves;
         float x0=0,y0=0,x1=0,y1=0,x2=0,y2=0,x3=0,y3=0,x=0,y=0;
         for(int i=0;i<curves;i++){
@@ -197,7 +198,7 @@ public:
         }
         cout<<"getradius"<<min<<" "<<max<<endl;
         
-        
+        return true;
         
     }
     

@@ -228,8 +228,8 @@ int main() {
                 break;
                 
             case START:
-                curveArea3.getRadius(tmpRadius);
-                material.updateRadiusAll(tmpRadius);
+                if(curveArea3.getRadius(tmpRadius))
+                    material.updateRadiusAll(tmpRadius);
                 break;
                 
             default:
@@ -252,7 +252,7 @@ int main() {
         else {
             knifePos=glm::vec3(0.0f,-2.0f,0.0f);
             lastKnifePos=glm::vec3(0.0f,-2.0f,0.0f);
-            cupRotate=glm::rotate(cupRotate,0.05f,glm::vec3(1.0,0.0,0.0f));
+            cupRotate=glm::rotate(cupRotate,0.02f,glm::vec3(1.0,0.0,0.0f));
         }
 
         material.drawMaterial(view,projection,glm::mat4(1.0f),cupRotate,ifdisplay);

@@ -169,6 +169,7 @@
 		E84176F3277EB6360064C00D /* Game.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Game.hpp; sourceTree = "<group>"; };
 		E84176F6277ED5D30064C00D /* ControlPoint.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = ControlPoint.fs; sourceTree = "<group>"; };
 		E84176F7277ED5D80064C00D /* ControlPoint.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = ControlPoint.vs; sourceTree = "<group>"; };
+		E857542A2787244400B3B62F /* Wood2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Wood2.jpg; sourceTree = "<group>"; };
 		E869B9D7276A26B0005CA84B /* IOSystem.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = IOSystem.hpp; sourceTree = "<group>"; };
 		E869B9D8276A26B0005CA84B /* Logger.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Logger.hpp; sourceTree = "<group>"; };
 		E869B9D9276A26B0005CA84B /* IOStream.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = IOStream.hpp; sourceTree = "<group>"; };
@@ -3194,6 +3195,7 @@
 				E82363F7277708650060E7CB /* greenGlass */,
 				E894A6662776C675002B7CB1 /* glass.fs */,
 				E894A6652776C66F002B7CB1 /* glass.vs */,
+				E857542A2787244400B3B62F /* Wood2.jpg */,
 				E8E7F03E276C287B004CBD2A /* Surface.jpg */,
 				E8E7F03F276C287B004CBD2A /* Wood.vs */,
 				E8E7F040276C287B004CBD2A /* Iron.fs */,
