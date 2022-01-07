@@ -245,6 +245,9 @@ int main() {
                 if(curveArea3.getRadius(tmpRadius))
                     material.updateRadiusAll(tmpRadius);
                 break;
+            case HOLLOW:
+                IFSOLID=!IFSOLID;
+                break;
                 
             default:
                 curveArea.releaseSelect();
@@ -372,6 +375,33 @@ void processInput(GLFWwindow *window) {
                     ifdisplay=!ifdisplay;
                     totalTime=0;
                 }
+                // hollow and solid button
+                else if(
+                SCR_HEIGHT/2-buttonOffsetY-buttonHeight/2+6*buttonDist<=lastY&&lastY<= SCR_HEIGHT/2-buttonOffsetY+buttonHeight/2+6*buttonDist){
+                   
+                    Select =  HOLLOW;
+                }
+                // save buttton
+                else if(
+                SCR_HEIGHT/2-buttonOffsetY-buttonHeight/2+7*buttonDist<=lastY&&lastY<= SCR_HEIGHT/2-buttonOffsetY+buttonHeight/2+7*buttonDist){
+                    
+                }
+                // load button
+                else if(
+                SCR_HEIGHT/2-buttonOffsetY-buttonHeight/2+8*buttonDist<=lastY&&lastY<= SCR_HEIGHT/2-buttonOffsetY+buttonHeight/2+8*buttonDist){
+                    
+                }
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
             }
             else{
                 cout<<"POINT:"<<lastX<<" "<<lastY<<endl;
@@ -514,8 +544,9 @@ void drawButtons(Button &bezierButton,Button& cursorButton,Button &startButton,B
 //    curveArea.drawCurveArea();
 //    curveArea2.drawCurveArea();
     curveArea3.testDraw();
-    hollowButton.drawButton();
-    solidButton.drawButton();
+    
+    if(IFSOLID)solidButton.drawButton();
+    else hollowButton.drawButton();
     saveButton.drawButton();
     loadButton.drawButton();
     pannel.drawButton();

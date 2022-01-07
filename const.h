@@ -13,7 +13,7 @@ const unsigned int SCR_WIDTH = 1400;
 const unsigned int SCR_HEIGHT = 800;
 
 enum type{BEZIER,CURSOR,UNFIRED, FIRED};
-enum select{AREA,MODE,START,RESET,TEXTURE,CHANGED,DISPLAY,NONE,FIRE,LIGHT,POINT};
+enum select{AREA,MODE,START,RESET,TEXTURE,CHANGED,DISPLAY,NONE,FIRE,LIGHT,POINT,HOLLOW};
 
 // button
 const int buttonWidth=160,buttonHeight=45,buttonOffsetX=600,buttonOffsetY=220,buttonDist=70;
