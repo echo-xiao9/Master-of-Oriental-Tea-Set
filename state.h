@@ -13,4 +13,6 @@ int sceneId=0;
 int lightId=0;
 float tmpRadius[rNum]={0};
 
+
+bool IFSOLID=false;
 #endif /* state_h */

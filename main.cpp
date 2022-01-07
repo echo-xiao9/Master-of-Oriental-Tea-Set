@@ -38,7 +38,8 @@ void processInput(GLFWwindow *window);
 glm::vec3 Screen2World(float x,float y, glm::mat4 projection, glm::mat4 view);
 glm::vec3 BezierCurve(glm::vec3 p0,glm::vec3 p1,glm::vec3 p2,glm::vec3 p3,glm::vec3 p4,glm::vec3 p5,float t);
 void addPs(int sceneId,float currentTime, ParticleSystem &flower2Ps,ParticleSystem& flowerPs, ParticleSystem&leavePs, glm::mat4 projection, glm::mat4 view);
-void drawButtons(Button &bezierButton,Button& cursorButton,Button &startButton,Button &resetButton ,Button &fireButton, Button& textureButton,Button &displayButton,CurveArea &curveArea,CurveArea3& curveArea3,Button &pannel);
+
+void drawButtons(Button &bezierButton,Button& cursorButton,Button &startButton,Button &resetButton ,Button &fireButton, Button& textureButton,Button &displayButton,CurveArea &curveArea,CurveArea3& curveArea3,Button &pannel, Button &hollowButton,Button& solidButton,Button &saveButton,Button &loadButton);
 void screen2World2(float sx, float sy, float & wx, float &wy);
 
 //time
@@ -140,7 +141,20 @@ int main() {
     buttonWidth,buttonHeight, buttonOffsetX,buttonOffsetY-4*buttonDist);
     Button displayButton("Button/show3.png",SCR_WIDTH,SCR_HEIGHT,
     buttonWidth,buttonHeight, buttonOffsetX,buttonOffsetY-5*buttonDist);
+    Button hollowButton("Button/hollow3.png",SCR_WIDTH,SCR_HEIGHT,
+    buttonWidth,buttonHeight, buttonOffsetX,buttonOffsetY-6*buttonDist);
+    Button solidButton("Button/solid3.png",SCR_WIDTH,SCR_HEIGHT,
+    buttonWidth,buttonHeight, buttonOffsetX,buttonOffsetY-6*buttonDist);
+    Button saveButton("Button/save3.png",SCR_WIDTH,SCR_HEIGHT,
+    buttonWidth,buttonHeight, buttonOffsetX,buttonOffsetY-7*buttonDist);
+    Button loadButton("Button/load3.png",SCR_WIDTH,SCR_HEIGHT,
+    buttonWidth,buttonHeight, buttonOffsetX,buttonOffsetY-8*buttonDist);
+    
 
+    
+    
+    
+    
     glm::vec3 knifePos=p0,lastKnifePos;
 
     // calculate time
@@ -260,7 +274,7 @@ int main() {
         ps.simulate(deltaTime);
         ps.render(view, projection, glm::mat4(1.0f), cupRotate);
 //        test.drawButton();
-        drawButtons(bezierButton,cursorButton,startButton,resetButton ,fireButton,  textureButton,displayButton,curveArea, curveArea3,pannel);
+        drawButtons(bezierButton,cursorButton,startButton,resetButton ,fireButton,  textureButton,displayButton,curveArea, curveArea3,pannel, hollowButton, solidButton, saveButton, loadButton);
         glfwSwapBuffers(window);
         glfwPollEvents();
     }
@@ -482,7 +496,7 @@ void addPs(int sceneId,float currentTime, ParticleSystem &flower2Ps,ParticleSyst
 }
 
 
-void drawButtons(Button &bezierButton,Button& cursorButton,Button &startButton,Button &resetButton ,Button &fireButton, Button& textureButton,Button &displayButton,CurveArea &curveArea,CurveArea3& curveArea3,Button &pannel){
+void drawButtons(Button &bezierButton,Button& cursorButton,Button &startButton,Button &resetButton ,Button &fireButton, Button& textureButton,Button &displayButton,CurveArea &curveArea,CurveArea3& curveArea3,Button &pannel, Button &hollowButton,Button& solidButton,Button &saveButton,Button &loadButton){
     if(Mode==CURSOR)
         cursorButton.drawButton();
     else
@@ -500,7 +514,13 @@ void drawButtons(Button &bezierButton,Button& cursorButton,Button &startButton,B
 //    curveArea.drawCurveArea();
 //    curveArea2.drawCurveArea();
     curveArea3.testDraw();
+    hollowButton.drawButton();
+    solidButton.drawButton();
+    saveButton.drawButton();
+    loadButton.drawButton();
     pannel.drawButton();
+    
+    
 }
 
 
