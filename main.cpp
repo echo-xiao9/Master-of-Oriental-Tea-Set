@@ -1,7 +1,5 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
-//#include <stb_image.h>
-
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
@@ -9,9 +7,7 @@
 #include <iostream>
 #include <cstdlib>
 #include "time.h"
-
 #include "include/shader.h"
-//#include "include/camera.h"
 #include "include/model.h"
 #include "const.h"
 #include "state.h"
@@ -53,6 +49,7 @@ glm::mat4 cupRotate=glm::mat4(1.0f);
 
 // tmp
 float wx, wy=0;
+
 
 
 int main() {
@@ -118,8 +115,8 @@ int main() {
     buttonWidth,buttonHeight, buttonOffsetX,buttonOffsetY,-5.0f,3.0f,6.0f);
     
     CurveArea2 curveArea2;
-    
     CurveArea3 curveArea3;
+   
 //    Button bezierPannel("Button/bezier2.png",SCR_WIDTH,SCR_HEIGHT,
 //                        buttonWidth,buttonHeight, buttonOffsetX,buttonOffsetY);
     
@@ -212,7 +209,7 @@ int main() {
             knifePos = glm::vec3(MAX(-8.0f,knifePos.x), MIN(0, knifePos.y), 0);
         }
 //        cout<<"select:"<<Select<<endl;
-    
+        int randomId2=0;
         switch (Select) {
             case FIRE:
                 sceneId++;
@@ -248,15 +245,49 @@ int main() {
             case HOLLOW:
                 IFSOLID=!IFSOLID;
                 break;
+            case SAVE:
+                /*
+                 * save format:
+                 * randomId
+                 * curves
+                 * crtlPoint
+                 * multiple crtlpoints
+                 * textureId
+                 * IFSOLID
+                 */
+                outfile.open("model.txt");
+                if (!outfile.is_open())
+                    {
+                        cout << "can't open file" << endl;
+                    }
+                
+                outfile<<randomId<<endl;
+                curveArea3.saveCurve();
+                material.saveModel();
+                outfile.close();
+                break;
+                
+            case LOAD:
+                
+                infile.open("model.txt");
+                if (!infile.is_open()){
+                   cout << "can't open file" << endl;
+                }
+                infile>>randomId2;
+                if(randomId2== randomId)break;
+                else randomId = randomId2;
+                if(curveArea3.loadCurve())
+                    material.loadModel();
+                infile.close();
+                if(curveArea3.getRadius(tmpRadius))
+                    material.updateRadiusAll(tmpRadius);
+                break;
                 
             default:
                 curveArea.releaseSelect();
                 material.updateRadius(knifePos,lastKnifePos,&ps,deltaTime);
                 break;
         }
-        
-
-        
         skybox.drawSkybox(view,projection);
 
              
@@ -384,21 +415,21 @@ void processInput(GLFWwindow *window) {
                 // save buttton
                 else if(
                 SCR_HEIGHT/2-buttonOffsetY-buttonHeight/2+7*buttonDist<=lastY&&lastY<= SCR_HEIGHT/2-buttonOffsetY+buttonHeight/2+7*buttonDist){
+                   
+                    
+                    Select = SAVE;
+                    
+                    
+                    
                     
                 }
                 // load button
                 else if(
                 SCR_HEIGHT/2-buttonOffsetY-buttonHeight/2+8*buttonDist<=lastY&&lastY<= SCR_HEIGHT/2-buttonOffsetY+buttonHeight/2+8*buttonDist){
+                    Select = LOAD;
                     
                 }
-                
-                
-                
-                
-                
-                
-                
-                
+
                 
                 
                 
@@ -538,11 +569,8 @@ void drawButtons(Button &bezierButton,Button& cursorButton,Button &startButton,B
     
     startButton.drawButton();
     resetButton.drawButton();
-//        textureButton.drawButton();
     displayButton.drawButton();
 
-//    curveArea.drawCurveArea();
-//    curveArea2.drawCurveArea();
     curveArea3.testDraw();
     
     if(IFSOLID)solidButton.drawButton();

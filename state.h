@@ -8,11 +8,14 @@
 #ifndef state_h
 #define state_h
 #include "const.h"
+
 float LENGTH=4.0f;
 int sceneId=0;
 int lightId=0;
 float tmpRadius[rNum]={0};
-
+int randomId=rand()*100;
 
 bool IFSOLID=false;
 #endif /* state_h */
+
+

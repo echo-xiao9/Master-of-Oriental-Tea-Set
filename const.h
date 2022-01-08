@@ -8,12 +8,14 @@
 #ifndef const_h
 #define const_h
 #include "camera.h"
+
+#include <fstream>
 // settings
 const unsigned int SCR_WIDTH = 1400;
 const unsigned int SCR_HEIGHT = 800;
 
 enum type{BEZIER,CURSOR,UNFIRED, FIRED};
-enum select{AREA,MODE,START,RESET,TEXTURE,CHANGED,DISPLAY,NONE,FIRE,LIGHT,POINT,HOLLOW};
+enum select{AREA,MODE,START,RESET,TEXTURE,CHANGED,DISPLAY,NONE,FIRE,LIGHT,POINT,HOLLOW, SAVE,LOAD};
 
 // button
 const int buttonWidth=160,buttonHeight=45,buttonOffsetX=600,buttonOffsetY=220,buttonDist=70;
@@ -49,8 +51,11 @@ glm::vec3 blue2(0.85,0.81,0.97);
 glm::vec3 blue3(0.8,0.8,1.0);
 glm::vec3 blue4(0.75,0.8,1.0);
 glm::vec3 lightColors[]={white, pink2, pink3,pink4,blue2,blue3,blue4};
-
 int LIGHT_NUM=7;
+
+
+
+
 
 // material
 #define Pi 3.1416
@@ -114,4 +119,8 @@ int LINE_NUM=100;
 float PARTICLE_LIFE=10.0;
 
 
+
+// read and save
+ifstream infile;
+ofstream outfile;
 #endif /* const_h */

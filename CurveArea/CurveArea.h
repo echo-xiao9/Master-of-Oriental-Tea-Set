@@ -59,7 +59,7 @@ private:
              b4.x,b4.y,0,
              b5.x,b5.y,0,
         };
-        cout<<"point 1:"<<b0.x<<' '<<b0.y<<endl;
+//        cout<<"point 1:"<<b0.x<<' '<<b0.y<<endl;
 
         glm::vec3 p;
         for(int t=0;t<LINENUM;t++){

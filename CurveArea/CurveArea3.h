@@ -39,12 +39,7 @@ public:
         
         for(int i=0;i<MAX_CTRL_POINT_DATA;i++)points[i]=2.0f;
         for(int i=0;i<POINTS_IN_CURVES_DATA;i++)curvePoints[i]=2.0f;
-        //test
-//        for(int i=0;i<crtlPoint*2;i++) points[i]=0.05*i;
-        
-//        for(int i=0;i<100*2;i++) curvePoints[i]=0.01*i;
 
-      
         
         glGenBuffers(1, &VBO);
         glGenVertexArrays(1, &VAO);
@@ -70,7 +65,7 @@ public:
     
     void reset(){
         for(int i=0;i<MAX_CTRL_POINT_DATA;i++)points[i]=2.0f;
-        for(int i=0;i<MAX_CTRL_POINT_DATA;i++)curvePoints[i]=2.0f;
+        for(int i=0;i<POINTS_IN_CURVES_DATA;i++)curvePoints[i]=2.0f;
         crtlPoint=0;
         curves=0;
         ctrlPoints.clear();
@@ -111,7 +106,6 @@ public:
     
     void addPoint(float newX, float newY){
         
-        cout<<"addPoint:"<<newX<<" "<<newY<<endl;
 //        if(ctrlPoints[newX]==newY)return;
         if(newX<=0.0f || newX>=1.0f ||newY<=-1.0f || newY>=1.0f)return;
         
@@ -153,7 +147,6 @@ public:
                 curvePoints[2*curves*POINTS_IN_CURVE+2*i+1]=y;
             }
             curves++;
-            cout<<"curves:"<<curves<<endl;
             glGenBuffers(1, &curveVBO);
             glGenVertexArrays(1, &curveVAO);
             glBindVertexArray(curveVAO);
@@ -165,10 +158,7 @@ public:
             
             // use the latest node as the first one
             addPoint(x3,y3);
-            
-            
         }
-        
     }
     
     
@@ -192,11 +182,9 @@ public:
         }
         float max=0;float min=1;
         for(int i=0;i<rNum;i++){
-            cout<<radius[i]<<endl;
             if(radius[i]<min)min=radius[i];
             if(radius[i]>max)max=radius[i];
         }
-        cout<<"getradius"<<min<<" "<<max<<endl;
         
         return true;
         
@@ -227,8 +215,28 @@ public:
         return rx;
     }
     
+    void saveCurve(){
+        outfile << curves << endl;
+        outfile << crtlPoint << endl;
+        for(int i=0;i<crtlPoint;i++) outfile<< points[2*i]<<' '<< points[2*i+1]<<endl;
+    }
    
-    
+    bool loadCurve(){
+        int curves1,crtlPoint1;
+        infile>>curves1 >> crtlPoint1;
+        if(curves1==curves && crtlPoint1 == crtlPoint)return false;
+        for(int i=0;i<crtlPoint1;i++){
+            float x;float y;
+            infile>>x>>y;
+            if((i==0) || i%4!=0)addPoint(x,y);
+            cout<<"load point:"<<x<<" "<<y<<endl;
+        }
+        cout<<"curves:"<<curves<<" curves1:"<<curves1<<endl;
+        cout<<"crtlPoint:"<<crtlPoint<<" crtlPoint1:"<<crtlPoint1<<endl;
+        return true;
+    }
+  
     
 };
 #endif /* CurveArea3_h */
+

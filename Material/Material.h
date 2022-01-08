@@ -1170,6 +1170,10 @@ public:
             cout<<"texture:"<<texture<<endl;
             ps->changeColor(texture);
         }
+    
+    
+    
+    
 
     void updateRadius(glm::vec3 knifePos,glm::vec3 lastPos,ParticleSystem *ps,float dt){
         float pieceWidth = length / (2*rNum),leftLimit=offsetX-length/2,rightLimit=offsetX+length/2;
@@ -1291,6 +1295,19 @@ public:
                 std::cout<<SOIL_last_result()<<std::endl;
             SOIL_free_image_data(data);
         return ;
+    }
+    
+    
+    void saveModel(){
+        outfile << textureId << endl;
+        outfile << IFSOLID << endl;
+        cout<<"material save model:"<< textureId << IFSOLID<<endl;
+    }
+    void loadModel(){
+        
+        infile >> textureId >> IFSOLID;
+        cout<<"material load model:"<< textureId<<IFSOLID<<endl;
+        texture = textures[textureId];
     }
 };
 
