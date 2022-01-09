@@ -60,7 +60,10 @@ public:
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-
+        // test
+        glEnableVertexAttribArray(0); // Disable our Vertex Array Object
+        glBindVertexArray(0); // Disable our Vertex Buffer Object
+        
         int texwidth,texheight;//nrChannels表示通道数，R/G/B/A，一共4个通道，有些图片只有3个，A即为alpha
 //        unsigned char *image = SOIL_load_image(path.c_str(), &texwidth, &texheight, 0, SOIL_LOAD_RGB);
 //            glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, texwidth, texheight, 0, GL_RGB, GL_UNSIGNED_BYTE, image);

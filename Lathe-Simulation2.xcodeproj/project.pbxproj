@@ -168,6 +168,66 @@
 		E84176F7277ED5D80064C00D /* ControlPoint.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = ControlPoint.vs; sourceTree = "<group>"; };
 		E857542A2787244400B3B62F /* Wood2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Wood2.jpg; sourceTree = "<group>"; };
 		E857542B27889D5100B3B62F /* model.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = model.txt; sourceTree = "<group>"; };
+		E857542E27895AD600B3B62F /* 10014_dolphin_v2_max2011_it2.mtl */ = {isa = PBXFileReference; lastKnownFileType = text; path = 10014_dolphin_v2_max2011_it2.mtl; sourceTree = "<group>"; };
+		E857542F27895AD600B3B62F /* 10014_dolphin_v1_Diffuse.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 10014_dolphin_v1_Diffuse.jpg; sourceTree = "<group>"; };
+		E857543027895AD600B3B62F /* 10014_dolphin_v2_max2011_it2.obj */ = {isa = PBXFileReference; lastKnownFileType = text; path = 10014_dolphin_v2_max2011_it2.obj; sourceTree = "<group>"; };
+		E857543227895AD600B3B62F /* fire.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fire.png; sourceTree = "<group>"; };
+		E857543527895AD600B3B62F /* internal_ground_ao_texture.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = internal_ground_ao_texture.jpeg; sourceTree = "<group>"; };
+		E857543627895AD600B3B62F /* low.obj */ = {isa = PBXFileReference; lastKnownFileType = text; path = low.obj; sourceTree = "<group>"; };
+		E857543727895AD600B3B62F /* Default_Base_Color.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default_Base_Color.png; sourceTree = "<group>"; };
+		E857543827895AD600B3B62F /* Default_Roughness.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default_Roughness.png; sourceTree = "<group>"; };
+		E857543927895AD600B3B62F /* Default_Normal_OpenGL.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default_Normal_OpenGL.png; sourceTree = "<group>"; };
+		E857543A27895AD600B3B62F /* Default_Mixed_AO.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default_Mixed_AO.png; sourceTree = "<group>"; };
+		E857543B27895AD600B3B62F /* Default_Metallic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default_Metallic.png; sourceTree = "<group>"; };
+		E857543D27895AD600B3B62F /* terrain.tga */ = {isa = PBXFileReference; lastKnownFileType = file; path = terrain.tga; sourceTree = "<group>"; };
+		E857543E27895AD600B3B62F /* map_1.obj */ = {isa = PBXFileReference; lastKnownFileType = text; path = map_1.obj; sourceTree = "<group>"; };
+		E857543F27895AD600B3B62F /* map_1.mtl */ = {isa = PBXFileReference; lastKnownFileType = text; path = map_1.mtl; sourceTree = "<group>"; };
+		E857544027895AD600B3B62F /* object.tga */ = {isa = PBXFileReference; lastKnownFileType = file; path = object.tga; sourceTree = "<group>"; };
+		E857544127895AD600B3B62F /* grass.tga */ = {isa = PBXFileReference; lastKnownFileType = file; path = grass.tga; sourceTree = "<group>"; };
+		E857544227895AD600B3B62F /* water.tga */ = {isa = PBXFileReference; lastKnownFileType = file; path = water.tga; sourceTree = "<group>"; };
+		E857544327895AD600B3B62F /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		E857544527895AD600B3B62F /* Base.mtl */ = {isa = PBXFileReference; lastKnownFileType = text; path = Base.mtl; sourceTree = "<group>"; };
+		E857544627895AD600B3B62F /* Base.obj */ = {isa = PBXFileReference; lastKnownFileType = text; path = Base.obj; sourceTree = "<group>"; };
+		E857544827895AD600B3B62F /* knife_slice.mtl */ = {isa = PBXFileReference; lastKnownFileType = text; path = knife_slice.mtl; sourceTree = "<group>"; };
+		E857544927895AD600B3B62F /* knife_gear.obj */ = {isa = PBXFileReference; lastKnownFileType = text; path = knife_gear.obj; sourceTree = "<group>"; };
+		E857544A27895AD600B3B62F /* knife_holder.mtl */ = {isa = PBXFileReference; lastKnownFileType = text; path = knife_holder.mtl; sourceTree = "<group>"; };
+		E857544B27895AD600B3B62F /* knife_base.mtl */ = {isa = PBXFileReference; lastKnownFileType = text; path = knife_base.mtl; sourceTree = "<group>"; };
+		E857544C27895AD600B3B62F /* knife_base.obj */ = {isa = PBXFileReference; lastKnownFileType = text; path = knife_base.obj; sourceTree = "<group>"; };
+		E857544D27895AD600B3B62F /* knife_slice.obj */ = {isa = PBXFileReference; lastKnownFileType = text; path = knife_slice.obj; sourceTree = "<group>"; };
+		E857544E27895AD600B3B62F /* knife_gear.mtl */ = {isa = PBXFileReference; lastKnownFileType = text; path = knife_gear.mtl; sourceTree = "<group>"; };
+		E857544F27895AD600B3B62F /* knife_holder.obj */ = {isa = PBXFileReference; lastKnownFileType = text; path = knife_holder.obj; sourceTree = "<group>"; };
+		E857545227895AE200B3B62F /* 10014_dolphin_v2_max2011_it2.mtl */ = {isa = PBXFileReference; lastKnownFileType = text; path = 10014_dolphin_v2_max2011_it2.mtl; sourceTree = "<group>"; };
+		E857545327895AE200B3B62F /* 10014_dolphin_v1_Diffuse.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 10014_dolphin_v1_Diffuse.jpg; sourceTree = "<group>"; };
+		E857545427895AE200B3B62F /* 10014_dolphin_v2_max2011_it2.obj */ = {isa = PBXFileReference; lastKnownFileType = text; path = 10014_dolphin_v2_max2011_it2.obj; sourceTree = "<group>"; };
+		E857545627895AE200B3B62F /* fire.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fire.png; sourceTree = "<group>"; };
+		E857545927895AE200B3B62F /* internal_ground_ao_texture.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = internal_ground_ao_texture.jpeg; sourceTree = "<group>"; };
+		E857545A27895AE200B3B62F /* low.obj */ = {isa = PBXFileReference; lastKnownFileType = text; path = low.obj; sourceTree = "<group>"; };
+		E857545B27895AE200B3B62F /* Default_Base_Color.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default_Base_Color.png; sourceTree = "<group>"; };
+		E857545C27895AE200B3B62F /* Default_Roughness.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default_Roughness.png; sourceTree = "<group>"; };
+		E857545D27895AE200B3B62F /* Default_Normal_OpenGL.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default_Normal_OpenGL.png; sourceTree = "<group>"; };
+		E857545E27895AE200B3B62F /* Default_Mixed_AO.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default_Mixed_AO.png; sourceTree = "<group>"; };
+		E857545F27895AE200B3B62F /* Default_Metallic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default_Metallic.png; sourceTree = "<group>"; };
+		E857546127895AE200B3B62F /* terrain.tga */ = {isa = PBXFileReference; lastKnownFileType = file; path = terrain.tga; sourceTree = "<group>"; };
+		E857546227895AE200B3B62F /* map_1.obj */ = {isa = PBXFileReference; lastKnownFileType = text; path = map_1.obj; sourceTree = "<group>"; };
+		E857546327895AE200B3B62F /* map_1.mtl */ = {isa = PBXFileReference; lastKnownFileType = text; path = map_1.mtl; sourceTree = "<group>"; };
+		E857546427895AE200B3B62F /* object.tga */ = {isa = PBXFileReference; lastKnownFileType = file; path = object.tga; sourceTree = "<group>"; };
+		E857546527895AE200B3B62F /* grass.tga */ = {isa = PBXFileReference; lastKnownFileType = file; path = grass.tga; sourceTree = "<group>"; };
+		E857546627895AE200B3B62F /* water.tga */ = {isa = PBXFileReference; lastKnownFileType = file; path = water.tga; sourceTree = "<group>"; };
+		E857546727895AE200B3B62F /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		E857546927895AE200B3B62F /* Base.mtl */ = {isa = PBXFileReference; lastKnownFileType = text; path = Base.mtl; sourceTree = "<group>"; };
+		E857546A27895AE200B3B62F /* Base.obj */ = {isa = PBXFileReference; lastKnownFileType = text; path = Base.obj; sourceTree = "<group>"; };
+		E857546C27895AE200B3B62F /* knife_slice.mtl */ = {isa = PBXFileReference; lastKnownFileType = text; path = knife_slice.mtl; sourceTree = "<group>"; };
+		E857546D27895AE200B3B62F /* knife_gear.obj */ = {isa = PBXFileReference; lastKnownFileType = text; path = knife_gear.obj; sourceTree = "<group>"; };
+		E857546E27895AE200B3B62F /* knife_holder.mtl */ = {isa = PBXFileReference; lastKnownFileType = text; path = knife_holder.mtl; sourceTree = "<group>"; };
+		E857546F27895AE200B3B62F /* knife_base.mtl */ = {isa = PBXFileReference; lastKnownFileType = text; path = knife_base.mtl; sourceTree = "<group>"; };
+		E857547027895AE200B3B62F /* knife_base.obj */ = {isa = PBXFileReference; lastKnownFileType = text; path = knife_base.obj; sourceTree = "<group>"; };
+		E857547127895AE200B3B62F /* knife_slice.obj */ = {isa = PBXFileReference; lastKnownFileType = text; path = knife_slice.obj; sourceTree = "<group>"; };
+		E857547227895AE200B3B62F /* knife_gear.mtl */ = {isa = PBXFileReference; lastKnownFileType = text; path = knife_gear.mtl; sourceTree = "<group>"; };
+		E857547327895AE200B3B62F /* knife_holder.obj */ = {isa = PBXFileReference; lastKnownFileType = text; path = knife_holder.obj; sourceTree = "<group>"; };
+		E857547527895DF600B3B62F /* Benzaiten.mtl */ = {isa = PBXFileReference; lastKnownFileType = text; path = Benzaiten.mtl; sourceTree = "<group>"; };
+		E857547627895DF600B3B62F /* Benzaiten_u0_v0.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Benzaiten_u0_v0.jpg; sourceTree = "<group>"; };
+		E857547727895DF600B3B62F /* Benzaiten.obj */ = {isa = PBXFileReference; lastKnownFileType = text; path = Benzaiten.obj; sourceTree = "<group>"; };
+		E857547827895DF600B3B62F /* Benzaiten_u1_v0.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Benzaiten_u1_v0.jpg; sourceTree = "<group>"; };
 		E869B9D7276A26B0005CA84B /* IOSystem.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = IOSystem.hpp; sourceTree = "<group>"; };
 		E869B9D8276A26B0005CA84B /* Logger.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Logger.hpp; sourceTree = "<group>"; };
 		E869B9D9276A26B0005CA84B /* IOStream.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = IOStream.hpp; sourceTree = "<group>"; };
@@ -226,9 +286,6 @@
 		E894A6502771FBC5002B7CB1 /* 6.1.skybox.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = 6.1.skybox.fs; sourceTree = "<group>"; };
 		E894A6512771FBC5002B7CB1 /* 6.1.cubemaps.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = 6.1.cubemaps.vs; sourceTree = "<group>"; };
 		E894A6552772C579002B7CB1 /* const.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = const.h; sourceTree = "<group>"; };
-		E894A65B2772F71A002B7CB1 /* 10014_dolphin_v2_max2011_it2.mtl */ = {isa = PBXFileReference; lastKnownFileType = text; path = 10014_dolphin_v2_max2011_it2.mtl; sourceTree = "<group>"; };
-		E894A65C2772F71A002B7CB1 /* 10014_dolphin_v1_Diffuse.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 10014_dolphin_v1_Diffuse.jpg; sourceTree = "<group>"; };
-		E894A65E2772F775002B7CB1 /* 10014_dolphin_v2_max2011_it2.obj */ = {isa = PBXFileReference; lastKnownFileType = text; path = 10014_dolphin_v2_max2011_it2.obj; sourceTree = "<group>"; };
 		E894A6652776C66F002B7CB1 /* glass.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = glass.vs; sourceTree = "<group>"; };
 		E894A6662776C675002B7CB1 /* glass.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = glass.fs; sourceTree = "<group>"; };
 		E898F33D2779FA7E001B1987 /* reset2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = reset2.png; sourceTree = "<group>"; };
@@ -249,7 +306,6 @@
 		E898F352277A213F001B1987 /* spark.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = spark.jpg; sourceTree = "<group>"; };
 		E8A22F9F276DAE510066C506 /* NZ.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NZ.png; sourceTree = "<group>"; };
 		E8BC6B6A27846DB2006A371C /* fireParticle.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = fireParticle.fs; sourceTree = "<group>"; };
-		E8BC6B6E278477C6006A371C /* fire.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fire.png; sourceTree = "<group>"; };
 		E8BC6B7A2785E0A8006A371C /* 9.1.geometry_shader.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = 9.1.geometry_shader.fs; sourceTree = "<group>"; };
 		E8BC6B7B2785E0B9006A371C /* 9.1.geometry_shader.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = 9.1.geometry_shader.vs; sourceTree = "<group>"; };
 		E8BC6B7C2785E660006A371C /* CurveArea3.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CurveArea3.h; sourceTree = "<group>"; };
@@ -322,17 +378,6 @@
 		E8E7F05F276C287B004CBD2A /* Base.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Base.fs; sourceTree = "<group>"; };
 		E8E7F060276C287B004CBD2A /* Base.vs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Base.vs; sourceTree = "<group>"; };
 		E8E7F061276C287B004CBD2A /* Base.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Base.h; sourceTree = "<group>"; };
-		E8E7F062276C287B004CBD2A /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		E8E7F065276C287B004CBD2A /* Base.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Base.mtl; sourceTree = "<group>"; };
-		E8E7F066276C287B004CBD2A /* Base.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Base.obj; sourceTree = "<group>"; };
-		E8E7F068276C287B004CBD2A /* knife_slice.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = knife_slice.mtl; sourceTree = "<group>"; };
-		E8E7F069276C287B004CBD2A /* knife_gear.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = knife_gear.obj; sourceTree = "<group>"; };
-		E8E7F06A276C287B004CBD2A /* knife_holder.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = knife_holder.mtl; sourceTree = "<group>"; };
-		E8E7F06B276C287B004CBD2A /* knife_base.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = knife_base.mtl; sourceTree = "<group>"; };
-		E8E7F06C276C287B004CBD2A /* knife_base.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = knife_base.obj; sourceTree = "<group>"; };
-		E8E7F06D276C287B004CBD2A /* knife_slice.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = knife_slice.obj; sourceTree = "<group>"; };
-		E8E7F06E276C287B004CBD2A /* knife_gear.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = knife_gear.mtl; sourceTree = "<group>"; };
-		E8E7F06F276C287B004CBD2A /* knife_holder.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = knife_holder.obj; sourceTree = "<group>"; };
 		E8E7F072276C29C4004CBD2A /* assimpTargets.cmake.in */ = {isa = PBXFileReference; lastKnownFileType = text; path = assimpTargets.cmake.in; sourceTree = "<group>"; };
 		E8E7F075276C29C4004CBD2A /* bin_readme.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = bin_readme.txt; sourceTree = "<group>"; };
 		E8E7F076276C29C4004CBD2A /* mkfinal.bat */ = {isa = PBXFileReference; lastKnownFileType = text; path = mkfinal.bat; sourceTree = "<group>"; };
@@ -2817,12 +2862,12 @@
 				E8E7F05D276C287B004CBD2A /* main.cpp */,
 				E8E7F03D276C287B004CBD2A /* Material */,
 				E8E7F045276C287B004CBD2A /* Particle */,
-				E8E7F063276C287B004CBD2A /* resources */,
 				E8E7F049276C287B004CBD2A /* shaders */,
 				E8E7F025276C287B004CBD2A /* SkyBox */,
 				E822F9BE27054B2C003EA3EC /* Externals */,
 				E822F9B527054A43003EA3EC /* Products */,
 				E8840E512706A3040023EA73 /* Frameworks */,
+				E857545027895AE200B3B62F /* resources */,
 			);
 			sourceTree = "<group>";
 		};
@@ -2837,6 +2882,7 @@
 		E822F9BE27054B2C003EA3EC /* Externals */ = {
 			isa = PBXGroup;
 			children = (
+				E857542C27895AD600B3B62F /* resources */,
 				E822F9C927054E78003EA3EC /* glad.c */,
 				E822F9C027054B42003EA3EC /* Include */,
 				E822F9BF27054B39003EA3EC /* Libraries */,
@@ -2940,6 +2986,201 @@
 			path = original;
 			sourceTree = "<group>";
 		};
+		E857542C27895AD600B3B62F /* resources */ = {
+			isa = PBXGroup;
+			children = (
+				E857542D27895AD600B3B62F /* Dolphin */,
+				E857543127895AD600B3B62F /* ParticleSystem */,
+				E857543327895AD600B3B62F /* Models */,
+				E857544327895AD600B3B62F /* README.md */,
+				E857544427895AD600B3B62F /* Base */,
+				E857544727895AD600B3B62F /* Knife */,
+			);
+			path = resources;
+			sourceTree = SOURCE_ROOT;
+		};
+		E857542D27895AD600B3B62F /* Dolphin */ = {
+			isa = PBXGroup;
+			children = (
+				E857542E27895AD600B3B62F /* 10014_dolphin_v2_max2011_it2.mtl */,
+				E857542F27895AD600B3B62F /* 10014_dolphin_v1_Diffuse.jpg */,
+				E857543027895AD600B3B62F /* 10014_dolphin_v2_max2011_it2.obj */,
+			);
+			path = Dolphin;
+			sourceTree = "<group>";
+		};
+		E857543127895AD600B3B62F /* ParticleSystem */ = {
+			isa = PBXGroup;
+			children = (
+				E857543227895AD600B3B62F /* fire.png */,
+			);
+			path = ParticleSystem;
+			sourceTree = "<group>";
+		};
+		E857543327895AD600B3B62F /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				E857543427895AD600B3B62F /* table */,
+				E857543C27895AD600B3B62F /* ground.rar */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		E857543427895AD600B3B62F /* table */ = {
+			isa = PBXGroup;
+			children = (
+				E857543527895AD600B3B62F /* internal_ground_ao_texture.jpeg */,
+				E857543627895AD600B3B62F /* low.obj */,
+				E857543727895AD600B3B62F /* Default_Base_Color.png */,
+				E857543827895AD600B3B62F /* Default_Roughness.png */,
+				E857543927895AD600B3B62F /* Default_Normal_OpenGL.png */,
+				E857543A27895AD600B3B62F /* Default_Mixed_AO.png */,
+				E857543B27895AD600B3B62F /* Default_Metallic.png */,
+			);
+			path = table;
+			sourceTree = "<group>";
+		};
+		E857543C27895AD600B3B62F /* ground.rar */ = {
+			isa = PBXGroup;
+			children = (
+				E857543D27895AD600B3B62F /* terrain.tga */,
+				E857543E27895AD600B3B62F /* map_1.obj */,
+				E857543F27895AD600B3B62F /* map_1.mtl */,
+				E857544027895AD600B3B62F /* object.tga */,
+				E857544127895AD600B3B62F /* grass.tga */,
+				E857544227895AD600B3B62F /* water.tga */,
+			);
+			path = ground.rar;
+			sourceTree = "<group>";
+		};
+		E857544427895AD600B3B62F /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				E857544527895AD600B3B62F /* Base.mtl */,
+				E857544627895AD600B3B62F /* Base.obj */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		E857544727895AD600B3B62F /* Knife */ = {
+			isa = PBXGroup;
+			children = (
+				E857544827895AD600B3B62F /* knife_slice.mtl */,
+				E857544927895AD600B3B62F /* knife_gear.obj */,
+				E857544A27895AD600B3B62F /* knife_holder.mtl */,
+				E857544B27895AD600B3B62F /* knife_base.mtl */,
+				E857544C27895AD600B3B62F /* knife_base.obj */,
+				E857544D27895AD600B3B62F /* knife_slice.obj */,
+				E857544E27895AD600B3B62F /* knife_gear.mtl */,
+				E857544F27895AD600B3B62F /* knife_holder.obj */,
+			);
+			path = Knife;
+			sourceTree = "<group>";
+		};
+		E857545027895AE200B3B62F /* resources */ = {
+			isa = PBXGroup;
+			children = (
+				E857547427895DF600B3B62F /* benzaiten */,
+				E857545127895AE200B3B62F /* Dolphin */,
+				E857545527895AE200B3B62F /* ParticleSystem */,
+				E857545727895AE200B3B62F /* Models */,
+				E857546727895AE200B3B62F /* README.md */,
+				E857546827895AE200B3B62F /* Base */,
+				E857546B27895AE200B3B62F /* Knife */,
+			);
+			path = resources;
+			sourceTree = "<group>";
+		};
+		E857545127895AE200B3B62F /* Dolphin */ = {
+			isa = PBXGroup;
+			children = (
+				E857545227895AE200B3B62F /* 10014_dolphin_v2_max2011_it2.mtl */,
+				E857545327895AE200B3B62F /* 10014_dolphin_v1_Diffuse.jpg */,
+				E857545427895AE200B3B62F /* 10014_dolphin_v2_max2011_it2.obj */,
+			);
+			path = Dolphin;
+			sourceTree = "<group>";
+		};
+		E857545527895AE200B3B62F /* ParticleSystem */ = {
+			isa = PBXGroup;
+			children = (
+				E857545627895AE200B3B62F /* fire.png */,
+			);
+			path = ParticleSystem;
+			sourceTree = "<group>";
+		};
+		E857545727895AE200B3B62F /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				E857545827895AE200B3B62F /* table */,
+				E857546027895AE200B3B62F /* ground.rar */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		E857545827895AE200B3B62F /* table */ = {
+			isa = PBXGroup;
+			children = (
+				E857545927895AE200B3B62F /* internal_ground_ao_texture.jpeg */,
+				E857545A27895AE200B3B62F /* low.obj */,
+				E857545B27895AE200B3B62F /* Default_Base_Color.png */,
+				E857545C27895AE200B3B62F /* Default_Roughness.png */,
+				E857545D27895AE200B3B62F /* Default_Normal_OpenGL.png */,
+				E857545E27895AE200B3B62F /* Default_Mixed_AO.png */,
+				E857545F27895AE200B3B62F /* Default_Metallic.png */,
+			);
+			path = table;
+			sourceTree = "<group>";
+		};
+		E857546027895AE200B3B62F /* ground.rar */ = {
+			isa = PBXGroup;
+			children = (
+				E857546127895AE200B3B62F /* terrain.tga */,
+				E857546227895AE200B3B62F /* map_1.obj */,
+				E857546327895AE200B3B62F /* map_1.mtl */,
+				E857546427895AE200B3B62F /* object.tga */,
+				E857546527895AE200B3B62F /* grass.tga */,
+				E857546627895AE200B3B62F /* water.tga */,
+			);
+			path = ground.rar;
+			sourceTree = "<group>";
+		};
+		E857546827895AE200B3B62F /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				E857546927895AE200B3B62F /* Base.mtl */,
+				E857546A27895AE200B3B62F /* Base.obj */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		E857546B27895AE200B3B62F /* Knife */ = {
+			isa = PBXGroup;
+			children = (
+				E857546C27895AE200B3B62F /* knife_slice.mtl */,
+				E857546D27895AE200B3B62F /* knife_gear.obj */,
+				E857546E27895AE200B3B62F /* knife_holder.mtl */,
+				E857546F27895AE200B3B62F /* knife_base.mtl */,
+				E857547027895AE200B3B62F /* knife_base.obj */,
+				E857547127895AE200B3B62F /* knife_slice.obj */,
+				E857547227895AE200B3B62F /* knife_gear.mtl */,
+				E857547327895AE200B3B62F /* knife_holder.obj */,
+			);
+			path = Knife;
+			sourceTree = "<group>";
+		};
+		E857547427895DF600B3B62F /* benzaiten */ = {
+			isa = PBXGroup;
+			children = (
+				E857547527895DF600B3B62F /* Benzaiten.mtl */,
+				E857547627895DF600B3B62F /* Benzaiten_u0_v0.jpg */,
+				E857547727895DF600B3B62F /* Benzaiten.obj */,
+				E857547827895DF600B3B62F /* Benzaiten_u1_v0.jpg */,
+			);
+			name = benzaiten;
+			path = Models/benzaiten;
+			sourceTree = "<group>";
+		};
 		E869B9D6276A26B0005CA84B /* assimp */ = {
 			isa = PBXGroup;
 			children = (
@@ -3035,23 +3276,6 @@
 			path = Test;
 			sourceTree = "<group>";
 		};
-		E894A6572772EC84002B7CB1 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
-		E894A65A2772F71A002B7CB1 /* Dolphin */ = {
-			isa = PBXGroup;
-			children = (
-				E894A65E2772F775002B7CB1 /* 10014_dolphin_v2_max2011_it2.obj */,
-				E894A65B2772F71A002B7CB1 /* 10014_dolphin_v2_max2011_it2.mtl */,
-				E894A65C2772F71A002B7CB1 /* 10014_dolphin_v1_Diffuse.jpg */,
-			);
-			path = Dolphin;
-			sourceTree = "<group>";
-		};
 		E898F347277A13F1001B1987 /* clay */ = {
 			isa = PBXGroup;
 			children = (
@@ -3080,14 +3304,6 @@
 				E898F352277A213F001B1987 /* spark.jpg */,
 			);
 			path = Fire;
-			sourceTree = "<group>";
-		};
-		E8BC6B6D278477C6006A371C /* ParticleSystem */ = {
-			isa = PBXGroup;
-			children = (
-				E8BC6B6E278477C6006A371C /* fire.png */,
-			);
-			path = ParticleSystem;
 			sourceTree = "<group>";
 		};
 		E8BC6B8127870A42006A371C /* porcelain */ = {
@@ -3272,43 +3488,6 @@
 				E8E7F061276C287B004CBD2A /* Base.h */,
 			);
 			path = Base;
-			sourceTree = "<group>";
-		};
-		E8E7F063276C287B004CBD2A /* resources */ = {
-			isa = PBXGroup;
-			children = (
-				E8E7F062276C287B004CBD2A /* README.md */,
-				E8BC6B6D278477C6006A371C /* ParticleSystem */,
-				E894A65A2772F71A002B7CB1 /* Dolphin */,
-				E894A6572772EC84002B7CB1 /* Models */,
-				E8E7F064276C287B004CBD2A /* Base */,
-				E8E7F067276C287B004CBD2A /* Knife */,
-			);
-			path = resources;
-			sourceTree = "<group>";
-		};
-		E8E7F064276C287B004CBD2A /* Base */ = {
-			isa = PBXGroup;
-			children = (
-				E8E7F065276C287B004CBD2A /* Base.mtl */,
-				E8E7F066276C287B004CBD2A /* Base.obj */,
-			);
-			path = Base;
-			sourceTree = "<group>";
-		};
-		E8E7F067276C287B004CBD2A /* Knife */ = {
-			isa = PBXGroup;
-			children = (
-				E8E7F068276C287B004CBD2A /* knife_slice.mtl */,
-				E8E7F069276C287B004CBD2A /* knife_gear.obj */,
-				E8E7F06A276C287B004CBD2A /* knife_holder.mtl */,
-				E8E7F06B276C287B004CBD2A /* knife_base.mtl */,
-				E8E7F06C276C287B004CBD2A /* knife_base.obj */,
-				E8E7F06D276C287B004CBD2A /* knife_slice.obj */,
-				E8E7F06E276C287B004CBD2A /* knife_gear.mtl */,
-				E8E7F06F276C287B004CBD2A /* knife_holder.obj */,
-			);
-			path = Knife;
 			sourceTree = "<group>";
 		};
 		E8E7F071276C29C4004CBD2A /* assimp-5.0.1 */ = {

@@ -35,7 +35,7 @@ float lastY = SCR_HEIGHT / 2.0f;
 bool firstMouse = true;
 bool mouseControlCamera=true;
 // tmp:set seen of base and knife
-bool origin=0;
+bool origin=1;
 
 
 
@@ -71,9 +71,9 @@ int mtrIdx=0; // current material index
 //#define fNum 15
 #define MIN(a,b) ((a)<(b)?(a):(b))
 #define MAX(a,b) ((a)>(b)?(a):(b))
-#define textureNum 7
+#define textureNum 8
 
-std::string textures[]={"wood","glass","glass","porcelain","porcelain2","tree","marble"};
+std::string textures[]={"wood","glass","glass","porcelain","porcelain2","tree","marble","wood2"};
 
 
 

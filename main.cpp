@@ -35,7 +35,7 @@ glm::vec3 Screen2World(float x,float y, glm::mat4 projection, glm::mat4 view);
 glm::vec3 BezierCurve(glm::vec3 p0,glm::vec3 p1,glm::vec3 p2,glm::vec3 p3,glm::vec3 p4,glm::vec3 p5,float t);
 void addPs(int sceneId,float currentTime, ParticleSystem &flower2Ps,ParticleSystem& flowerPs, ParticleSystem&leavePs, glm::mat4 projection, glm::mat4 view);
 
-void drawButtons(Button &bezierButton,Button& cursorButton,Button &startButton,Button &resetButton ,Button &fireButton, Button& textureButton,Button &displayButton,CurveArea &curveArea,CurveArea3& curveArea3,Button &pannel, Button &hollowButton,Button& solidButton,Button &saveButton,Button &loadButton);
+void drawButtons(Button &bezierButton,Button& cursorButton,Button &startButton,Button &resetButton ,Button &fireButton, Button& textureButton,Button &displayButton,CurveArea &curveArea,CurveArea3& curveArea3,Button &pannel, Button &hollowButton,Button& solidButton,Button &saveButton,Button &loadButton, Button &pannel2);
 void screen2World2(float sx, float sy, float & wx, float &wy);
 
 //time
@@ -46,7 +46,8 @@ float rotate_radius = 0.0f;
 bool ifreset=true,ifdisplay=false;
 
 glm::mat4 cupRotate=glm::mat4(1.0f);
-
+glm::mat4 model = glm::mat4(1.0f);
+glm::mat4 vasModel = glm::mat4(1.0f);
 // tmp
 float wx, wy=0;
 
@@ -110,7 +111,10 @@ int main() {
     Button pannel("Button/show2.png",SCR_WIDTH,SCR_HEIGHT,
     buttonWidth*2,buttonHeight*100, buttonOffsetX-5.0f,buttonOffsetY+10*buttonDist);
     
-
+    Button pannel2("Button/water2.png",SCR_WIDTH,SCR_HEIGHT,
+    buttonWidth*2,buttonHeight*1, buttonOffsetX-5.0f,buttonOffsetY+10*buttonDist);
+    
+    
     CurveArea curveArea(SCR_WIDTH,SCR_HEIGHT,
     buttonWidth,buttonHeight, buttonOffsetX,buttonOffsetY,-5.0f,3.0f,6.0f);
     
@@ -147,10 +151,6 @@ int main() {
     Button loadButton("Button/load3.png",SCR_WIDTH,SCR_HEIGHT,
     buttonWidth,buttonHeight, buttonOffsetX,buttonOffsetY-8*buttonDist);
     
-
-    
-    
-    
     
     glm::vec3 knifePos=p0,lastKnifePos;
 
@@ -158,7 +158,7 @@ int main() {
     float lastTime = glfwGetTime(),currentTime,bezierTime = 0,rate=0;
     srand(time(0));
     cupRotate =glm::rotate(cupRotate,-80.1f,glm::vec3(0.0,0.0,1.0f));
-
+    vasModel =glm::rotate(vasModel,-80.1f,glm::vec3(0.0,0.0,1.0f));
     // render loop
     // -----------
     while (!glfwWindowShouldClose(window)) {
@@ -188,11 +188,12 @@ int main() {
             ifstart = false;
             curveArea3.reset();
             knifePos = glm::vec3(-1.9f,-1.5f,0.0f);
+            vasModel = glm::mat4(1.0f);
         }
 
         glm::mat4 projection = glm::perspective(glm::radians(camera.Zoom), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f);
         glm::mat4 view = camera.GetViewMatrix();
-        glm::mat4 model = glm::mat4(1.0f);
+       
         
 //        cupRotate =glm::rotate(cupRotate,-80.1f,glm::vec3(0.0,0.0,1.0f));
         
@@ -294,8 +295,9 @@ int main() {
         if(!ifdisplay){
             model = glm::translate(glm::mat4(1.0f), knifePos);
             // !! no draw knife
-            if(origin)knife.drawKnife(view,projection,model,cupRotate);
-            base.drawBase(view,projection,glm::mat4(1.0f),cupRotate);
+//            if(origin)knife.drawKnife(view,projection,model,cupRotate);
+//            cupRotate=glm::rotate(cupRotate,0.02f,glm::vec3(1.0,0.0,0.0f));
+            base.drawBase(view,projection,glm::mat4(1.0f),cupRotate,currentTime);
         }
         else {
             knifePos=glm::vec3(0.0f,-2.0f,0.0f);
@@ -303,12 +305,12 @@ int main() {
             cupRotate=glm::rotate(cupRotate,0.02f,glm::vec3(1.0,0.0,0.0f));
         }
 
-        material.drawMaterial(view,projection,glm::mat4(1.0f),cupRotate,ifdisplay);
+        material.drawMaterial(view,projection,vasModel,cupRotate,ifdisplay);
         addPs( sceneId, currentTime, flower2Ps, flowerPs,leavePs,projection,  view);
         ps.simulate(deltaTime);
         ps.render(view, projection, glm::mat4(1.0f), cupRotate);
 //        test.drawButton();
-        drawButtons(bezierButton,cursorButton,startButton,resetButton ,fireButton,  textureButton,displayButton,curveArea, curveArea3,pannel, hollowButton, solidButton, saveButton, loadButton);
+        drawButtons(bezierButton,cursorButton,startButton,resetButton ,fireButton,  textureButton,displayButton,curveArea, curveArea3,pannel, hollowButton, solidButton, saveButton, loadButton,pannel2);
         glfwSwapBuffers(window);
         glfwPollEvents();
     }
@@ -345,6 +347,26 @@ void processInput(GLFWwindow *window) {
         
     if (glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS)
         cupRotate=glm::rotate(cupRotate,-0.1f,glm::vec3(0.0,1.0,0.0f));
+    // control object moove
+    if(glfwGetKey(window, GLFW_KEY_I) == GLFW_PRESS)
+        vasModel=glm::translate(vasModel,glm::vec3(0.0f, 0.3f,0));
+        
+    if(glfwGetKey(window, GLFW_KEY_K) == GLFW_PRESS)
+        vasModel=glm::translate(vasModel,glm::vec3(0.0f, -0.3f,0));
+    
+    if(glfwGetKey(window, GLFW_KEY_L) == GLFW_PRESS)
+        vasModel=glm::translate(vasModel,glm::vec3(0.3f, 0.0f,0.0f));
+        
+    if(glfwGetKey(window, GLFW_KEY_J) == GLFW_PRESS)
+        vasModel=glm::translate(vasModel,glm::vec3(-0.3f, 0.0f,0.0f));
+    
+    if(glfwGetKey(window, GLFW_KEY_O) == GLFW_PRESS)
+        vasModel=glm::translate(vasModel,glm::vec3(0.0f, 0.0f,-0.3f));
+    
+    if(glfwGetKey(window, GLFW_KEY_U) == GLFW_PRESS)
+        vasModel=glm::translate(vasModel,glm::vec3(0.0f, 0.0f,0.3f));
+    
+    
 //    if (glfwGetKey(window, GLFW_KEY_LEFT) == GLFW_PRESS){
 //        cupRotate=glm::rotate(cupRotate,0.1f,glm::vec3(1.0,0.0,0.0f));
 //    }
@@ -557,7 +579,7 @@ void addPs(int sceneId,float currentTime, ParticleSystem &flower2Ps,ParticleSyst
 }
 
 
-void drawButtons(Button &bezierButton,Button& cursorButton,Button &startButton,Button &resetButton ,Button &fireButton, Button& textureButton,Button &displayButton,CurveArea &curveArea,CurveArea3& curveArea3,Button &pannel, Button &hollowButton,Button& solidButton,Button &saveButton,Button &loadButton){
+void drawButtons(Button &bezierButton,Button& cursorButton,Button &startButton,Button &resetButton ,Button &fireButton, Button& textureButton,Button &displayButton,CurveArea &curveArea,CurveArea3& curveArea3,Button &pannel, Button &hollowButton,Button& solidButton,Button &saveButton,Button &loadButton, Button &pannel2){
     if(Mode==CURSOR)
         cursorButton.drawButton();
     else
@@ -578,7 +600,7 @@ void drawButtons(Button &bezierButton,Button& cursorButton,Button &startButton,B
     saveButton.drawButton();
     loadButton.drawButton();
     pannel.drawButton();
-    
+    pannel2.drawButton();
     
 }
 

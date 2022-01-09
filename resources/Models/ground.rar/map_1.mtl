@@ -1,0 +1,32 @@
+newmtl map_1:blinn6SG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd grass.tga
+Ni 1.00
+Ks 0.50 0.50 0.50
+Ns 0.06
+newmtl map_1:lambert4SG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd terrain.tga
+Ni 1.00
+newmtl map_1:lambert5SG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd water.tga
+Ni 1.00
+newmtl map_1:object
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd object.tga
+Ni 1.00
+Ks 0.50 0.50 0.50
+Ns 0.06

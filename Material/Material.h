@@ -35,6 +35,7 @@ private:
     unsigned int porcelainID,porcelainSurfaceID;
     unsigned int porcelain2ID,porcelain2SurfaceID;
     unsigned int marbleID,marbleSurfaceID;
+    unsigned int wood2ID, wood2SurfaceID;
     float offsetX;
     float length;
     float initR;
@@ -783,7 +784,7 @@ private:
     }
 
 public:
-    Shader ironShader,woodShader,glassShader,porcelainShader,treeShader,porcelain2Shader,marbleShader;
+    Shader ironShader,woodShader,glassShader,porcelainShader,treeShader,porcelain2Shader,marbleShader,wood2shader;
     unsigned int woodNormalMap;
     unsigned int porcelainNormalMap;
     Material(glm::vec3 lightPos, glm::vec3 lightColor, glm::vec3 viewPos,float offsetX,float initR,float length)
@@ -793,7 +794,8 @@ public:
     porcelainShader(Shader("Material/porcelain.vs","Material/porcelain.fs")),
     treeShader(Shader("Material/Wood.vs","Material/Wood.fs")),
     porcelain2Shader(Shader("Material/porcelain.vs","Material/porcelain.fs")),
-    marbleShader(Shader("Material/porcelain.vs","Material/porcelain.fs"))
+    marbleShader(Shader("Material/porcelain.vs","Material/porcelain.fs")),
+    wood2shader(Shader("Material/porcelain.vs","Material/porcelain.fs"))
     {
         this->offsetX=offsetX;
         this->initR=initR;
@@ -831,9 +833,6 @@ public:
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
         
         woodNormalMap  = loadTexture("Material/clay/clayNormal.png");
-        
-        
-     
         woodShader.use();
         woodShader.setInt("woodTexture",0);
         woodShader.setInt("surfaceTexture",1);
@@ -960,10 +959,6 @@ public:
         treeShader.setFloat("surface.shininess",  5.846150);
         
         
-        
-        
-        
-        
         glGenTextures(1, &this->porcelain2ID);
         glBindTexture(GL_TEXTURE_2D, this->porcelain2ID);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
@@ -972,8 +967,7 @@ public:
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 //        path="Material/porcelain/moutain.png";
         path="Material/porcelain/p1.png";
-//        path="Material/marbleYellow.jpg";
-//        path="Material/porcelain/tree1.png";
+//        path="Material/wood/wood3.png";
         loadTextureSimple(path.data());
         glGenTextures(1, &this->porcelain2SurfaceID);
         glBindTexture(GL_TEXTURE_2D, this->porcelain2SurfaceID);
@@ -1040,7 +1034,40 @@ public:
         marbleShader.setVec3("surface.specular", 0.844597, 0.844597, 0.844597);
         marbleShader.setFloat("surface.shininess",  60.846150);
         
+        glGenTextures(1, &this->wood2ID);
+        glBindTexture(GL_TEXTURE_2D, this->wood2ID);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+        path="Material/wood/wood3.png";
+        loadTextureSimple(path.data());
+        glGenTextures(1, &this->wood2SurfaceID);
+        glBindTexture(GL_TEXTURE_2D, this->wood2SurfaceID);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
         
+
+        wood2shader.use();
+        wood2shader.setInt("porcelainTexture",14);
+        wood2shader.setInt("porcelainSurfaceTexture",15);
+        wood2shader.setInt("porcelainNormalMap",16);
+        
+        wood2shader.setVec3("lightColor", 1.0f, 1.0f, 1.0f);
+        wood2shader.setVec3("lightPos", lightPos);
+        wood2shader.setVec3("viewPos", viewPos);
+
+        wood2shader.setVec3("porcelain.ambient", 1.0000, 1.00000, 1.00000);
+        wood2shader.setVec3("porcelain.diffuse",0.5, 0.5, 0.5);
+        wood2shader.setVec3("porcelain.specular", 0.844597, 0.844597, 0.844597);
+        wood2shader.setFloat("porcelain.shininess",  60.846150);
+
+        wood2shader.setVec3("surface.ambient", 0.7000, 0.70000, 0.70000);
+        wood2shader.setVec3("surface.diffuse", 0.5, 0.5, 0.5);
+        wood2shader.setVec3("surface.specular", 0.844597, 0.844597, 0.844597);
+        wood2shader.setFloat("surface.shininess",  60.846150);
         
         
         
@@ -1092,7 +1119,6 @@ public:
             ironShader.setMat4("rotate",rotate);
         } else if(texture == "glass"){
             glassShader.use();
-            
             glassShader.setVec3("lightColor",lightColors[lightId]);
             glassShader.setMat4("view", view);
             glassShader.setMat4("projection", projection);
@@ -1117,8 +1143,6 @@ public:
             glBindTexture(GL_TEXTURE_2D, this->treeID);
             glActiveTexture(GL_TEXTURE7);
             glBindTexture(GL_TEXTURE_2D, this->treeSurfaceID);
-         
-            
             treeShader.use();
             treeShader.setVec3("lightColor",lightColors[lightId]);
             treeShader.setMat4("view", view);
@@ -1147,12 +1171,25 @@ public:
             glBindTexture(GL_TEXTURE_2D, this->marbleSurfaceID);
             glActiveTexture(GL_TEXTURE13);
             glBindTexture(GL_TEXTURE_2D, porcelainNormalMap);
-            porcelain2Shader.use();
-            porcelain2Shader.setVec3("lightColor",lightColors[lightId]);
-            porcelain2Shader.setMat4("view", view);
-            porcelain2Shader.setMat4("projection", projection);
-            porcelain2Shader.setMat4("model", model);
-            porcelain2Shader.setMat4("rotate",rotate);
+            marbleShader.use();
+            marbleShader.setVec3("lightColor",lightColors[lightId]);
+            marbleShader.setMat4("view", view);
+            marbleShader.setMat4("projection", projection);
+            marbleShader.setMat4("model", model);
+            marbleShader.setMat4("rotate",rotate);
+        }else if(texture == "wood2"){
+            glActiveTexture(GL_TEXTURE14);//在绑定纹理之前先激活纹理单元
+            glBindTexture(GL_TEXTURE_2D, this->wood2ID);
+            glActiveTexture(GL_TEXTURE15);
+            glBindTexture(GL_TEXTURE_2D, this->wood2SurfaceID);
+            glActiveTexture(GL_TEXTURE16);
+            glBindTexture(GL_TEXTURE_2D, porcelainNormalMap);
+            wood2shader.use();
+            wood2shader.setVec3("lightColor",lightColors[lightId]);
+            wood2shader.setMat4("view", view);
+            wood2shader.setMat4("projection", projection);
+            wood2shader.setMat4("model", model);
+            wood2shader.setMat4("rotate",rotate);
         }
 
         glBindVertexArray(materialVAO);
