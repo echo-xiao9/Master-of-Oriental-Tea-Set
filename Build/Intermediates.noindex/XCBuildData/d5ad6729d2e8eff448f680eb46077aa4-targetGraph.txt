@@ -1,2 +1,0 @@
-Target dependency graph (1 target)
-OpenGLTest2 in Lathe-Simulation2, no dependencies

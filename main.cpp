@@ -189,6 +189,9 @@ int main() {
             curveArea3.reset();
             knifePos = glm::vec3(-1.9f,-1.5f,0.0f);
             vasModel = glm::mat4(1.0f);
+            LENGTH=4.0f;
+            cupRotate=glm::mat4(1.0f);
+            cupRotate =glm::rotate(cupRotate,-80.1f,glm::vec3(0.0,0.0,1.0f));
         }
 
         glm::mat4 projection = glm::perspective(glm::radians(camera.Zoom), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f);
@@ -214,6 +217,7 @@ int main() {
         switch (Select) {
             case FIRE:
                 sceneId++;
+                sceneId=sceneId%8;
     //            cout<<"Select fire!"<<endl;
                 material.changeTexure(&ps);
                 if(mtrIdx<2)
@@ -292,12 +296,13 @@ int main() {
         skybox.drawSkybox(view,projection);
 
              
-        if(!ifdisplay){
+        if(!ifdisplay&& Select!=LOAD){
             model = glm::translate(glm::mat4(1.0f), knifePos);
             // !! no draw knife
 //            if(origin)knife.drawKnife(view,projection,model,cupRotate);
 //            cupRotate=glm::rotate(cupRotate,0.02f,glm::vec3(1.0,0.0,0.0f));
             base.drawBase(view,projection,glm::mat4(1.0f),cupRotate,currentTime);
+            
         }
         else {
             knifePos=glm::vec3(0.0f,-2.0f,0.0f);

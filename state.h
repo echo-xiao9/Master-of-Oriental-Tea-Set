@@ -16,6 +16,7 @@ float tmpRadius[rNum]={0};
 int randomId=rand()*100;
 
 bool IFSOLID=false;
+
 #endif /* state_h */
 
 

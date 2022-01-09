@@ -10,7 +10,7 @@ class Base
 private:
     Model baseModel;
     Model baseModel2;
-//    Model ground;
+    Model ground;
     
     unsigned int baseVAO, baseVBO;
     unsigned int cubemapTexture;
@@ -23,7 +23,7 @@ public:
     baseModel2(Model("resources/Dolphin/10014_dolphin_v2_max2011_it2.obj"))
 //    ground(Model("/Users/kangyixiao/EchoFile/coding/MasterOfOrientalTeaSet/resources/Models/ground.rar/map_1.obj"))
     
-//    ,ground(Model("/Users/kangyixiao/EchoFile/coding/MasterOfOrientalTeaSet/resources/Models/benzaiten/Benzaiten.obj"))
+    ,ground(Model("/Users/kangyixiao/EchoFile/coding/MasterOfOrientalTeaSet/resources/Models/benzaiten/Benzaiten.obj"))
     {
         baseShader.use();
         baseShader.setVec3("lightColor", 1.0f, 1.0f, 1.0f);
@@ -35,7 +35,7 @@ public:
     {
         glm::mat4 oriModel = model;
         
-//        drawGround( view,  projection, model , rotate,  currentTime);
+        drawGround( view,  projection, model , rotate,  currentTime);
         
         model = glm::translate(model,glm::vec3(7*sin(currentTime/2)-5.0f, 3*cos(currentTime/2)-1.0f,5*cos(currentTime/2)));
         model = glm::scale(model, glm::vec3(0.01f));
@@ -51,8 +51,6 @@ public:
         baseShader.setMat4("model", model);
         baseShader.setMat4("rotate",rotate);
         if(origin)baseModel.Draw(baseShader);
-        
-        
         model = glm::translate(oriModel,glm::vec3(7*sin(currentTime/2)-5.0f, 3*sin(currentTime/2)-1.0f,5*cos(currentTime/2)));
         model = glm::scale(model, glm::vec3(0.01f));
 //        model = glm::rotate(model, glm::radians(-90.0f), glm::vec3(1.0f, 0.0f, 0.0f));
@@ -72,7 +70,7 @@ public:
         baseShader.setMat4("projection", projection);
         baseShader.setMat4("model", model);
         baseShader.setMat4("rotate",rotate);
-//        if(origin)ground.Draw(baseShader);
+        if(origin)ground.Draw(baseShader);
         
     }
     

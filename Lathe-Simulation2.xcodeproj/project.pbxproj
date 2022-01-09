@@ -15,7 +15,7 @@
 		E8283ED727573E6A00109194 /* stb_image_aug.c in Sources */ = {isa = PBXBuildFile; fileRef = E8283EBA2757287400109194 /* stb_image_aug.c */; };
 		E83F53B82725993300DAA31A /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E83F53B72725993300DAA31A /* OpenGL.framework */; };
 		E84176F5277EBB4A0064C00D /* CurveArea2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E84176F0277DF5700064C00D /* CurveArea2.cpp */; };
-		E8838F4A276B66C7001E03EC /* libassimpd.3.1.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E8838F48276B66B2001E03EC /* libassimpd.3.1.1.dylib */; };
+		E857547C278A851E00B3B62F /* libassimpd.3.1.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E8838F48276B66B2001E03EC /* libassimpd.3.1.1.dylib */; };
 		E8840E532706A3040023EA73 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8840E522706A3040023EA73 /* AppKit.framework */; };
 		E8840E552706A3160023EA73 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8840E542706A3160023EA73 /* CoreFoundation.framework */; };
 		E8840E572706A3210023EA73 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8840E562706A3210023EA73 /* IOKit.framework */; };
@@ -2832,7 +2832,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E8838F4A276B66C7001E03EC /* libassimpd.3.1.1.dylib in Frameworks */,
+				E857547C278A851E00B3B62F /* libassimpd.3.1.1.dylib in Frameworks */,
 				E83F53B82725993300DAA31A /* OpenGL.framework in Frameworks */,
 				E8CFE8B02725187000E0F327 /* GLUT.framework in Frameworks */,
 				E8840E5B2706A35F0023EA73 /* CoreGraphics.framework in Frameworks */,

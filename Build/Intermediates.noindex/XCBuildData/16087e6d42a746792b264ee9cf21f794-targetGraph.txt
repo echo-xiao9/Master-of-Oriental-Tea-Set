@@ -1,2 +1,0 @@
-Target dependency graph (1 target)
-OpenGLTest2 in OpenGLTest2, no dependencies

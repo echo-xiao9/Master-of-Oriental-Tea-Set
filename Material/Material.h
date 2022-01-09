@@ -45,7 +45,12 @@ private:
     void renderPiece(int num){
         float y1, z1, y2, z2, y3, z3, y4, z4, tl,tr,tt,tb,leftR, rightR, normalX, normalY, normalZ,ifsurface;
         float ya, za, yb, zb, yc, zc, yd, zd;
+        length=LENGTH;
+        
         float pieceWidth = length / (2*rNum), offset;
+        if(num==10){
+            cout<<"length in ma:"<<length<<endl;
+            cout<<"pieceWidth"<<pieceWidth<<endl;}
         // if need the upper and lower bound.
         
 //        if (num == 0)
@@ -283,18 +288,9 @@ private:
             
             else{
             
-            
-            
-            
-            
-            
-            
-            
-            
-         
             // render buttom
             
-            if(num>rNum-10){
+            if(num>rNum-30){
             // 7
             rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 6 * fNum] = offset - pieceWidth;
             rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 6 * fNum + 1] = 0;
@@ -374,7 +370,7 @@ private:
             rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 11 * fNum + 7] = 1.0;
             rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 11 * fNum + 8] = 1.0;
             }
-            else if(num>3 && num<50){
+            else if(num>3 && num<30){
                 // b
                 rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 6 * fNum] = offset - pieceWidth;
                 rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 6 * fNum + 1] = yb;
@@ -1204,7 +1200,7 @@ public:
     //        texture=(texture=="wood")?"iron":"wood";
         if(texture1=="")texture=textures[(++textureId) % textureNum];
         else texture = texture1;
-            cout<<"texture:"<<texture<<endl;
+//            cout<<"texture:"<<texture<<endl;
             ps->changeColor(texture);
         }
     
@@ -1213,6 +1209,8 @@ public:
     
 
     void updateRadius(glm::vec3 knifePos,glm::vec3 lastPos,ParticleSystem *ps,float dt){
+        length=LENGTH;
+
         float pieceWidth = length / (2*rNum),leftLimit=offsetX-length/2,rightLimit=offsetX+length/2;
         glm::vec3 leftPos,rightPos;
         bool toLeft;
@@ -1338,12 +1336,12 @@ public:
     void saveModel(){
         outfile << textureId << endl;
         outfile << IFSOLID << endl;
-        cout<<"material save model:"<< textureId << IFSOLID<<endl;
+        cout<<"material save model:"<< textureId<<" " << IFSOLID<<endl;
     }
     void loadModel(){
         
         infile >> textureId >> IFSOLID;
-        cout<<"material load model:"<< textureId<<IFSOLID<<endl;
+        cout<<"material load model:"<< textureId<<" "<<IFSOLID<<endl;
         texture = textures[textureId];
     }
 };

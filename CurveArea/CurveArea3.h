@@ -31,6 +31,8 @@ private:
     float curvePoints[POINTS_IN_CURVES_DATA];
     int crtlPoint=0;
     int curves=0;
+    float maxy=-100.0f;
+    float miny=100.0f;
     Button bezierButton;
     map<float,float> ctrlPoints;
     
@@ -116,7 +118,8 @@ public:
         points[2*crtlPoint]=newX;
         points[2*crtlPoint+1]=newY;
         crtlPoint++;
-        
+        if(newY>maxy)maxy=newY;
+        if(newY<miny)miny=newY;
         glGenBuffers(1, &VBO);
         glGenVertexArrays(1, &VAO);
         glBindVertexArray(VAO);
@@ -185,7 +188,8 @@ public:
             if(radius[i]<min)min=radius[i];
             if(radius[i]>max)max=radius[i];
         }
-        
+        LENGTH = (maxy-miny)*LENGTH_SCALE;
+//        cout<<"length:"<<LENGTH;
         return true;
         
     }
