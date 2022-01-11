@@ -248,7 +248,7 @@ int main() {
                     material.updateRadiusAll(tmpRadius);
                 break;
             case HOLLOW:
-                IFSOLID=!IFSOLID;
+//                IFSOLID=!IFSOLID;
                 break;
             case SAVE:
                 /*
@@ -436,18 +436,17 @@ void processInput(GLFWwindow *window) {
                 // hollow and solid button
                 else if(
                 SCR_HEIGHT/2-buttonOffsetY-buttonHeight/2+6*buttonDist<=lastY&&lastY<= SCR_HEIGHT/2-buttonOffsetY+buttonHeight/2+6*buttonDist){
-                   
+                    float left = SCR_WIDTH/2.0+buttonOffsetX-buttonWidth/2.0;
+                    float right =SCR_WIDTH/2.0+buttonOffsetX+buttonWidth/2.0;
+                    if(lastX-left<right - lastX)IFSOLID = false;
+                    else IFSOLID = true;
                     Select =  HOLLOW;
+                    cout<<"leftside:"<<lastX-left<<" "<<"rightside:"<<right-lastX<<endl;
                 }
                 // save buttton
                 else if(
                 SCR_HEIGHT/2-buttonOffsetY-buttonHeight/2+7*buttonDist<=lastY&&lastY<= SCR_HEIGHT/2-buttonOffsetY+buttonHeight/2+7*buttonDist){
-                   
-                    
                     Select = SAVE;
-                    
-                    
-                    
                     
                 }
                 // load button
