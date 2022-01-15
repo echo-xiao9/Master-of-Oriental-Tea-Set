@@ -1073,7 +1073,7 @@ public:
     void initialize(){
         this->renderInit();
 //        this->renderBase();
-
+        texture=textures[0];
         glBindVertexArray(materialVAO);
         glBindBuffer(GL_ARRAY_BUFFER, materialVBO);
         glBufferData(GL_ARRAY_BUFFER, sizeof(rPointer), &rPointer, GL_STATIC_DRAW);

@@ -272,6 +272,10 @@
 		E869BA01276A26B0005CA84B /* scene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = scene.h; sourceTree = "<group>"; };
 		E869BA02276A26B0005CA84B /* LogStream.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = LogStream.hpp; sourceTree = "<group>"; };
 		E869BA92276A3665005CA84B /* libassimpd.3.1.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libassimpd.3.1.1.dylib; path = Externals/Libraries/libassimpd.3.1.1.dylib; sourceTree = "<group>"; };
+		E874E428278DE80700559CE0 /* dream.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = dream.mp3; sourceTree = "<group>"; };
+		E874E429278DE9D000559CE0 /* libirrklang.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libirrklang.dylib; path = "../../../Downloads/irrKlang-64bit-1.6.0/bin/macosx-gcc/libirrklang.dylib"; sourceTree = "<group>"; };
+		E874E42A278DE9D100559CE0 /* ikpFLAC.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = ikpFLAC.dylib; path = "../../../Downloads/irrKlang-64bit-1.6.0/bin/macosx-gcc/ikpFLAC.dylib"; sourceTree = "<group>"; };
+		E874E42B278DE9D100559CE0 /* ikpMP3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = ikpMP3.dylib; path = "../../../Downloads/irrKlang-64bit-1.6.0/bin/macosx-gcc/ikpMP3.dylib"; sourceTree = "<group>"; };
 		E8838F47276B66B2001E03EC /* libassimpd.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libassimpd.3.dylib; sourceTree = "<group>"; };
 		E8838F48276B66B2001E03EC /* libassimpd.3.1.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libassimpd.3.1.1.dylib; sourceTree = "<group>"; };
 		E8838F49276B66B2001E03EC /* libassimpd.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libassimpd.dylib; sourceTree = "<group>"; };
@@ -3080,6 +3084,7 @@
 		E857545027895AE200B3B62F /* resources */ = {
 			isa = PBXGroup;
 			children = (
+				E874E426278DE75500559CE0 /* Audio */,
 				E857547427895DF600B3B62F /* benzaiten */,
 				E857545127895AE200B3B62F /* Dolphin */,
 				E857545527895AE200B3B62F /* ParticleSystem */,
@@ -3239,6 +3244,14 @@
 			path = Compiler;
 			sourceTree = "<group>";
 		};
+		E874E426278DE75500559CE0 /* Audio */ = {
+			isa = PBXGroup;
+			children = (
+				E874E428278DE80700559CE0 /* dream.mp3 */,
+			);
+			path = Audio;
+			sourceTree = "<group>";
+		};
 		E8838F46276B66B1001E03EC /* assimp */ = {
 			isa = PBXGroup;
 			children = (
@@ -3252,6 +3265,9 @@
 		E8840E512706A3040023EA73 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E874E42A278DE9D100559CE0 /* ikpFLAC.dylib */,
+				E874E42B278DE9D100559CE0 /* ikpMP3.dylib */,
+				E874E429278DE9D000559CE0 /* libirrklang.dylib */,
 				E869BA92276A3665005CA84B /* libassimpd.3.1.1.dylib */,
 				E83F53B72725993300DAA31A /* OpenGL.framework */,
 				E8CFE8AF2725187000E0F327 /* GLUT.framework */,

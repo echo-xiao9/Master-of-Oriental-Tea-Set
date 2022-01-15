@@ -20,6 +20,10 @@
 #include "CurveArea/CurveArea2.hpp"
 #include "CurveArea/CurveArea3.h"
 #include "SkyBox/SkyBox.h"
+//#include <irrKlang/irrKlang.h>
+//using namespace irrklang;
+//
+//ISoundEngine *SoundEngine = createIrrKlangDevice();
 
 
 //控制是否显示命令台
@@ -159,6 +163,11 @@ int main() {
     srand(time(0));
     cupRotate =glm::rotate(cupRotate,-80.1f,glm::vec3(0.0,0.0,1.0f));
     vasModel =glm::rotate(vasModel,-80.1f,glm::vec3(0.0,0.0,1.0f));
+    
+//    SoundEngine->play2D("/Users/kangyixiao/EchoFile/coding/MasterOfOrientalTeaSet/resources/Audio/dream.mp3", GL_TRUE);
+    
+    
+    
     // render loop
     // -----------
     while (!glfwWindowShouldClose(window)) {
