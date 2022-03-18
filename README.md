@@ -2,6 +2,10 @@
 
 CG：最终成绩98/100
 
+YouTube: https://www.youtube.com/watch?v=SJfPAXPWKa4&t=15s
+
+Bilibili: https://www.bilibili.com/video/BV1DS4y1L7oU?spm_id_from=333.999.0.0
+
 ![Untitled](%E8%8C%97%E9%85%8A%20cb15fad82be14f80ad3914fa8c336891/Untitled.png)
 
 ### 设计理念
