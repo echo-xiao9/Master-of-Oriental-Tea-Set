@@ -130,7 +130,7 @@ public:
         glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 2 * sizeof(float), 0);
         
         if(crtlPoint%4==0){
-
+            // every curve is controlled by 4 points
             // need to add one curve
             float x0=points[curves*4*2];
             float y0=points[curves*4*2+1];
@@ -143,23 +143,25 @@ public:
             
             for(int i=0;i<POINTS_IN_CURVE;i++){
                 float fi=i;
-                float t = fi/POINTS_IN_CURVE;
+                float t = fi/POINTS_IN_CURVE; // Calculate the points to plot the curve
                 float x,y=0;
                 getPosition(t, x, y, x0, y0, x1, y1, x2, y2, x3, y3);
                 curvePoints[2*curves*POINTS_IN_CURVE+2*i]=x;
                 curvePoints[2*curves*POINTS_IN_CURVE+2*i+1]=y;
             }
             curves++;
+            // generate and bind the buffer
             glGenBuffers(1, &curveVBO);
             glGenVertexArrays(1, &curveVAO);
             glBindVertexArray(curveVAO);
             glBindBuffer(GL_ARRAY_BUFFER, curveVBO);
+            //  glBufferData function copies the previously defined vertex data into the buffer's memory
             glBufferData(GL_ARRAY_BUFFER,sizeof(curvePoints), &curvePoints, GL_STATIC_DRAW);
             glEnableVertexAttribArray(0);
             glEnable(GL_PROGRAM_POINT_SIZE);
             glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 2 * sizeof(float), 0);
             
-            // use the latest node as the first one
+            // use the latest control point of this curve as the first control point of next one.
             addPoint(x3,y3);
         }
     }
@@ -179,7 +181,7 @@ public:
                 float fj=j;
                 float t=fj/n;
                 getPosition(t,x,y,x0,y0,x1,y1,x2,y2,x3,y3);
-                //边界
+                //calculate the radius array
                 radius[i*n+j]=worldXtoRadius(x);
             }
         }
@@ -208,7 +210,6 @@ public:
     void getPosition(float t,float &x, float &y, float x0, float y0, float x1, float y1, float x2, float y2, float x3,float y3){
         x=x0*((float)pow(1-t,3))+x1*((float)(3*t*pow(1-t,2)))+x2*((float)(3*pow(t,2)*(1-t)))+x3*((float)pow(t,3));
         y=y0*((float)pow(1-t,3))+y1*((float)(3*t*pow(1-t,2)))+y2*((float)(3*pow(t,2)*(1-t)))+y3*((float)pow(t,3));
-    
     };
     
     float worldXtoRadius(float wx){

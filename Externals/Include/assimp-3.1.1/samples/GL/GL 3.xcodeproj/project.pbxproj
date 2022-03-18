@@ -1,0 +1,178 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 55;
+	objects = {
+
+/* Begin PBXFileReference section */
+		E869BA37276A32C0005CA84B /* glut.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = glut.h; sourceTree = "<group>"; };
+		E869BA38276A32C0005CA84B /* Makefile */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
+		E869BA39276A32C0005CA84B /* GL.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = GL.xcodeproj; sourceTree = "<group>"; };
+		E869BA3C276A32C0005CA84B /* freeglut.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = freeglut.h; sourceTree = "<group>"; };
+		E869BA3D276A32C0005CA84B /* Makefile.am */ = {isa = PBXFileReference; lastKnownFileType = text; path = Makefile.am; sourceTree = "<group>"; };
+		E869BA3E276A32C0005CA84B /* GL 2.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = "GL 2.xcodeproj"; sourceTree = "<group>"; };
+		E869BA41276A32C0005CA84B /* freeglut_ext.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = freeglut_ext.h; sourceTree = "<group>"; };
+		E869BA42276A32C0005CA84B /* Makefile.in */ = {isa = PBXFileReference; lastKnownFileType = text; path = Makefile.in; sourceTree = "<group>"; };
+		E869BA43276A32C0005CA84B /* freeglut_std.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = freeglut_std.h; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		E869BA31276A32C0005CA84B = {
+			isa = PBXGroup;
+			children = (
+				E869BA37276A32C0005CA84B /* glut.h */,
+				E869BA38276A32C0005CA84B /* Makefile */,
+				E869BA39276A32C0005CA84B /* GL.xcodeproj */,
+				E869BA3C276A32C0005CA84B /* freeglut.h */,
+				E869BA3D276A32C0005CA84B /* Makefile.am */,
+				E869BA3E276A32C0005CA84B /* GL 2.xcodeproj */,
+				E869BA41276A32C0005CA84B /* freeglut_ext.h */,
+				E869BA42276A32C0005CA84B /* Makefile.in */,
+				E869BA43276A32C0005CA84B /* freeglut_std.h */,
+			);
+			sourceTree = "<group>";
+		};
+		E869BA3A276A32C0005CA84B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E869BA3F276A32C0005CA84B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXLegacyTarget section */
+		E869BA36276A32C0005CA84B /* GL */ = {
+			isa = PBXLegacyTarget;
+			buildArgumentsString = "$(ACTION)";
+			buildConfigurationList = E869BA47276A32C0005CA84B /* Build configuration list for PBXLegacyTarget "GL" */;
+			buildPhases = (
+			);
+			buildToolPath = /usr/bin/make;
+			buildWorkingDirectory = "/Users/kangyixiao/Desktop/assimp-3.1.1/samples/GL";
+			dependencies = (
+			);
+			name = GL;
+			passBuildSettingsInEnvironment = 1;
+			productName = GL;
+		};
+/* End PBXLegacyTarget section */
+
+/* Begin PBXProject section */
+		E869BA32276A32C0005CA84B /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+			};
+			buildConfigurationList = E869BA35276A32C0005CA84B /* Build configuration list for PBXProject "GL 3" */;
+			compatibilityVersion = "Xcode 13.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = E869BA31276A32C0005CA84B;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = E869BA3F276A32C0005CA84B /* Products */;
+					ProjectRef = E869BA3E276A32C0005CA84B /* GL 2.xcodeproj */;
+				},
+				{
+					ProductGroup = E869BA3A276A32C0005CA84B /* Products */;
+					ProjectRef = E869BA39276A32C0005CA84B /* GL.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				E869BA36276A32C0005CA84B /* GL */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin XCBuildConfiguration section */
+		E869BA33276A32C0005CA84B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				COPY_PHASE_STRIP = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx10.6;
+			};
+			name = Debug;
+		};
+		E869BA34276A32C0005CA84B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				COPY_PHASE_STRIP = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				SDKROOT = macosx10.6;
+			};
+			name = Release;
+		};
+		E869BA48276A32C0005CA84B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				DEBUGGING_SYMBOLS = YES;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = GL;
+			};
+			name = Debug;
+		};
+		E869BA49276A32C0005CA84B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = GL;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		E869BA35276A32C0005CA84B /* Build configuration list for PBXProject "GL 3" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E869BA33276A32C0005CA84B /* Debug */,
+				E869BA34276A32C0005CA84B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E869BA47276A32C0005CA84B /* Build configuration list for PBXLegacyTarget "GL" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E869BA48276A32C0005CA84B /* Debug */,
+				E869BA49276A32C0005CA84B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = E869BA32276A32C0005CA84B /* Project object */;
+}

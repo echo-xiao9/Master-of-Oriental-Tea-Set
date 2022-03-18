@@ -22,8 +22,6 @@ uniform Material porcelain;
 uniform sampler2D porcelainTexture;
 uniform sampler2D porcelainSurfaceTexture;
 
-
-
 void main()
 {
     vec3 ambient,diffuse,specular;
@@ -34,8 +32,7 @@ void main()
     float diff = max(dot(norm, lightDir), 0.0);
     vec3 viewDir = normalize(viewPos - FragPos);
     vec3 reflectDir = reflect(-lightDir, norm);
-    
-    
+
     if(isSurface==1.0){
         ambient=surface.ambient * lightColor;
         diffuse = (diff * surface.diffuse) * lightColor;
@@ -51,6 +48,5 @@ void main()
         vec3 result = (ambient + diffuse + specular);
         FragColor = texture(porcelainTexture, TexCoord)*vec4(result,1.0);
     }
-    
 
 }

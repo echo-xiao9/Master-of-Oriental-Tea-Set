@@ -1,6 +1,6 @@
 # 茗酊
 
-康艺潇 518431910002
+CG：最终成绩98/100
 
 ![Untitled](%E8%8C%97%E9%85%8A%20cb15fad82be14f80ad3914fa8c336891/Untitled.png)
 

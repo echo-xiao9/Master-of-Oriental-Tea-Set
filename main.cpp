@@ -243,7 +243,6 @@ int main() {
 //                cout<<"mouseeX："<<mouseX<<" mouseY:"<<mouseY<<"worldX"<<wx<<" worldY:"<<wy<<endl;
                 curveArea3.addPoint(wx, wy);
                
-                
                 break;
             
             case POINT:
@@ -464,10 +463,6 @@ void processInput(GLFWwindow *window) {
                     Select = LOAD;
                     
                 }
-
-                
-                
-                
             }
             else{
                 cout<<"POINT:"<<lastX<<" "<<lastY<<endl;

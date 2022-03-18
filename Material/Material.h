@@ -49,29 +49,13 @@ private:
         
         float pieceWidth = length / (2*rNum), offset;
         if(num==10){
-            cout<<"length in ma:"<<length<<endl;
+            cout<<"length in material:"<<length<<endl;
             cout<<"pieceWidth"<<pieceWidth<<endl;}
         // if need the upper and lower bound.
         
-//        if (num == 0)
-//        {
-//            rightR = radius[0];
-//            leftR = (radius[0] + radius[1]) / 2;
-//        }
-//        else if (num == rNum - 1)
-//        {
-//            rightR = (radius[rNum - 2] + radius[rNum - 1]) / 2;
-//            leftR = radius[rNum - 1];
-//        }
-//        else
-//        {
-//            rightR = (radius[num] + radius[num - 1]) / 2;
-//            leftR = (radius[num] + radius[num + 1]) / 2;
-//        }
         
         rightR = (radius[num] + radius[num - 1]) / 2;
         leftR = (radius[num] + radius[num + 1]) / 2;
-        
         
         
         if(rightR==1.5f&&leftR==1.5f)
@@ -122,20 +106,21 @@ private:
             
             
             
-            // 1
+            // point 1
+            // position
             rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 0] = offset - pieceWidth;
             rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 1] = y1;
             rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 2] = z1;
-
+            // normal vector
             rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 3] = normalX;
             rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 4] = normalY;
             rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 5] = normalZ;
-
+            // if is surface
             rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 6] = ifsurface;
-
+            // location in texture
             rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 7] = tl;
             rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 8] = tt;
-            // 2
+            // point 2
             rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 1 * fNum] = offset - pieceWidth;
             rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 1 * fNum + 1] = y2;
             rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 1 * fNum + 2] = z2;
@@ -148,7 +133,7 @@ private:
 
             rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 1 * fNum + 7] = tl;
             rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 1 * fNum + 8] = tb;
-            // 3
+            // point 3
             rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 2 * fNum] = offset + pieceWidth;
             rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 2 * fNum + 1] = y3;
             rPointer[num * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 2 * fNum + 2] = z3;
@@ -740,7 +725,7 @@ private:
 
             rPointer[rNum * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 10 * fNum + 7] = 1.0;
             rPointer[rNum * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 10 * fNum + 8] = 1.0;
-            //12
+            //point 12
             rPointer[rNum * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 11 * fNum] = offset + pieceWidth;
             rPointer[rNum * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 11 * fNum + 1] = y2;
             rPointer[rNum * eNum * 4 * 3 * fNum + i * 4 * 3 * fNum + 11 * fNum + 2] = z2;
@@ -1258,12 +1243,7 @@ public:
             }
             for(int i=MAX(0,rightNum-1);i<=MIN(rNum-1,leftNum+1);i++){
                 renderPiece(i);
-                
-                
-                
-                
-                
-                
+
             }
         }
 

@@ -1,0 +1,150 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 55;
+	objects = {
+
+/* Begin PBXFileReference section */
+		E83F53C527259EA800DAA31A /* glut.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = glut.h; sourceTree = "<group>"; };
+		E83F53C627259EA800DAA31A /* Makefile */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
+		E83F53C727259EA800DAA31A /* freeglut.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = freeglut.h; sourceTree = "<group>"; };
+		E83F53C827259EA800DAA31A /* Makefile.am */ = {isa = PBXFileReference; lastKnownFileType = text; path = Makefile.am; sourceTree = "<group>"; };
+		E83F53C927259EA800DAA31A /* freeglut_ext.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = freeglut_ext.h; sourceTree = "<group>"; };
+		E83F53CA27259EA800DAA31A /* Makefile.in */ = {isa = PBXFileReference; lastKnownFileType = text; path = Makefile.in; sourceTree = "<group>"; };
+		E83F53CB27259EA800DAA31A /* freeglut_std.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = freeglut_std.h; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		E83F53BF27259EA800DAA31A = {
+			isa = PBXGroup;
+			children = (
+				E83F53C527259EA800DAA31A /* glut.h */,
+				E83F53C627259EA800DAA31A /* Makefile */,
+				E83F53C727259EA800DAA31A /* freeglut.h */,
+				E83F53C827259EA800DAA31A /* Makefile.am */,
+				E83F53C927259EA800DAA31A /* freeglut_ext.h */,
+				E83F53CA27259EA800DAA31A /* Makefile.in */,
+				E83F53CB27259EA800DAA31A /* freeglut_std.h */,
+			);
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXLegacyTarget section */
+		E83F53C427259EA800DAA31A /* GL */ = {
+			isa = PBXLegacyTarget;
+			buildArgumentsString = "$(ACTION)";
+			buildConfigurationList = E83F53CC27259EA800DAA31A /* Build configuration list for PBXLegacyTarget "GL" */;
+			buildPhases = (
+			);
+			buildToolPath = /usr/bin/make;
+			buildWorkingDirectory = "/Users/kangyixiao/EchoFile/coding/SJTU-SE/SE344_ComputerGraphics/OpenGLTest2/Externals/Include/freeglut/include/GL";
+			dependencies = (
+			);
+			name = GL;
+			passBuildSettingsInEnvironment = 1;
+			productName = GL;
+		};
+/* End PBXLegacyTarget section */
+
+/* Begin PBXProject section */
+		E83F53C027259EA800DAA31A /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+			};
+			buildConfigurationList = E83F53C327259EA800DAA31A /* Build configuration list for PBXProject "GL" */;
+			compatibilityVersion = "Xcode 13.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = E83F53BF27259EA800DAA31A;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				E83F53C427259EA800DAA31A /* GL */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin XCBuildConfiguration section */
+		E83F53C127259EA800DAA31A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				COPY_PHASE_STRIP = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx10.6;
+			};
+			name = Debug;
+		};
+		E83F53C227259EA800DAA31A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				COPY_PHASE_STRIP = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				SDKROOT = macosx10.6;
+			};
+			name = Release;
+		};
+		E83F53CD27259EA800DAA31A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				DEBUGGING_SYMBOLS = YES;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = GL;
+			};
+			name = Debug;
+		};
+		E83F53CE27259EA800DAA31A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = GL;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		E83F53C327259EA800DAA31A /* Build configuration list for PBXProject "GL" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E83F53C127259EA800DAA31A /* Debug */,
+				E83F53C227259EA800DAA31A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E83F53CC27259EA800DAA31A /* Build configuration list for PBXLegacyTarget "GL" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E83F53CD27259EA800DAA31A /* Debug */,
+				E83F53CE27259EA800DAA31A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = E83F53C027259EA800DAA31A /* Project object */;
+}
