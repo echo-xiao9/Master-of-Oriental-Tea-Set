@@ -109,6 +109,109 @@ Problem found when mapping: If you create your own mapping, you get a break in t
 
 ### Material
 
-<img src="%E8%8C%97%E9%85%8A%20cb15fad82be14f80ad3914fa8c336891/Untitled%2017.png" alt="Untitled" style="zoom: 33%;" /><img src="%E8%8C%97%E9%85%8A%20cb15fad82be14f80ad3914fa8c336891/Untitled%2020.png" alt="Untitled" style="zoom: 33%;" /><img src="
 
-Translated with www.DeepL.com/Translator (free version)
+<img src="%E8%8C%97%E9%85%8A%20cb15fad82be14f80ad3914fa8c336891/Untitled%2017.png" alt="Untitled" style="zoom: 33%;" /><img src="%E8%8C%97%E9%85%8A%20cb15fad82be14f80ad3914fa8c336891/Untitled%2020.png" alt="Untitled" style="zoom: 33%;" /><img src="%E8%8C%97%E9%85%8A%20cb15fad82be14f80ad3914fa8c336891/Untitled%2021.png" alt="Untitled" style="zoom:33%;" />
+
+<img src="%E8%8C%97%E9%85%8A%20cb15fad82be14f80ad3914fa8c336891/Untitled%2022.png" alt="Untitled" style="zoom:33%;" /><img src="%E8%8C%97%E9%85%8A%20cb15fad82be14f80ad3914fa8c336891/Untitled%2023.png" alt="Untitled" style="zoom:33%;" /><img src="%E8%8C%97%E9%85%8A%20cb15fad82be14f80ad3914fa8c336891/Untitled%2024.png" alt="Untitled" style="zoom:33%;" />
+
+<img src="%E8%8C%97%E9%85%8A%20cb15fad82be14f80ad3914fa8c336891/Untitled%2025.png" alt="Untitled" style="zoom:33%;" /><img src="%E8%8C%97%E9%85%8A%20cb15fad82be14f80ad3914fa8c336891/Untitled%2026.png" alt="Untitled" style="zoom:33%;" />
+## Particle system
+
+1. Three kinds of particles are designed: three-dimensional peach petals, flat peach petals, and falling leaves.
+   
+    For the **three-dimensional peach petals** the design is as follows, each petal is made of 4 face pieces stitched together, with the common point in the middle concave, forming the effect of concave petals.
+    
+    For **flat petals** then each petal is rendered with two triangles of the same depth spliced together.
+    
+    For **leaves**, take 1/4 of the petals and replace the color.
+    
+2. In **falling effect**, use random numbers to control the initial X position of the petals, height Y should be higher than the window height, control each time from above floating down, particle life control in the window visible particles time period particles do not disappear.
+3. ** Velocity control:** 1.
+    1. vertical direction by **gravity**, taking into account the air resistance is proportional to the speed, derived as follows, so update the speed of the vertical direction by this formula.
+
+$$
+Air resistance \quad F=kv\\\ acceleration\quad a=g-F/m=g-kv/m\\\ \therefore v' = v + (g-kv/m)t
+$$
+
+        b. The velocity in the horizontal direction is disturbed by the wind direction, here it is simplified to a windless state, and the velocity in the x,z axis is kept constant.
+
+Note: This time, we did not use mapping as the particle system of flowers and leaves, on the one hand, because we want to achieve the effect of three-dimensional petals, if the simple mapping will appear when the flip is very unrealistic line graphics. I didn't find any suitable obj model on the internet, so I modeled it myself and found it to be quite good.
+
+<img src="%E8%8C%97%E9%85%8A%20cb15fad82be14f80ad3914fa8c336891/Untitled%2027.png" alt="Untitled" style="zoom:25%;" />
+
+<img src="%E8%8C%97%E9%85%8A%20cb15fad82be14f80ad3914fa8c336891/Untitled%2028.png" alt="Falling Leaves" style="zoom:33%;" />
+
+Falling Leaves
+
+! [Stereoscopic Petals](%E8%8C%97%E9%85%8A%20cb15fad82be14f80ad3914fa8c336891/Untitled%2029.png)
+
+three-dimensional flower petals
+
+<img src="%E8%8C%97%E9%85%8A%20cb15fad82be14f80ad3914fa8c336891/Untitled%2030.png" alt="Single-layer petal" style="zoom: 50%;" />
+
+Single-layer petal
+
+<img src="%E8%8C%97%E9%85%8A%20cb15fad82be14f80ad3914fa8c336891/Untitled%2031.png" alt="Untitled" style="zoom:50%;" />
+
+**Particle lighting processing**
+
+Each surface slice here needs to calculate the normal vectors, so python scripts were written to get 16 normal vectors.
+
+For surface normal vector processing, only one bright side can be rendered at first, because the normal vector of a face piece can only be by one, when the back side is illuminated it will be dark, but actually it should still be bright, so the absolute value of the dot product of the two is added inside the shader, so that both sides can be equally illuminated.
+
+Before processing, it was dark when flipped
+
+<img src="%E8%8C%97%E9%85%8A%20cb15fad82be14f80ad3914fa8c336891/%E6%88%AA%E5%B1%8F2022-01-05_%E4%B8%8A%E5%8D%8810.53.54.png" alt="screenshot2022-01-05 10.53.54.png" <img src="%E8%8C%97%E9%85%8A%20cb15fad82be14f80ad3914fa8c336891/%E6%88%AA%E5%B1%8F2022-01-05_%E4%B8%8A%E5%8D%8810.55.00.png" alt="Screenshot 2022-01-05 10.55.00.png" Both sides are reflected after processing <img src="%E8%8C%97%E9%85%8A%20cb15fad82be14f80ad3914fa8c336891/%E6%88%AA%E5%B1%8F2022-01-05_%E4%B8%8A%E5%8D%8810.57.00.png" alt="Screenshot 2022-01-05 10.57.00.png" <img src="%E8%8C%97%E9%85%8A%20cb15fad82be14f80ad3914fa8c336891/%E6%88%AA%E5%B1%8F2022-01-05_%E4%B8%8A%E5%8D%8810.57.11.png" alt="screenshot2022-01-05 10.57.11.png" ## 3D Scene ! [Untitled](%E8%8C%97%E9%85%8A%20cb15fad82be14f80ad3914fa8c336891/Untitled%2032.png) ### Model reading Assimp model loading library is used, but the articulation from after Assimp reading to before drawing (including Mesh class and Model class) all implemented by yourself. The Model class is responsible for recursively analyzing each surface piece loaded by Assimp, extracting the point coordinates, normals, materials, and other data from it. The Mesh class is used to handle the model reading. There are two types of materials: color data and texture data. In the case of color data, the Ambient, Diffuse, and Specular color data are extracted and synthesized separately and then passed to Mesh class; in case of texture data The texture coordinates are passed to the Mesh class after texture mapping.
+In order to achieve different styles of model rendering, two sets of environment_color and environment_texture are implemented respectively. The former is used for loading models with only color data (e.g., low poly style models), and the latter is used for adding texture models. is implemented separately for different styles of model rendering. ! [Untitled](%E8%8C%97%E9%85%8A%20cb15fad82be14f80ad3914fa8c336891/Untitled%2033.png) **Dynamic scenes:** Because the scene is sea, in order to increase the fun and create an island atmosphere, two **dolphins** are added, they will rotate around the model, using sin cos trigonometric function to control their x,y,z speed, the final trajectory is an ellipse around the model, and jump up and down. ### code architecture Programmable pipeline implementation. The libraries used are : - GLEW - GLFW is a C library specifically for OpenGL that provides some of the minimal interfaces needed to render objects. - glm: mathematical operations, linear algebra, etc. - This project uses glm for vector and matrix operations. In the last job, a custom structure was used. But in this project, since there are many matrix and vector operations, and glm already provides a good interface, we use it directly. - SOIL: read mapping - assimp:load models in various formats The languages used are C++ and GLSL - main.cpp This project is responsible for creating windows, receiving input from the mouse and keyboard, and controlling the rendering logic in the main loop. This is responsible for instantiating the camera class, compiling the shader file and storing it in the resource pool, initializing the frame buffer, rendering the buttons and panels. - curveArea3.h controls the interactive additions to the Bezier drawing panel in the upper right corner, creates the curve - Base.h. Responsible for rendering the 3D scene. - Button.h is responsible for drawing a single Button. - Material.h Responsible for managing the mapping of each material. Defines "wood", "glass", "porcelain", "porcelain2", "tree", "marble", "wood2" maps, some of them have normal maps, different coefficients for diffuse and specular reflections, etc. - Particle.h Particle system class. There are definitions for individual particle structures (Particle). The updateParticle method updates the state of all particles (including velocity, acceleration, position, color, lifetime, etc.) - Skybox.h Environment model class, including skybox and environment model. Responsible for drawing skyboxes and environment models. other tool classes - camera.h: Encapsulated camera class. - shader.h: The wrapped shader handler class. is responsible for reading the shader file and compiling it, encapsulating some of the variables passed to the shader. methods. - texture.h: Wrapped texture handler class. sha: Responsible for reading texture maps and generating texture objects. - model.h/Mesh.h: wrapped model handling class. This class is responsible for analyzing the model data read by the assimp library and drawing the model. - const.h Record some constants - state.h records some intermediate state variables. - model.h/model.txt file that holds the model ```java * save format: * objectId * curves // number of bezier curves
+  
+    * crtlPoint // number of control points for bezier curves * multiple crtlpoints // control points (x,y) of the bezier curve, with crtlPoint row
+    * textureId  * IFSOLID // internals/hollow objects ``` ## lighting modification The user can modify the brightness and color of the light by clicking the Light button. Example as shown. <img src="%E8%8C%97%E9%85%8A%20cb15fad82be14f80ad3914fa8c336891/Untitled%2034.png" alt="Untitled" style="zoom:50%;" /><img src="%E8%8C%97%E9%85%8A%20cb15fad82be14f80ad3914fa8c336891/Untitled%2035.png" alt="Untitled" style="zoom:50%;" /><img src="%E8%8C%97%E9%85%8A%20cb15fad82be14f80ad3914fa8c336891/Untitled%2036.png" alt="Untitled" style="zoom:50%;" /> ## Scene Modification The user can control the movement of the rendered object with the keyboard. ## Other The process also encountered some interesting situations, such as adjusting the rendering of the face sheet outside the time to make the effect of placing the tablecloth on top of the table, and finally not put into the finished film, but also recorded in the document. <img src="%E8%8C%97%E9%85%8A%20cb15fad82be14f80ad3914fa8c336891/Untitled%2037.png" alt="Untitled" style="zoom:25%;" /> <img src="%E8%8C%97%E9%85%8A%20cb15fad82be14f80ad3914fa8c336891/Untitled%2038.png" alt="Untitled" style="zoom: 25%;" /> ### How to operate:
+
+Keyboard operation.
+
+W: Camera viewport up
+
+S: Camera viewport down
+
+A: Camera viewport to the left
+
+D: Camera viewport to the right
+
+Q: Camera viewport backwards
+
+E: camera viewport forward
+
+I: Model position up in 3D scene
+
+K: model position down in the 3D scene
+
+L: Model position in 3D scene to the right
+
+J: Model position in 3D scene to the left
+
+O: Model position in 3D scene forward
+
+U: Model position backward in the 3D scene
+
+I: ↓/ ↑: Rotate the model up and down in the 3D scene
+
+UI panel button description.
+
+L: Drawing frame: Interactive drawing of Bezier curves
+
+LIGHT: Adjust the light color and brightness
+
+CREATE: Creates a 3D model based on a Bezier curve. The height of the model is determined by the height difference of the drawn curve.
+
+RESET: Initialization
+
+FIRE/TEXTURE: When you enter the program, it shows FIRE, which means that the ceramic is not fired, and after firing, it shows TEXTURE.
+
+SHOW: Model rotation display.
+
+HOLLOW/ SOLID: Control whether the created model is hollow or solid, click the button to switch between the two.
+
+SAVE: Save the current model.
+
+LOAD: Load the model, it will reproduce the last curve in the drawing box, and the material and shape of the model will be restored to the way it was before saving.
+
