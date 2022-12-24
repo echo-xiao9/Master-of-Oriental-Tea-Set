@@ -1,10 +1,9 @@
 # Master-of-Oriental-Tea-Set
-a game of DIY oriental tea set made with opengl
+a game of DIY oriental tea set made with OpenGL
 
+[中文版说明](https://github.com/echo-xiao9/Master-of-Oriental-Tea-Set/blob/main/README_CN.md)
 
-Tea tincture
-
-CG: Final score 98/100
+Computer Grphics: Final score 98/100
 
 YouTube: https://www.youtube.com/watch?v=SJfPAXPWKa4&t=15s
 
@@ -210,7 +209,9 @@ The libraries used are :
     * multiple crtlpoints // control points (x,y) of the bezier curve, with crtlPoint row
     * textureId  
     * IFSOLID // internals/hollow objects 
- ``` ## lighting modification The user can modify the brightness and color of the light by clicking the Light button. Example as shown.
+ ``` 
+
+## lighting modification The user can modify the brightness and color of the light by clicking the Light button. Example as shown.
  <img src="%E8%8C%97%E9%85%8A%20cb15fad82be14f80ad3914fa8c336891/Untitled%2034.png" alt="Untitled" style="zoom:50%;" /><img src="%E8%8C%97%E9%85%8A%20cb15fad82be14f80ad3914fa8c336891/Untitled%2035.png" alt="Untitled" style="zoom:50%;" /><img src="%E8%8C%97%E9%85%8A%20cb15fad82be14f80ad3914fa8c336891/Untitled%2036.png" alt="Untitled" style="zoom:50%;" />
  
 ## Scene Modification 
