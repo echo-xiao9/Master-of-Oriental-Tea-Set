@@ -143,7 +143,7 @@ Note: This time, we did not use mapping as the particle system of flowers and le
 
 Falling Leaves
 
-! [Stereoscopic Petals](%E8%8C%97%E9%85%8A%20cb15fad82be14f80ad3914fa8c336891/Untitled%2029.png)
+![Stereoscopic Petals](%E8%8C%97%E9%85%8A%20cb15fad82be14f80ad3914fa8c336891/Untitled%2029.png)
 
 three-dimensional flower petals
 
@@ -161,11 +161,63 @@ For surface normal vector processing, only one bright side can be rendered at fi
 
 Before processing, it was dark when flipped
 
-<img src="%E8%8C%97%E9%85%8A%20cb15fad82be14f80ad3914fa8c336891/%E6%88%AA%E5%B1%8F2022-01-05_%E4%B8%8A%E5%8D%8810.53.54.png" alt="screenshot2022-01-05 10.53.54.png" <img src="%E8%8C%97%E9%85%8A%20cb15fad82be14f80ad3914fa8c336891/%E6%88%AA%E5%B1%8F2022-01-05_%E4%B8%8A%E5%8D%8810.55.00.png" alt="Screenshot 2022-01-05 10.55.00.png" Both sides are reflected after processing <img src="%E8%8C%97%E9%85%8A%20cb15fad82be14f80ad3914fa8c336891/%E6%88%AA%E5%B1%8F2022-01-05_%E4%B8%8A%E5%8D%8810.57.00.png" alt="Screenshot 2022-01-05 10.57.00.png" <img src="%E8%8C%97%E9%85%8A%20cb15fad82be14f80ad3914fa8c336891/%E6%88%AA%E5%B1%8F2022-01-05_%E4%B8%8A%E5%8D%8810.57.11.png" alt="screenshot2022-01-05 10.57.11.png" ## 3D Scene ! [Untitled](%E8%8C%97%E9%85%8A%20cb15fad82be14f80ad3914fa8c336891/Untitled%2032.png) ### Model reading Assimp model loading library is used, but the articulation from after Assimp reading to before drawing (including Mesh class and Model class) all implemented by yourself. The Model class is responsible for recursively analyzing each surface piece loaded by Assimp, extracting the point coordinates, normals, materials, and other data from it. The Mesh class is used to handle the model reading. There are two types of materials: color data and texture data. In the case of color data, the Ambient, Diffuse, and Specular color data are extracted and synthesized separately and then passed to Mesh class; in case of texture data The texture coordinates are passed to the Mesh class after texture mapping.
-In order to achieve different styles of model rendering, two sets of environment_color and environment_texture are implemented respectively. The former is used for loading models with only color data (e.g., low poly style models), and the latter is used for adding texture models. is implemented separately for different styles of model rendering. ! [Untitled](%E8%8C%97%E9%85%8A%20cb15fad82be14f80ad3914fa8c336891/Untitled%2033.png) **Dynamic scenes:** Because the scene is sea, in order to increase the fun and create an island atmosphere, two **dolphins** are added, they will rotate around the model, using sin cos trigonometric function to control their x,y,z speed, the final trajectory is an ellipse around the model, and jump up and down. ### code architecture Programmable pipeline implementation. The libraries used are : - GLEW - GLFW is a C library specifically for OpenGL that provides some of the minimal interfaces needed to render objects. - glm: mathematical operations, linear algebra, etc. - This project uses glm for vector and matrix operations. In the last job, a custom structure was used. But in this project, since there are many matrix and vector operations, and glm already provides a good interface, we use it directly. - SOIL: read mapping - assimp:load models in various formats The languages used are C++ and GLSL - main.cpp This project is responsible for creating windows, receiving input from the mouse and keyboard, and controlling the rendering logic in the main loop. This is responsible for instantiating the camera class, compiling the shader file and storing it in the resource pool, initializing the frame buffer, rendering the buttons and panels. - curveArea3.h controls the interactive additions to the Bezier drawing panel in the upper right corner, creates the curve - Base.h. Responsible for rendering the 3D scene. - Button.h is responsible for drawing a single Button. - Material.h Responsible for managing the mapping of each material. Defines "wood", "glass", "porcelain", "porcelain2", "tree", "marble", "wood2" maps, some of them have normal maps, different coefficients for diffuse and specular reflections, etc. - Particle.h Particle system class. There are definitions for individual particle structures (Particle). The updateParticle method updates the state of all particles (including velocity, acceleration, position, color, lifetime, etc.) - Skybox.h Environment model class, including skybox and environment model. Responsible for drawing skyboxes and environment models. other tool classes - camera.h: Encapsulated camera class. - shader.h: The wrapped shader handler class. is responsible for reading the shader file and compiling it, encapsulating some of the variables passed to the shader. methods. - texture.h: Wrapped texture handler class. sha: Responsible for reading texture maps and generating texture objects. - model.h/Mesh.h: wrapped model handling class. This class is responsible for analyzing the model data read by the assimp library and drawing the model. - const.h Record some constants - state.h records some intermediate state variables. - model.h/model.txt file that holds the model ```java * save format: * objectId * curves // number of bezier curves
-  
-    * crtlPoint // number of control points for bezier curves * multiple crtlpoints // control points (x,y) of the bezier curve, with crtlPoint row
-    * textureId  * IFSOLID // internals/hollow objects ``` ## lighting modification The user can modify the brightness and color of the light by clicking the Light button. Example as shown. <img src="%E8%8C%97%E9%85%8A%20cb15fad82be14f80ad3914fa8c336891/Untitled%2034.png" alt="Untitled" style="zoom:50%;" /><img src="%E8%8C%97%E9%85%8A%20cb15fad82be14f80ad3914fa8c336891/Untitled%2035.png" alt="Untitled" style="zoom:50%;" /><img src="%E8%8C%97%E9%85%8A%20cb15fad82be14f80ad3914fa8c336891/Untitled%2036.png" alt="Untitled" style="zoom:50%;" /> ## Scene Modification The user can control the movement of the rendered object with the keyboard. ## Other The process also encountered some interesting situations, such as adjusting the rendering of the face sheet outside the time to make the effect of placing the tablecloth on top of the table, and finally not put into the finished film, but also recorded in the document. <img src="%E8%8C%97%E9%85%8A%20cb15fad82be14f80ad3914fa8c336891/Untitled%2037.png" alt="Untitled" style="zoom:25%;" /> <img src="%E8%8C%97%E9%85%8A%20cb15fad82be14f80ad3914fa8c336891/Untitled%2038.png" alt="Untitled" style="zoom: 25%;" /> ### How to operate:
+<img src="%E8%8C%97%E9%85%8A%20cb15fad82be14f80ad3914fa8c336891/%E6%88%AA%E5%B1%8F2022-01-05_%E4%B8%8A%E5%8D%8810.53.54.png" alt="截屏2022-01-05 上午10.53.54.png" style="zoom:33%;" />
+
+<img src="%E8%8C%97%E9%85%8A%20cb15fad82be14f80ad3914fa8c336891/%E6%88%AA%E5%B1%8F2022-01-05_%E4%B8%8A%E5%8D%8810.55.00.png" alt="截屏2022-01-05 上午10.55.00.png" style="zoom:33%;" />
+
+It's reflected on both sides.
+
+
+<img src="%E8%8C%97%E9%85%8A%20cb15fad82be14f80ad3914fa8c336891/%E6%88%AA%E5%B1%8F2022-01-05_%E4%B8%8A%E5%8D%8810.57.00.png" alt="截屏2022-01-05 上午10.57.00.png" style="zoom:33%;" />
+
+<img src="%E8%8C%97%E9%85%8A%20cb15fad82be14f80ad3914fa8c336891/%E6%88%AA%E5%B1%8F2022-01-05_%E4%B8%8A%E5%8D%8810.57.11.png" alt="截屏2022-01-05 上午10.57.11.png" style="zoom:33%;" />
+
+## 3D scene
+![Untitled](%E8%8C%97%E9%85%8A%20cb15fad82be14f80ad3914fa8c336891/Untitled%2032.png)
+
+### Model reading 
+Assimp model loading library is used, but the articulation from after Assimp reading to before drawing (including Mesh class and Model class) all implemented by yourself. The Model class is responsible for recursively analyzing each surface piece loaded by Assimp, extracting the point coordinates, normals, materials, and other data from it. The Mesh class is used to handle the model reading. There are two types of materials: color data and texture data. In the case of color data, the Ambient, Diffuse, and Specular color data are extracted and synthesized separately and then passed to Mesh class; in case of texture data The texture coordinates are passed to the Mesh class after texture mapping.
+In order to achieve different styles of model rendering, two sets of environment_color and environment_texture are implemented respectively. The former is used for loading models with only color data (e.g., low poly style models), and the latter is used for adding texture models. is implemented separately for different styles of model rendering. 
+![Untitled](%E8%8C%97%E9%85%8A%20cb15fad82be14f80ad3914fa8c336891/Untitled%2033.png) 
+
+**Dynamic scenes:** 
+Because the scene is sea, in order to increase the fun and create an island atmosphere, two **dolphins** are added, they will rotate around the model, using sin cos trigonometric function to control their x,y,z speed, the final trajectory is an ellipse around the model, and jump up and down. 
+
+### code architecture 
+Programmable pipeline implementation. 
+The libraries used are :
+- GLEW 
+- GLFW is a C library specifically for OpenGL that provides some of the minimal interfaces needed to render objects. 
+- glm: mathematical operations, linear algebra, etc. 
+- This project uses glm for vector and matrix operations. In the last job, a custom structure was used. But in this project, since there are many matrix and vector operations, and glm already provides a good interface, we use it directly. 
+- SOIL: read mapping 
+- assimp:load models in various formats The languages used are C++ and GLSL 
+- main.cpp This project is responsible for creating windows, receiving input from the mouse and keyboard, and controlling the rendering logic in the main loop. This is responsible for instantiating the camera class, compiling the shader file and storing it in the resource pool, initializing the frame buffer, rendering the buttons and panels. 
+- curveArea3.h controls the interactive additions to the Bezier drawing panel in the upper right corner, creates the curve - Base.h. Responsible for rendering the 3D scene. - Button.h is responsible for drawing a single Button.
+- Material.h Responsible for managing the mapping of each material. Defines "wood", "glass", "porcelain", "porcelain2", "tree", "marble", "wood2" maps, some of them have normal maps, different coefficients for diffuse and specular reflections, etc. 
+- Particle.h Particle system class. There are definitions for individual particle structures (Particle). The updateParticle method updates the state of all particles (including velocity, acceleration, position, color, lifetime, etc.) 
+- Skybox.h Environment model class, including skybox and environment model. Responsible for drawing skyboxes and environment models. other tool classes 
+- camera.h: Encapsulated camera class. - shader.h: The wrapped shader handler class. is responsible for reading the shader file and compiling it, encapsulating some of the variables passed to the shader. methods. - texture.h: Wrapped texture handler class. sha: Responsible for reading texture maps and generating texture objects. 
+- model.h/Mesh.h: wrapped model handling class. This class is responsible for analyzing the model data read by the assimp library and drawing the model. 
+- const.h Record some constants - state.h records some intermediate state variables.
+- model.h/model.txt file that holds the model 
+
+```java 
+    * save format: 
+    * objectId 
+    * curves // number of bezier curves
+    * crtlPoint // number of control points for bezier curves 
+    * multiple crtlpoints // control points (x,y) of the bezier curve, with crtlPoint row
+    * textureId  
+    * IFSOLID // internals/hollow objects 
+ ``` ## lighting modification The user can modify the brightness and color of the light by clicking the Light button. Example as shown.
+ <img src="%E8%8C%97%E9%85%8A%20cb15fad82be14f80ad3914fa8c336891/Untitled%2034.png" alt="Untitled" style="zoom:50%;" /><img src="%E8%8C%97%E9%85%8A%20cb15fad82be14f80ad3914fa8c336891/Untitled%2035.png" alt="Untitled" style="zoom:50%;" /><img src="%E8%8C%97%E9%85%8A%20cb15fad82be14f80ad3914fa8c336891/Untitled%2036.png" alt="Untitled" style="zoom:50%;" />
+ 
+## Scene Modification 
+The user can control the movement of the rendered object with the keyboard. ## Other The process also encountered some interesting situations, such as adjusting the rendering of the face sheet outside the time to make the effect of placing the tablecloth on top of the table, and finally not put into the finished film, but also recorded in the document. 
+<img src="%E8%8C%97%E9%85%8A%20cb15fad82be14f80ad3914fa8c336891/Untitled%2037.png" alt="Untitled" style="zoom:25%;" /> <img src="%E8%8C%97%E9%85%8A%20cb15fad82be14f80ad3914fa8c336891/Untitled%2038.png" alt="Untitled" style="zoom: 25%;" /> 
+
+### How to operate:
 
 Keyboard operation.
 
@@ -215,3 +267,12 @@ SAVE: Save the current model.
 
 LOAD: Load the model, it will reproduce the last curve in the drawing box, and the material and shape of the model will be restored to the way it was before saving.
 
+## Postscript
+The reason why I want to do this series is because I participated in an international product design competition three years ago, which was also a tea set. At that time, I used C4D modeling software and marveled at the reality of rendering. Finally, I was selected as one of the 92 international finalists. Now, however, from a graphical perspective, you can control the map of each piece, and use triangles to control each shape. I feel like I have made a rendering engine, and I feel amazing when I make it. Looking at modeling software from the perspective of a designer and a programmer gives me a deeper understanding. When making software, on the one hand, the ease of use should be ensured, on the other hand, the richness of modeling forms should be ensured. For example, in the control of Bezier curve, from one curve at the beginning to multiple curves later. Considerations such as the fixed height of the tea set, the maxY, minY sampling control height of the curve, and so on, make the modeling software more competitive.
+In addition to the implementation of the function, in order to achieve better results, a lot of time was spent on adjusting the parameters. Every modality adjustment, particle system properties, lighting properties, character movements and so on went through a lot of experimentation, and in the end the feel map and lighting were as realistic as possible.
+Finally, I met some problems in the process. I sincerely thank the teachers and teaching assistants for their patient advice:
+![NO1.jpg](%E8%8C%97%E9%85%8A%20cb15fad82be14f80ad3914fa8c336891/NO1.jpg)
+![222.png](%E8%8C%97%E9%85%8A%20cb15fad82be14f80ad3914fa8c336891/222.png)
+## reference
+
+[LearnOpenGL CN](https://learnopengl-cn.github.io/)
